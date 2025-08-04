@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, a from 'react';
 import dynamic from 'next/dynamic';
 import { Rocket, Users, Calendar, Target, Settings, Check } from 'lucide-react';
 
@@ -8,11 +8,7 @@ import { Rocket, Users, Calendar, Target, Settings, Check } from 'lucide-react';
 
 const HeroSection = ({ onStartAudit }) => (
     <section className="min-h-[70vh] flex items-center justify-center text-center py-20 relative">
-        <div className="absolute inset-0 opacity-30 -z-10">
-            <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-            <div className="absolute top-0 right-0 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-            <div className="absolute bottom-20 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-        </div>
+        {/* Le fond animé est maintenant dans le layout global */}
         <div className="max-w-4xl mx-auto relative z-10">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-gray-800">Turn Vision Into Living Systems</h1>
             <p className="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-600">The intelligent layer that transforms your goals and strategies into systems that think, act, and evolve with you.</p>
@@ -75,11 +71,14 @@ export default function HomePage() {
     const [answers, setAnswers] = useState({});
     const [blueprintData, setBlueprintData] = useState(null);
 
+    // RESTAURATION DE TOUTES VOS QUESTIONS ORIGINALES
     const questions = [
         { id: 'main_goal', question: 'Before we begin — what transformation do you want to create for your clients?', type: 'textarea', placeholder: 'Describe the outcome you help people achieve...' },
-        { id: 'business_model', question: 'How do you currently work with clients? (Select all that apply)', type: 'checkbox', options: [ 'One-on-one sessions', 'Group programs', 'Digital products', 'Mix of services and systems' ] },
-        { id: 'scaling_challenge', question: 'What\'s your biggest challenge in scaling your expertise?', type: 'radio', options: [ 'Limited by hours in the day', 'Clients don\'t follow through', 'Hard to track client progress', 'Manual work to automate' ] },
-        { id: 'email', question: 'Finally, where should we send your personalized blueprint?', type: 'email', placeholder: 'Your primary email...' }
+        { id: 'business_model', question: 'How do you currently work with clients? (Select all that apply)', type: 'checkbox', options: [ 'One-on-one sessions (trading time for money)', 'Group programs (manual but scalable)', 'Digital products (automated but low-touch)', 'Mix of services and systems', 'Building toward automated client systems' ] },
+        { id: 'scaling_challenge', question: 'What\'s your biggest challenge in scaling your expertise?', type: 'radio', options: [ 'Limited by hours in the day', 'Clients don\'t follow through between sessions', 'Hard to track client progress and results', 'Manual work that could be automated', 'Want to productize but don\'t know how' ] },
+        { id: 'client_success_metric', question: 'How do you currently measure client success?', type: 'radio', options: [ 'Client feedback and testimonials', 'Completion of action items between sessions', 'Achievement of specific measurable outcomes', 'Client retention and referrals', 'Hard to measure - mostly intuitive' ] },
+        { id: 'automation_vision', question: 'If you could automate one thing in your practice, what would it be?', type: 'textarea', placeholder: 'Be specific about what takes most of your time...' },
+        { id: 'email', question: 'Where should we send your personalized Expert OS blueprint?', type: 'email', placeholder: 'Your primary email...' }
     ];
 
     const handleAnswer = (questionId, value) => {
@@ -106,6 +105,12 @@ export default function HomePage() {
             handleSubmit();
         }
     };
+    
+    const handleBack = () => {
+        if (currentQuestion > 0) {
+            setCurrentQuestion(currentQuestion - 1);
+        }
+    };
 
     const handleSubmit = async () => {
         setAppState('scanning');
@@ -129,13 +134,24 @@ export default function HomePage() {
         <div className="w-full max-w-2xl bg-white/50 p-8 rounded-2xl shadow-lg border border-white/30" style={{ backdropFilter: 'blur(20px)' }}>
             <h2 className="text-2xl font-bold mb-2 text-gray-800">{questions[currentQuestion].question}</h2>
             <div className="mt-6">
-                {questions[currentQuestion].type === 'textarea' && <textarea rows="4" className="form-input" placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} />}
-                {questions[currentQuestion].type === 'email' && <input type="email" className="form-input" placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} />}
+                {questions[currentQuestion].type === 'textarea' && <textarea rows="4" className="form-input" placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
+                {questions[currentQuestion].type === 'email' && <input type="email" className="form-input" placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
                 {(questions[currentQuestion].type === 'radio' || questions[currentQuestion].type === 'checkbox') && (
                     <div className="space-y-3">
                         {questions[currentQuestion].options.map(option => (
                             <label key={option} className="block w-full cursor-pointer bg-white border-2 border-gray-200 rounded-lg p-4 text-lg text-gray-700 hover:border-purple-500 transition-colors duration-200 has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50">
-                                <input type={questions[currentQuestion].type} name={questions[currentQuestion].id} value={option} className="hidden" onChange={() => handleAnswer(questions[currentQuestion].id, option)} />
+                                <input 
+                                    type={questions[currentQuestion].type} 
+                                    name={questions[currentQuestion].id} 
+                                    value={option} 
+                                    className="hidden" 
+                                    onChange={() => handleAnswer(questions[currentQuestion].id, option)}
+                                    checked={
+                                        questions[currentQuestion].type === 'checkbox' 
+                                        ? (answers[questions[currentQuestion].id] || []).includes(option)
+                                        : answers[questions[currentQuestion].id] === option
+                                    }
+                                />
                                 {option}
                             </label>
                         ))}
@@ -143,6 +159,7 @@ export default function HomePage() {
                 )}
             </div>
             <div className="mt-8 flex justify-between items-center">
+                {currentQuestion > 0 ? <button onClick={handleBack} className="btn">Back</button> : <div />}
                 <span className="font-mono text-sm text-gray-500">{currentQuestion + 1} / {questions.length}</span>
                 <button onClick={handleNext} className="btn btn-primary">
                     {currentQuestion === questions.length - 1 ? 'Generate My Blueprint →' : 'Next →'}
@@ -165,7 +182,6 @@ export default function HomePage() {
                     <div className="w-full">
                         <HeroSection onStartAudit={() => setAppState('audit')} />
                         <PricingSection />
-                        {/* You can add the FAQ section here as well */}
                     </div>
                 );
             case 'audit': return renderAudit();
@@ -177,6 +193,11 @@ export default function HomePage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-teal-50 text-gray-800">
+             <div className="fixed inset-0 opacity-30 -z-10">
+                <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+                <div className="absolute top-0 right-0 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+                <div className="absolute bottom-20 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+            </div>
             <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
                 {renderContent()}
             </div>
