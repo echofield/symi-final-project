@@ -1,25 +1,85 @@
-"use client";
+'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
+import { Rocket, Users, Calendar, Target, Settings, Check } from 'lucide-react';
 
-// FINAL DEFINITIVE FIX: Using the correct absolute path from within src
-const Dashboard = dynamic(() => import('@/components/Dashboard.js'), {
+// --- Composants de la Page d'Accueil ---
+
+const HeroSection = ({ onStartAudit }) => (
+    <section className="min-h-[70vh] flex items-center justify-center text-center py-20 relative">
+        <div className="absolute inset-0 opacity-30 -z-10">
+            <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+            <div className="absolute top-0 right-0 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+            <div className="absolute bottom-20 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+        </div>
+        <div className="max-w-4xl mx-auto relative z-10">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-gray-800">Turn Vision Into Living Systems</h1>
+            <p className="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-600">The intelligent layer that transforms your goals and strategies into systems that think, act, and evolve with you.</p>
+            <div className="mt-8">
+                <button onClick={onStartAudit} className="btn btn-primary text-lg px-8 py-4">Start Your Free Audit</button>
+            </div>
+        </div>
+    </section>
+);
+
+const PricingSection = () => (
+    <section id="pricing" className="py-20">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4">Choose Your Execution Path</h2>
+            <p className="text-lg text-gray-600">From personal transformation to scaling your practice—your strategy becomes a living system.</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+            <div className="price-card">
+                <div className="flex-grow">
+                    <h3 className="text-2xl font-bold mb-2">SYMI – Business Twin Starter</h3>
+                    <p className="text-gray-600 mb-6">Your strategy, fully executed through an intelligent system.</p>
+                    <div className="mb-6">
+                        <span className="text-4xl font-bold">€1,200</span>
+                        <span className="text-lg text-gray-500"> one-time setup</span>
+                        <div className="text-lg text-gray-500 mt-2">+ <span className="font-bold text-gray-800">€60/month</span></div>
+                    </div>
+                    <ul className="space-y-3 mb-8">
+                        <li className="feature-item"><Check className="checkmark" /><span>Personalized dashboard tailored to your strategy</span></li>
+                        <li className="feature-item"><Check className="checkmark" /><span>Pre-built automations to save hours/week</span></li>
+                    </ul>
+                </div>
+                <a href="https://buy.stripe.com/00wbJ1ckk9j13PreZN" target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full text-center">Activate Now</a>
+            </div>
+            <div className="price-card recommended">
+                 <div className="flex-grow">
+                    <h3 className="text-2xl font-bold mb-2">SYMI OS – Complete System</h3>
+                    <p className="text-gray-600 mb-6">The complete infrastructure to scale your practice with peace of mind.</p>
+                    <div className="mb-6"><span className="text-4xl font-bold">From €2,500</span></div>
+                    <ul className="space-y-3 mb-8">
+                        <li className="feature-item"><Check className="checkmark" /><strong>Everything in Starter, plus:</strong></li>
+                        <li className="feature-item"><Check className="checkmark" /><span>A-to-Z automated client journey</span></li>
+                        <li className="feature-item"><Check className="checkmark" /><span>Personalized client space & dashboard</span></li>
+                    </ul>
+                </div>
+                <a href="#" className="btn w-full text-center">Explore SYMI OS</a>
+            </div>
+        </div>
+    </section>
+);
+
+// --- Composant Principal de la Page ---
+const Dashboard = dynamic(() => import('../components/Dashboard'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center h-screen w-full"><p className="text-lg text-gray-600">Loading Dashboard...</p></div>
 });
 
 export default function HomePage() {
-    const [step, setStep] = useState(0); // 0: Audit, 1: Scanning, 2: Report
+    const [appState, setAppState] = useState('landing'); // landing, audit, scanning, report
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState({});
     const [blueprintData, setBlueprintData] = useState(null);
 
     const questions = [
         { id: 'main_goal', question: 'Before we begin — what transformation do you want to create for your clients?', type: 'textarea', placeholder: 'Describe the outcome you help people achieve...' },
-        { id: 'business_model', question: 'How do you currently work with clients? (Select all that apply)', type: 'checkbox', options: [ 'One-on-one sessions (trading time for money)', 'Group programs (manual but scalable)', 'Digital products (automated but low-touch)', 'Mix of services and systems', 'Building toward automated client systems' ] },
-        { id: 'scaling_challenge', question: 'What\'s your biggest challenge in scaling your expertise?', type: 'radio', options: [ 'Limited by hours in the day', 'Clients don\'t follow through between sessions', 'Hard to track client progress and results', 'Manual work that could be automated', 'Want to productize but don\'t know how' ] },
-        { id: 'email', question: 'Where should we send your personalized Expert OS blueprint?', type: 'email', placeholder: 'Your primary email...' }
+        { id: 'business_model', question: 'How do you currently work with clients? (Select all that apply)', type: 'checkbox', options: [ 'One-on-one sessions', 'Group programs', 'Digital products', 'Mix of services and systems' ] },
+        { id: 'scaling_challenge', question: 'What\'s your biggest challenge in scaling your expertise?', type: 'radio', options: [ 'Limited by hours in the day', 'Clients don\'t follow through', 'Hard to track client progress', 'Manual work to automate' ] },
+        { id: 'email', question: 'Finally, where should we send your personalized blueprint?', type: 'email', placeholder: 'Your primary email...' }
     ];
 
     const handleAnswer = (questionId, value) => {
@@ -48,7 +108,7 @@ export default function HomePage() {
     };
 
     const handleSubmit = async () => {
-        setStep(1);
+        setAppState('scanning');
         try {
             const response = await fetch('/api/generate-blueprint', {
                 method: 'POST',
@@ -58,10 +118,10 @@ export default function HomePage() {
             if (!response.ok) throw new Error('API request failed');
             const data = await response.json();
             setBlueprintData(JSON.parse(data.blueprint));
-            setStep(2);
+            setAppState('report');
         } catch (error) {
             console.error("Failed to generate blueprint:", error);
-            setStep(0);
+            setAppState('audit'); // Go back to audit on error
         }
     };
 
@@ -82,7 +142,8 @@ export default function HomePage() {
                     </div>
                 )}
             </div>
-            <div className="mt-8 flex justify-end">
+            <div className="mt-8 flex justify-between items-center">
+                <span className="font-mono text-sm text-gray-500">{currentQuestion + 1} / {questions.length}</span>
                 <button onClick={handleNext} className="btn btn-primary">
                     {currentQuestion === questions.length - 1 ? 'Generate My Blueprint →' : 'Next →'}
                 </button>
@@ -98,21 +159,24 @@ export default function HomePage() {
     );
 
     const renderContent = () => {
-        switch (step) {
-            case 0: return renderAudit();
-            case 1: return renderScanning();
-            case 2: return <Dashboard data={blueprintData} />;
-            default: return renderAudit();
+        switch (appState) {
+            case 'landing':
+                return (
+                    <div className="w-full">
+                        <HeroSection onStartAudit={() => setAppState('audit')} />
+                        <PricingSection />
+                        {/* You can add the FAQ section here as well */}
+                    </div>
+                );
+            case 'audit': return renderAudit();
+            case 'scanning': return renderScanning();
+            case 'report': return <Dashboard data={blueprintData} />;
+            default: return <HeroSection onStartAudit={() => setAppState('audit')} />;
         }
     };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-teal-50 text-gray-800">
-            <div className="fixed inset-0 opacity-30 -z-10">
-                <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-                <div className="absolute top-0 right-0 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-                <div className="absolute bottom-20 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-            </div>
             <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
                 {renderContent()}
             </div>
