@@ -1,15 +1,14 @@
 'use client';
 
-import React, a from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { Rocket, Users, Calendar, Target, Settings, Check } from 'lucide-react';
+import { Check } from 'lucide-react';
 
-// --- Composants de la Page d'Accueil ---
+// --- Landing Page Components ---
 
 const HeroSection = ({ onStartAudit }) => (
-    <section className="min-h-[70vh] flex items-center justify-center text-center py-20 relative">
-        {/* Le fond animé est maintenant dans le layout global */}
-        <div className="max-w-4xl mx-auto relative z-10">
+    <section className="w-full text-center py-20">
+        <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-gray-800">Turn Vision Into Living Systems</h1>
             <p className="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-600">The intelligent layer that transforms your goals and strategies into systems that think, act, and evolve with you.</p>
             <div className="mt-8">
@@ -20,7 +19,7 @@ const HeroSection = ({ onStartAudit }) => (
 );
 
 const PricingSection = () => (
-    <section id="pricing" className="py-20">
+    <section id="pricing" className="w-full py-20">
         <div className="text-center mb-12 max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Choose Your Execution Path</h2>
             <p className="text-lg text-gray-600">From personal transformation to scaling your practice—your strategy becomes a living system.</p>
@@ -59,7 +58,7 @@ const PricingSection = () => (
     </section>
 );
 
-// --- Composant Principal de la Page ---
+// --- Main App Component ---
 const Dashboard = dynamic(() => import('../components/Dashboard'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center h-screen w-full"><p className="text-lg text-gray-600">Loading Dashboard...</p></div>
@@ -71,7 +70,7 @@ export default function HomePage() {
     const [answers, setAnswers] = useState({});
     const [blueprintData, setBlueprintData] = useState(null);
 
-    // RESTAURATION DE TOUTES VOS QUESTIONS ORIGINALES
+    // RESTORED: Full list of original questions
     const questions = [
         { id: 'main_goal', question: 'Before we begin — what transformation do you want to create for your clients?', type: 'textarea', placeholder: 'Describe the outcome you help people achieve...' },
         { id: 'business_model', question: 'How do you currently work with clients? (Select all that apply)', type: 'checkbox', options: [ 'One-on-one sessions (trading time for money)', 'Group programs (manual but scalable)', 'Digital products (automated but low-touch)', 'Mix of services and systems', 'Building toward automated client systems' ] },
@@ -179,7 +178,7 @@ export default function HomePage() {
         switch (appState) {
             case 'landing':
                 return (
-                    <div className="w-full">
+                    <div className="w-full container mx-auto px-6">
                         <HeroSection onStartAudit={() => setAppState('audit')} />
                         <PricingSection />
                     </div>
