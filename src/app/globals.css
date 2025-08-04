@@ -15,21 +15,12 @@
     66% { transform: translate(-20px, 20px) scale(0.9); }
     100% { transform: translate(0px, 0px) scale(1); }
   }
-
-  .animate-blob {
-    animation: blob 7s infinite;
-  }
-
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
+  .animate-blob { animation: blob 7s infinite; }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
 }
 
-/* Custom styles from our previous versions */
+/* Styles de l'Ancien Projet Intégrés */
 .loader { width: 80px; height: 50px; position: relative; }
 .loader-text {
     position: absolute; top: 0; padding: 0; margin: 0; color: #C8B6FF;
@@ -59,4 +50,23 @@
 }
 .btn-primary {
     @apply border-purple-600 bg-purple-600 text-white hover:bg-purple-700;
+}
+
+/* Nouveaux Styles pour les Cartes de Prix */
+.price-card {
+    @apply bg-white/50 p-8 rounded-2xl border border-white/30 shadow-lg flex flex-col;
+    backdrop-filter: blur(20px);
+}
+.price-card.recommended {
+    @apply border-2 border-purple-500 relative;
+}
+.price-card.recommended::before {
+    content: '⭐ Recommended';
+    @apply absolute -top-4 right-5 bg-gradient-to-r from-purple-500 to-teal-500 text-white text-xs font-semibold px-3 py-1 rounded-full;
+}
+.feature-item {
+    @apply flex items-start text-gray-600;
+}
+.checkmark {
+    @apply w-5 h-5 mr-3 text-purple-500 flex-shrink-0;
 }
