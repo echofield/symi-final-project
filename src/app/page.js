@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 
-// FINAL DEFINITIVE FIX: Using the src-based absolute path
-const Dashboard = dynamic(() => import('@/app/components/Dashboard.js'), {
+// FINAL DEFINITIVE FIX: Using the correct absolute path from within src
+const Dashboard = dynamic(() => import('@/components/Dashboard.js'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center h-screen w-full"><p className="text-lg text-gray-600">Loading Dashboard...</p></div>
 });
