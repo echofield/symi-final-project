@@ -6,7 +6,6 @@ import { Check, ChevronDown, Clock, Users, Zap, Calendar } from 'lucide-react';
 // --- Page Components ---
 
 const Header = ({ onStartAudit }) => (
-    // The header is now always visible and correctly positioned
     <header className="absolute top-0 left-0 p-6 w-full z-20">
         <div className="container mx-auto flex justify-between items-center">
             <span className="font-semibold text-gray-800">Symi System</span>
@@ -70,6 +69,7 @@ const PricingSection = () => (
                             <li className="feature-item"><Check className="checkmark" /><span>Email & Chat Support</span></li>
                         </ul>
                     </div>
+                    {/* --- CORRECTED PAYMENT LINK --- */}
                     <a href="https://buy.stripe.com/00wbJ1ckk9j13PreZN" target="_blank" rel="noopener noreferrer"
                        className="btn btn-primary w-full text-center">Activate Now</a>
                 </div>
@@ -125,7 +125,6 @@ const FaqSection = () => {
 };
 
 const BlueprintResults = ({ blueprint, onRestart }) => {
-    // Fallback for blueprint data while it's loading or if it fails
     if (!blueprint) {
         return (
             <div className="text-center py-20">
@@ -223,11 +222,9 @@ export default function HomePage() {
         if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1);
     };
 
-    // --- NEW: ENTER KEY NAVIGATION ---
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'Enter' && appState === 'audit') {
-                // Prevents submitting a form if inside a textarea
                 if (document.activeElement.tagName.toLowerCase() === 'textarea' && !e.shiftKey) {
                     e.preventDefault();
                     handleNext();
@@ -242,9 +239,8 @@ export default function HomePage() {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [appState, currentQuestion, answers]); // Re-bind when state changes
+    }, [appState, currentQuestion, answers]);
 
-    // --- UPDATED: handleSubmit to call the API ---
     const handleSubmit = async () => {
         setAppState('scanning');
         setError(null);
@@ -262,7 +258,6 @@ export default function HomePage() {
             }
 
             const data = await response.json();
-            // The blueprint from the API is a string, so we need to parse it
             const parsedBlueprint = JSON.parse(data.blueprint);
             setBlueprint(parsedBlueprint);
             
@@ -385,12 +380,13 @@ export default function HomePage() {
                     );
                 }
                 return (
-                    <>
+                    // The main content area now has padding-top to not be hidden by the absolute header
+                    <div className="pt-24"> 
                         <Header onStartAudit={handleRestart} />
                         <BlueprintResults blueprint={blueprint} onRestart={handleRestart} />
                         <PricingSection />
                         <FaqSection />
-                    </>
+                    </div>
                 );
             case 'landing':
             default:
@@ -410,7 +406,6 @@ export default function HomePage() {
     };
 
     return (
-        // The outer div structure is simplified to fix the header issue
         <div className="min-h-screen bg-gray-50 text-gray-800 relative">
             <div className="fixed inset-0 opacity-30 -z-10">
                 <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
