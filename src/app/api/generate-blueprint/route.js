@@ -9,118 +9,73 @@ export async function POST(request) {
 
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
     if (!GEMINI_API_KEY) {
-      console.error('Server configuration error: Missing API Key.');
-      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+      return NextResponse.json({ error: 'Server configuration error: Missing API Key.' }, { status: 500 });
     }
 
-    // --- ENHANCED PROMPT ENGINEERING ---
+    // --- SIMPLIFIED & MORE ROBUST ARIA PROMPT ---
+    // This prompt is more direct, telling the AI to focus ONLY on the JSON output.
     const SYMI_BLUEPRINT_PROMPT = `
-      You are **Aria – Lead Systems Architect for Symi**. Your mandate is to conduct a forensic audit and design an executable "Business Twin" Blueprint. Compose a confidential strategic paper for visionary founders.
+      You are Aria, a Lead Systems Architect for Symi. Your tone is professional, insightful, and strategic.
+      Based on the following client data, your task is to generate a structured JSON object.
+      Do not output any text, explanation, or markdown formatting before or after the JSON object.
 
-      **Core Doctrine:**
-      1. Bottlenecks are fossilized decisions – unmake them
-      2. Scalability = Vision → Workflow → Symbol → System alignment
-      3. Preserve the founder's Strategic Singularity
+      **Client Data:**
+      - Transformation Goal: "${answers.main_goal || 'Not specified'}"
+      - Business Model: "${answers.business_model || 'Not specified'}"
+      - Scaling Challenge: "${answers.scaling_challenge || 'Not specified'}"
+      - Lifecycle Bottleneck: "${answers.client_lifecycle || 'Not specified'}"
+      - Valuable IP: "${answers.biggest_asset || 'Not specified'}"
+      - Tech Stack: "${answers.tech_stack || 'Not specified'}"
 
-      **Tone Protocol:**
-      - Empathetic surgical precision; high-stakes consulting voice
-      - Use strategic metaphors (e.g., "Your onboarding is Rembrandt trapped in a photocopier")
-      - Bespoke, non-interchangeable language
-
-      **Structured Output Rules:**
-      - Generate valid JSON with exact specified keys
-      - Use \\n for paragraph breaks within string values
-      - KPIs must be realistic numbers/percentages based on client data
-      - Strategic Seal must be <= 12 words
-
-      **Client Context:**
-      "${answers.main_goal ? 'Transformation Goal: ' + answers.main_goal : ''}"
-      "${answers.business_model ? 'Business Models: ' + (Array.isArray(answers.business_model) ? answers.business_model.join(', ') : answers.business_model) : ''}"
-      "${answers.scaling_challenge ? 'Scaling Challenge: ' + answers.scaling_challenge : ''}"
-      "${answers.client_lifecycle ? 'Lifecycle Bottleneck: ' + answers.client_lifecycle : ''}"
-      "${answers.biggest_asset ? 'Valuable IP: ' + answers.biggest_asset : ''}"
-      "${answers.tech_stack ? 'Tech Stack: ' + answers.tech_stack : ''}"
-
-      **TASK:**
-      Generate JSON in this exact structure:
+      **Generate a JSON object with this exact structure:**
       {
-        "visionStatement": "Refined one-sentence transformation goal",
-        "executiveDiagnosis": "2-3 paragraph analysis of strategic paradox and leverage points\\nSecond paragraph continues here",
-        "ipExcavation": "Analysis of dormant vs exploited IP\\nRevenue mapping strategies",
-        "bottleneckForensics": "Constraint categorization (technical/human/strategic)\\nDownstream impact analysis",
+        "visionStatement": "A refined, one-sentence version of the client's transformation goal.",
+        "executiveDiagnosis": "A detailed 2-3 paragraph analysis of the core strategic challenge, its downstream effects, and the opportunity it presents. Use \\n for paragraph breaks.",
+        "ipExcavation": "A 2-paragraph analysis of the client's dormant vs. exploited IP and how to map it to their revenue engine. Use \\n for paragraph breaks.",
+        "bottleneckForensics": "A 2-paragraph analysis categorizing the primary constraint (technical, human, or strategic) and its impact. Use \\n for paragraph breaks.",
         "kpis": {
-          "timeSavings": { "value": "12-18", "unit": "hours/week" },
-          "clientSuccess": { "value": "+20-35%", "unit": "increase" },
-          "agentsDeployed": { "value": 3, "unit": "intelligent agents" },
-          "timeline": { "value": 4, "unit": "weeks" }
+          "timeSavings": { "value": "10-15", "unit": "hours/week" },
+          "clientSuccess": { "value": "+25%", "unit": "increase" },
+          "agentsDeployed": { "value": 4, "unit": "intelligent agents" },
+          "timeline": { "value": "5", "unit": "weeks" }
         },
-        "strategicSeal": "Single powerful sentence capturing transformation essence"
+        "strategicSeal": "A single, powerful sentence that captures the soul of the transformation."
       }
     `;
 
-    // --- ENHANCED API CALL WITH SAFEGUARDS ---
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 25000); // 25s timeout
-
-    try {
-      const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: SYMI_BLUEPRINT_PROMPT }] }],
-          generationConfig: {
-            response_mime_type: "application/json",
-            temperature: 0.85, // Increased for creative metaphors
-            top_p: 0.95,
-            max_output_tokens: 2000
-          },
-          safetySettings: [
-            { category: "HARM_CATEGORY_DANGEROUS", threshold: "BLOCK_ONLY_HIGH" }
-          ]
-        }),
-        signal: controller.signal
-      });
-
-      clearTimeout(timeout);
-
-      if (!geminiResponse.ok) {
-        const errorText = await geminiResponse.text();
-        console.error('Gemini API Error:', geminiResponse.status, errorText);
-        return NextResponse.json({ error: `AI processing failed: ${geminiResponse.status}` }, { status: 500 });
-      }
-
-      const responseData = await geminiResponse.json();
-      const blueprintJSON = responseData.candidates?.[0]?.content?.parts?.[0]?.text;
-
-      if (!blueprintJSON) {
-        throw new Error('Empty response from AI model');
-      }
-
-      // --- VALIDATION LAYER ---
-      try {
-        const parsedBlueprint = JSON.parse(blueprintJSON);
-        
-        // Structure validation
-        const requiredKeys = ['visionStatement', 'executiveDiagnosis', 'ipExcavation', 
-                             'bottleneckForensics', 'kpis', 'strategicSeal'];
-        if (!requiredKeys.every(key => key in parsedBlueprint)) {
-          throw new Error('Invalid response structure from AI');
+    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: SYMI_BLUEPRINT_PROMPT }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          temperature: 0.6, // Slightly reduced for more predictable structure
         }
-        
-        return NextResponse.json({ blueprint: parsedBlueprint });
-        
-      } catch (parseError) {
-        console.error('JSON Parse Error:', parseError);
-        return NextResponse.json({ error: 'AI response format invalid' }, { status: 500 });
-      }
+      })
+    });
 
-    } catch (fetchError) {
-      console.error('Fetch Error:', fetchError);
-      return NextResponse.json({ error: 'AI service timeout' }, { status: 504 });
+    if (!geminiResponse.ok) {
+        const errorText = await geminiResponse.text();
+        console.error('Gemini API Error:', errorText);
+        throw new Error(`Gemini API failed with status: ${geminiResponse.status}`);
     }
 
+    const data = await geminiResponse.json();
+    // Adding logging to see what we actually get back from Gemini
+    console.log("Raw Gemini Response Text:", data.candidates?.[0]?.content?.parts?.[0]?.text);
+
+    const blueprintJSON = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!blueprintJSON) {
+      throw new Error('No content returned from Gemini.');
+    }
+    
+    // The response from Gemini should be a clean JSON string, which we pass to the frontend.
+    return NextResponse.json({ blueprint: blueprintJSON });
+
   } catch (error) {
-    console.error('Endpoint Error:', error);
-    return NextResponse.json({ error: 'Processing pipeline failed' }, { status: 500 });
+    console.error('Error in generate-blueprint function:', error.message);
+    return NextResponse.json({ error: `Failed to generate blueprint: ${error.message}` }, { status: 500 });
   }
 }
