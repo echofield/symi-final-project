@@ -1,59 +1,57 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Check, ChevronDown } from 'lucide-react';
+import { Check, ChevronDown, Clock, Users, Zap, Calendar } from 'lucide-react';
 
 // --- Helper Functions for Blueprint Generation ---
-const generatePersonalizedResults = (answers) => {
-    // This is a simplified scoring logic. You can make this as complex as you need.
-    let score = 50; // Base score
-    if (answers.business_model?.includes('services')) score += 10;
-    if (answers.scaling_pain?.includes('Manual')) score += 15;
-    if (answers.system_maturity === 'Fully documented methodology') score += 20;
-    if (answers.value_leak?.includes('capture')) score -= 10;
-
-    score = Math.max(10, Math.min(99, score)); // Clamp score between 10 and 99
-
-    let recommendation = {
-        path: 'SYMI – Business Twin Starter',
-        reason: 'This is the perfect starting point to systematize your methodology and unlock initial scaling opportunities.',
-        cta: 'Activate Now',
-        link: 'https://buy.stripe.com/00wbJ1ckk9j13PreZN'
+const generatePersonalizedBlueprint = (answers) => {
+    // --- Core Diagnosis Logic ---
+    const defaultDiagnosis = {
+        challenge: "You're facing a common but critical inflection point in your business.",
+        impact: "Without a systematic approach, growth can lead to burnout and inconsistent client results.",
+        opportunity: "There is a significant opportunity to productize your expertise and scale your impact."
     };
-
-    if (score > 75) {
-        recommendation = {
-            path: 'SYMI OS – Complete System',
-            reason: 'Your sophisticated model requires a comprehensive infrastructure to scale effectively.',
-            cta: 'Explore SYMI OS',
-            link: 'mailto:contact@symi.system?subject=SYMI%20OS%20Inquiry'
-        };
-    }
-
-    return {
-        score,
-        recommendation,
-        kpis: {
-            timeSavings: score > 60 ? '15-20h' : '8-12h',
-            clientSuccess: score > 70 ? '+40%' : '+30%',
-            timeline: score > 75 ? '6 wks' : '4 wks'
+    const diagnoses = {
+        'Trading time for money (1:1 services)': {
+            challenge: "Your 1:1 service model is hitting a ceiling. Every new client requires more of your personal time, creating an unsustainable growth trajectory.",
+            impact: "This is capping your income potential and preventing you from serving more clients who need your expertise.",
+            opportunity: `By systemizing your "${answers.automation_target || 'core processes'}", you can serve 3x more clients while actually working fewer hours.`
+        },
+        'Manual processes eating profitability': {
+            challenge: "Manual workflows are silently draining 30-40% of your profit margins through hidden time costs and inefficiencies.",
+            impact: "Every hour spent on repetitive tasks is an hour not spent on revenue-generating activities or strategic growth.",
+            opportunity: `Automating "${answers.automation_target || 'a key workflow'}" alone could save you 10-15 hours weekly and increase profit margins by 25%.`
         }
+    };
+    const coreDiagnosis = diagnoses[answers.scaling_pain] || defaultDiagnosis;
+
+    // --- KPIs Logic ---
+    const kpis = {
+        timeSavings: answers.scaling_pain?.includes('Manual') ? '15-20h' : '8-12h',
+        clientSuccess: answers.transformation_type?.includes('Strategic') ? '+40%' : '+30%',
+        agents: answers.system_maturity?.includes('documented') ? '5' : '3',
+        timeline: answers.business_model?.includes('Building') ? '6 wks' : '4 wks'
+    };
+    
+    // --- Combine into a single blueprint object ---
+    return {
+        vision: answers.main_goal || "your ultimate goal",
+        coreDiagnosis,
+        kpis
     };
 };
 
 
 // --- Page Components ---
 
-const Header = ({ onStartAudit, showPricingLink }) => (
+const Header = ({ onStartAudit }) => (
     <header className="absolute top-0 left-0 p-6 w-full z-20">
         <div className="container mx-auto flex justify-between items-center">
             <span className="font-semibold text-gray-800">Symi System</span>
             <div className="flex items-center space-x-4">
-                {showPricingLink && (
-                    <a href="#pricing" className="text-sm font-medium text-gray-700 hover:text-purple-600 transition-colors hidden md:inline-block">
-                        Pricing
-                    </a>
-                )}
+                <a href="#pricing" className="text-sm font-medium text-gray-700 hover:text-purple-600 transition-colors hidden md:inline-block">
+                    Pricing
+                </a>
                 <button onClick={onStartAudit} className="btn btn-primary">Start Audit</button>
             </div>
         </div>
@@ -110,6 +108,7 @@ const PricingSection = () => (
                             <li className="feature-item"><Check className="checkmark" /><span>Email & Chat Support</span></li>
                         </ul>
                     </div>
+                    {/* --- UPDATED PAYMENT LINK --- */}
                     <a href="https://buy.stripe.com/00wbJ1ckk9j13PreZN" target="_blank" rel="noopener noreferrer"
                        className="btn btn-primary w-full text-center">Activate Now</a>
                 </div>
@@ -164,49 +163,60 @@ const FaqSection = () => {
     );
 };
 
-const ResultsSection = ({ results, onRestart }) => (
-    <section id="results" className="w-full py-20 blueprint-reveal">
-        <div className="container mx-auto px-6 text-center">
-            <div className="max-w-3xl mx-auto bg-white/60 backdrop-blur-lg border border-white/30 rounded-2xl p-8 shadow-xl">
-                <h2 className="text-sm uppercase tracking-widest text-purple-600">Your Personalized Blueprint</h2>
-                <div className="my-8">
-                    <div className="inline-block relative">
-                        <div className="text-7xl font-bold text-gray-800">{results.score}</div>
-                        <div className="absolute -top-2 -right-8 text-2xl font-bold text-purple-500">/100</div>
-                    </div>
-                    <p className="text-lg text-gray-600 mt-2">System Readiness Score</p>
-                </div>
+// --- NEW BLUEPRINT RESULTS COMPONENT ---
+const BlueprintResults = ({ blueprint, onRestart }) => {
+    const kpiItems = [
+        { icon: <Clock size={24} />, value: blueprint.kpis.timeSavings, label: "Hours Saved / Week" },
+        { icon: <Users size={24} />, value: blueprint.kpis.clientSuccess, label: "Client Success Rate" },
+        { icon: <Zap size={24} />, value: blueprint.kpis.agents, label: "Autonomous Agents" },
+        { icon: <Calendar size={24} />, value: blueprint.kpis.timeline, label: "Implementation Time" }
+    ];
 
-                <div className="text-left bg-purple-50 rounded-lg p-6 my-8">
-                    <h3 className="font-bold text-lg text-gray-800">Recommended Path: {results.recommendation.path}</h3>
-                    <p className="text-gray-700 mt-2">{results.recommendation.reason}</p>
-                </div>
+    return (
+        <section id="blueprint" className="w-full py-12 md:py-20 blueprint-reveal">
+            <div className="container mx-auto px-6 text-center">
+                <div className="max-w-4xl mx-auto">
+                    <p className="text-sm uppercase tracking-widest text-purple-600">YOUR PERSONALIZED SYSTEM BLUEPRINT</p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-4">Your Vision: "{blueprint.vision}"</h2>
+                    <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+                        Here’s the strategic blueprint to bridge the gap between your current state and your ultimate goal.
+                    </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center my-8">
-                    <div>
-                        <p className="text-3xl font-bold text-purple-600">{results.kpis.timeSavings}</p>
-                        <p className="text-sm text-gray-600">Weekly Time Saved</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 my-10">
+                        {kpiItems.map(item => (
+                            <div key={item.label} className="bg-white/60 backdrop-blur-lg border border-white/30 rounded-xl p-4 text-center">
+                                <div className="text-purple-600 mx-auto mb-2 w-10 h-10 flex items-center justify-center">{item.icon}</div>
+                                <p className="text-2xl font-bold text-gray-800">{item.value}</p>
+                                <p className="text-xs text-gray-600">{item.label}</p>
+                            </div>
+                        ))}
                     </div>
-                    <div>
-                        <p className="text-3xl font-bold text-purple-600">{results.kpis.clientSuccess}</p>
-                        <p className="text-sm text-gray-600">Client Success Rate</p>
+
+                    <div className="text-left bg-white/60 backdrop-blur-lg border border-white/30 rounded-2xl p-8 shadow-lg">
+                        <h3 className="text-2xl font-bold text-gray-800">Core Diagnosis</h3>
+                        <div className="mt-6 space-y-4">
+                            <div>
+                                <h4 className="font-semibold text-gray-700">Challenge:</h4>
+                                <p className="text-gray-600">{blueprint.coreDiagnosis.challenge}</p>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold text-gray-700">Impact:</h4>
+                                <p className="text-gray-600">{blueprint.coreDiagnosis.impact}</p>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold text-purple-700">Opportunity:</h4>
+                                <p className="text-purple-600">{blueprint.coreDiagnosis.opportunity}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <p className="text-3xl font-bold text-purple-600">{results.kpis.timeline}</p>
-                        <p className="text-sm text-gray-600">Implementation Time</p>
+                     <div className="mt-10">
+                        <a href="#pricing" className="btn btn-primary text-lg px-8 py-4">View Execution Paths</a>
                     </div>
                 </div>
-
-                <a href={results.recommendation.link} className="btn btn-primary w-full md:w-auto text-lg px-8 py-4">
-                    {results.recommendation.cta}
-                </a>
             </div>
-             <button onClick={onRestart} className="text-sm text-gray-600 mt-8 hover:text-purple-600">
-                Or, start a new audit
-            </button>
-        </div>
-    </section>
-);
+        </section>
+    );
+};
 
 
 // --- Main App Component ---
@@ -214,7 +224,7 @@ export default function HomePage() {
     const [appState, setAppState] = useState('landing'); // 'landing', 'audit', 'scanning', 'report'
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState({});
-    const [results, setResults] = useState(null);
+    const [blueprint, setBlueprint] = useState(null);
 
     const questions = [
         { id: 'main_goal', question: 'In one sentence, what legacy do you want to create through your work?', type: 'textarea', placeholder: 'The impact I want to have is...' },
@@ -256,8 +266,8 @@ export default function HomePage() {
 
     const handleSubmit = () => {
         setAppState('scanning');
-        const generatedResults = generatePersonalizedResults(answers);
-        setResults(generatedResults);
+        const generatedBlueprint = generatePersonalizedBlueprint(answers);
+        setBlueprint(generatedBlueprint);
         
         setTimeout(() => {
             setAppState('report');
@@ -267,7 +277,7 @@ export default function HomePage() {
     const handleRestart = () => {
         setAnswers({});
         setCurrentQuestion(0);
-        setResults(null);
+        setBlueprint(null);
         setAppState('landing');
     };
 
@@ -364,12 +374,19 @@ export default function HomePage() {
             case 'scanning':
                 return renderScanning();
             case 'report':
-                return <ResultsSection results={results} onRestart={handleRestart} />;
+                return (
+                    <>
+                        <Header onStartAudit={handleRestart} />
+                        <BlueprintResults blueprint={blueprint} onRestart={handleRestart} />
+                        <PricingSection />
+                        <FaqSection />
+                    </>
+                );
             case 'landing':
             default:
                 return (
-                    <div className="w-full">
-                        <Header onStartAudit={() => setAppState('audit')} showPricingLink={true} />
+                    <>
+                        <Header onStartAudit={() => setAppState('audit')} />
                         <main>
                             <HeroSection onStartAudit={() => setAppState('audit')} />
                             <div className="container mx-auto px-6">
@@ -377,7 +394,7 @@ export default function HomePage() {
                                <FaqSection />
                             </div>
                         </main>
-                    </div>
+                    </>
                 );
         }
     };
@@ -389,7 +406,7 @@ export default function HomePage() {
                 <div className="absolute top-0 right-0 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
                 <div className="absolute bottom-20 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
             </div>
-             <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
+             <div className="relative z-10">
                 <div className="w-full">
                     {renderContent()}
                 </div>
