@@ -3,132 +3,132 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    font-family: 'Inter', sans-serif;
-  }
+  body {
+    font-family: 'Inter', sans-serif;
+  }
 }
 
 @layer utilities {
-  @keyframes blob {
-    0% { transform: translate(0px, 0px) scale(1); }
-    33% { transform: translate(30px, -50px) scale(1.1); }
-    66% { transform: translate(-20px, 20px) scale(0.9); }
-    100% { transform: translate(0px, 0px) scale(1); }
-  }
-  .animate-blob { animation: blob 7s infinite; }
-  .animation-delay-2000 { animation-delay: 2s; }
-  .animation-delay-4000 { animation-delay: 4s; }
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  .animate-blob { animation: blob 7s infinite; }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
 }
 
 /* Styles pour l'Audit, le Scanner et le Dashboard */
 .loader { width: 80px; height: 50px; position: relative; }
 .loader-text {
-    position: absolute; top: 0; padding: 0; margin: 0; color: #C8B6FF;
-    animation: text_713 3.5s ease both infinite; font-size: .8rem;
-    letter-spacing: 1px; font-family: 'IBM Plex Mono', monospace;
+    position: absolute; top: 0; padding: 0; margin: 0; color: #C8B6FF;
+    animation: text_713 3.5s ease both infinite; font-size: .8rem;
+    letter-spacing: 1px; font-family: 'IBM Plex Mono', monospace;
 }
 .load {
-    background-color: #9A79FF; border-radius: 50px; display: block;
-    height: 16px; width: 16px; bottom: 0; position: absolute;
-    transform: translateX(64px); animation: loading_713 3.5s ease both infinite;
+    background-color: #9A79FF; border-radius: 50px; display: block;
+    height: 16px; width: 16px; bottom: 0; position: absolute;
+    transform: translateX(64px); animation: loading_713 3.5s ease both infinite;
 }
 .load::before {
-    position: absolute; content: ""; width: 100%; height: 100%;
-    background-color: #D1C2FF; border-radius: inherit;
-    animation: loading2_713 3.5s ease both infinite;
+    position: absolute; content: ""; width: 100%; height: 100%;
+    background-color: #D1C2FF; border-radius: inherit;
+    animation: loading2_713 3.5s ease both infinite;
 }
 @keyframes text_713 { 0% { letter-spacing: 1px; transform: translateX(0px); } 40% { letter-spacing: 2px; transform: translateX(26px); } 80% { letter-spacing: 1px; transform: translateX(32px); } 90% { letter-spacing: 2px; transform: translateX(0px); } 100% { letter-spacing: 1px; transform: translateX(0px); } }
 @keyframes loading_713 { 0% { width: 16px; transform: translateX(0px); } 40% { width: 100%; transform: translateX(0px); } 80% { width: 16px; transform: translateX(64px); } 90% { width: 100%; transform: translateX(0px); } 100% { width: 16px; transform: translateX(0px); } }
 @keyframes loading2_713 { 0% { transform: translateX(0px); width: 16px; } 40% { transform: translateX(0%); width: 80%; } 80% { width: 100%; transform: translateX(0px); } 90% { width: 80%; transform: translateX(15px); } 100% { transform: translateX(0px); width: 16px; } }
 
 .form-input {
-    @apply w-full rounded-lg border border-gray-300 bg-white p-3.5 text-base text-gray-900 transition-all placeholder:text-gray-400 focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-500/20;
+    @apply w-full rounded-lg border border-gray-300 bg-white p-3.5 text-base text-gray-900 transition-all placeholder:text-gray-400 focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-500/20;
 }
 
 .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-7 py-3 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-100;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-7 py-3 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-100;
 }
 .btn-primary {
-    @apply border-purple-600 bg-purple-600 text-white hover:bg-purple-700;
+    @apply border-purple-600 bg-purple-600 text-white hover:bg-purple-700;
 }
 
 /* Styles pour la Section Prix */
 .price-card {
-    @apply bg-white/50 p-8 rounded-2xl border border-white/30 shadow-lg flex flex-col;
-    backdrop-filter: blur(20px);
+    @apply bg-white/50 p-8 rounded-2xl border border-white/30 shadow-lg flex flex-col;
+    backdrop-filter: blur(20px);
 }
 .price-card.recommended {
-    @apply border-2 border-purple-500 relative;
+    @apply border-2 border-purple-500 relative;
 }
 .price-card.recommended::before {
-    content: '⭐ Recommended';
-    @apply absolute -top-4 right-5 bg-gradient-to-r from-purple-500 to-teal-500 text-white text-xs font-semibold px-3 py-1 rounded-full;
+    content: '⭐ Recommended';
+    @apply absolute -top-4 right-5 bg-gradient-to-r from-purple-500 to-teal-500 text-white text-xs font-semibold px-3 py-1 rounded-full;
 }
 .feature-item {
-    @apply flex items-start text-gray-600;
+    @apply flex items-start text-gray-600;
 }
 .checkmark {
-    @apply w-5 h-5 mr-3 text-purple-500 flex-shrink-0;
+    @apply w-5 h-5 mr-3 text-purple-500 flex-shrink-0;
 }
 
 /* Styles pour la FAQ */
 .faq-item summary {
-    @apply flex justify-between items-center cursor-pointer p-6 font-semibold;
+    @apply flex justify-between items-center cursor-pointer p-6 font-semibold;
 }
 .faq-item summary::-webkit-details-marker {
-    display: none;
+    display: none;
 }
 .faq-item .faq-content {
-    @apply px-6 pb-6 text-gray-600;
+    @apply px-6 pb-6 text-gray-600;
 }
 .faq-icon {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 .faq-item[open] .faq-icon {
-    transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 /* === NEW STYLES FOR BLUEPRINT ENHANCEMENT === */
 
 /* Blueprint reveal animation */
 .blueprint-reveal {
-  animation: fadeInUp 0.8s ease-out;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Question transitions */
 .question-fade-in {
-  animation: questionFade 0.5s ease-out;
+  animation: questionFade 0.5s ease-out;
 }
 
 @keyframes questionFade {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Progress bar */
 .progress-bar {
-  @apply w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden;
+  @apply w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden;
 }
 
 .progress-fill {
-  @apply bg-gradient-to-r from-purple-500 to-purple-600 h-full rounded-full transition-all duration-300 ease-out;
+  @apply bg-gradient-to-r from-purple-500 to-purple-600 h-full rounded-full transition-all duration-300 ease-out;
 }
 
 /* Enhanced radio buttons */
@@ -139,82 +139,82 @@
 }
 
 .radio-option.selected {
-  @apply border-purple-600 bg-purple-50 shadow-sm;
+  @apply border-purple-600 bg-purple-50 shadow-sm;
 }
 
 /* Smooth state transitions */
 .state-transition {
-  @apply transition-opacity duration-500 ease-in-out;
+  @apply transition-opacity duration-500 ease-in-out;
 }
 
 /* Header pricing button fade */
 .header-pricing {
-  @apply transition-opacity duration-500 ease-in-out;
+  @apply transition-opacity duration-500 ease-in-out;
 }
 
 .header-pricing.hidden {
-  @apply opacity-0 pointer-events-none;
+  @apply opacity-0 pointer-events-none;
 }
 
 .header-pricing.visible {
-  @apply opacity-100;
+  @apply opacity-100;
 }
 
 /* Loading enhancement */
 .blueprint-loading {
-  @apply flex flex-col items-center justify-center py-12;
+  @apply flex flex-col items-center justify-center py-12;
 }
 
 /* Form textarea enhancement */
 .form-textarea {
-  @apply form-input min-h-[100px] resize-none;
+  @apply form-input min-h-[100px] resize-none;
 }
 
 /* Professional spacing for audit container */
 .audit-container {
-  @apply w-full max-w-2xl mx-auto;
+  @apply w-full max-w-2xl mx-auto;
 }
 
 /* Question navigation buttons */
 .nav-button {
-  @apply flex items-center gap-2 transition-transform hover:scale-105;
+  @apply flex items-center gap-2 transition-transform hover:scale-105;
 }
 
 /* Email input specific styling */
 input[type="email"].form-input {
-  @apply lowercase;
+  @apply lowercase;
 }
 
 /* Responsive text sizing */
 .question-text {
-  @apply text-xl md:text-2xl font-bold mb-2 text-gray-800;
+  @apply text-xl md:text-2xl font-bold mb-2 text-gray-800;
 }
 
 /* Counter styling */
 .question-counter {
-  @apply font-mono text-sm text-gray-500;
+  @apply font-mono text-sm text-gray-500;
 }
 
 /* Button disabled state */
 .btn:disabled {
-  @apply opacity-50 cursor-not-allowed hover:bg-white;
+  @apply opacity-50 cursor-not-allowed hover:bg-white;
 }
 
 .btn-primary:disabled {
-  @apply hover:bg-purple-600;
+  @apply hover:bg-purple-600;
 }
 
 /* Mobile responsive adjustments */
 @media (max-width: 640px) {
-  .form-input, .radio-option {
-    @apply text-base p-3;
-  }
-  
-  .btn {
-    @apply px-5 py-2.5 text-sm;
-  }
-  
-  .question-text {
-    @apply text-lg;
-  }
+  .form-input, .radio-option {
+    @apply text-base p-3;
+  }
+  
+  .btn {
+    @apply px-5 py-2.5 text-sm;
+  }
+  
+  .question-text {
+    @apply text-lg;
+  }
 }
