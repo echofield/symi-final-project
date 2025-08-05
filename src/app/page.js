@@ -1,10 +1,22 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Check } from 'lucide-react';
+import { Check, ChevronDown } from 'lucide-react';
 
-// --- Landing Page Components ---
+// --- Composants de la Page d'Accueil ---
+
+const Header = ({ onStartAudit }) => (
+    <header className="p-6 w-full">
+        <div className="container mx-auto flex justify-between items-center">
+            <span className="font-mono text-sm font-semibold">Symi System</span>
+            <div className="flex items-center space-x-4">
+                <a href="#pricing" className="btn hidden md:inline-flex">Pricing</a>
+                <button onClick={onStartAudit} className="btn btn-primary">Start Audit</button>
+            </div>
+        </div>
+    </header>
+);
 
 const HeroSection = ({ onStartAudit }) => (
     <section className="w-full text-center py-20">
@@ -58,7 +70,34 @@ const PricingSection = () => (
     </section>
 );
 
-// --- Main App Component ---
+const FaqSection = () => {
+    const faqItems = [
+        { q: "What exactly is a \"living system\"?", a: "Unlike static documents or to-do lists, SYMI creates intelligent systems that adapt, remind, optimize, and evolve based on your progress and changing needs." },
+        { q: "How is this different from project management tools?", a: "Project management tracks tasks. SYMI creates intelligence—systems that understand your objectives, anticipate needs, and optimize execution automatically." },
+        { q: "Can I cancel or modify my system?", a: "Yes. Monthly hosting can be paused anytime, and systems can be modified as your needs evolve. We build for growth, not lock-in." },
+    ];
+    return (
+        <section id="faq" className="w-full py-20">
+            <div className="text-center mb-12 max-w-3xl mx-auto">
+                <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+            </div>
+            <div className="max-w-3xl mx-auto space-y-4">
+                {faqItems.map((item, index) => (
+                    <details key={index} className="faq-item bg-white/50 rounded-2xl border border-white/30" style={{ backdropFilter: 'blur(20px)' }}>
+                        <summary>
+                            <span>{item.q}</span>
+                            <ChevronDown className="faq-icon w-5 h-5" />
+                        </summary>
+                        <div className="faq-content">{item.a}</div>
+                    </details>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+
+// --- Composant Principal de la Page ---
 const Dashboard = dynamic(() => import('../components/Dashboard'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center h-screen w-full"><p className="text-lg text-gray-600">Loading Dashboard...</p></div>
@@ -70,7 +109,6 @@ export default function HomePage() {
     const [answers, setAnswers] = useState({});
     const [blueprintData, setBlueprintData] = useState(null);
 
-    // RESTORED: Full list of original questions
     const questions = [
         { id: 'main_goal', question: 'Before we begin — what transformation do you want to create for your clients?', type: 'textarea', placeholder: 'Describe the outcome you help people achieve...' },
         { id: 'business_model', question: 'How do you currently work with clients? (Select all that apply)', type: 'checkbox', options: [ 'One-on-one sessions (trading time for money)', 'Group programs (manual but scalable)', 'Digital products (automated but low-touch)', 'Mix of services and systems', 'Building toward automated client systems' ] },
@@ -125,7 +163,14 @@ export default function HomePage() {
             setAppState('report');
         } catch (error) {
             console.error("Failed to generate blueprint:", error);
-            setAppState('audit'); // Go back to audit on error
+            setAppState('audit');
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' && (questions[currentQuestion].type === 'textarea' || questions[currentQuestion].type === 'email')) {
+            e.preventDefault();
+            handleNext();
         }
     };
 
@@ -133,8 +178,8 @@ export default function HomePage() {
         <div className="w-full max-w-2xl bg-white/50 p-8 rounded-2xl shadow-lg border border-white/30" style={{ backdropFilter: 'blur(20px)' }}>
             <h2 className="text-2xl font-bold mb-2 text-gray-800">{questions[currentQuestion].question}</h2>
             <div className="mt-6">
-                {questions[currentQuestion].type === 'textarea' && <textarea rows="4" className="form-input" placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
-                {questions[currentQuestion].type === 'email' && <input type="email" className="form-input" placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
+                {questions[currentQuestion].type === 'textarea' && <textarea rows="4" className="form-input" onKeyDown={handleKeyDown} placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
+                {questions[currentQuestion].type === 'email' && <input type="email" className="form-input" onKeyDown={handleKeyDown} placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
                 {(questions[currentQuestion].type === 'radio' || questions[currentQuestion].type === 'checkbox') && (
                     <div className="space-y-3">
                         {questions[currentQuestion].options.map(option => (
@@ -178,9 +223,13 @@ export default function HomePage() {
         switch (appState) {
             case 'landing':
                 return (
-                    <div className="w-full container mx-auto px-6">
-                        <HeroSection onStartAudit={() => setAppState('audit')} />
-                        <PricingSection />
+                    <div className="w-full">
+                        <Header onStartAudit={() => setAppState('audit')} />
+                        <main className="container mx-auto px-6">
+                            <HeroSection onStartAudit={() => setAppState('audit')} />
+                            <PricingSection />
+                            <FaqSection />
+                        </main>
                     </div>
                 );
             case 'audit': return renderAudit();
