@@ -4,297 +4,156 @@ import React, { useState } from 'react';
 import { Check, ChevronRight, Clock, Users, Target, Zap, BarChart, Lightbulb, ArrowRight } from 'lucide-react';
 
 const Dashboard = ({ data, onNavigate }) => {
-  const [selectedPhase, setSelectedPhase] = useState(null);
-  
-  // Enhanced color palette for donut chart
-  const chartColors = [
-    '#8B5CF6', // Purple
-    '#3B82F6', // Blue  
-    '#10B981', // Green
-    '#F59E0B', // Orange
-  ];
+    // Default data if none is provided, to prevent errors on initial render or API failure
+    const safeData = data || {
+        userGoal: "Define Your Legacy",
+        businessModel: "",
+        coreDiagnosis: { challenge: "Awaiting analysis...", impact: "...", opportunity: "..." },
+        kpis: { timeSavings: "0h", clientSuccess: "+0%", agents: "0", timeline: "0 wks" },
+        timeline: [],
+        components: [],
+        recommendation: { plan: "N/A", reason: "" }
+    };
 
-  // Roadmap phases with detailed information
-  const roadmapPhases = [
-    {
-      name: 'Deep Dive & Scoping',
-      duration: '1-2 weeks',
-      percentage: 25,
-      description: 'Complete discovery of your methodology and business model',
-      tasks: [
-        'Initial strategy consultation',
-        'Process mapping & documentation',
-        'Success pattern identification',
-        'System architecture design'
-      ]
-    },
-    {
-      name: 'Dashboard & Automation Build',
-      duration: '2-3 weeks',
-      percentage: 50,
-      description: 'Development of your personalized execution system',
-      tasks: [
-        'Custom dashboard creation',
-        'Automation workflows setup',
-        'Integration configuration',
-        'Initial testing & refinement'
-      ]
-    },
-    {
-      name: 'Delivery & Onboarding',
-      duration: '1 week',
-      percentage: 25,
-      description: 'System deployment and team enablement',
-      tasks: [
-        'System deployment',
-        'Team training sessions',
-        'Documentation handoff',
-        'Success metrics setup'
-      ]
-    }
-  ];
+    const { userGoal, businessModel, coreDiagnosis, kpis, timeline, components, recommendation } = safeData;
 
-  // System components data
-  const systemComponents = [
-    { name: 'Automated Onboarding', value: 30, color: chartColors[0] },
-    { name: 'Progress Tracking', value: 25, color: chartColors[1] },
-    { name: 'Client Communication', value: 25, color: chartColors[2] },
-    { name: 'Resource Hub', value: 20, color: chartColors[3] }
-  ];
+    // Enhanced color palette for the chart
+    const chartColors = ['#8B5CF6', '#3B82F6', '#10B981', '#F59E0B', '#EF4444'];
 
-  // Calculate donut chart paths
-  const createDonutPath = (value, offset) => {
-    const radius = 80;
-    const innerRadius = 50;
-    const angle = (value / 100) * Math.PI * 2;
-    const largeArcFlag = angle > Math.PI ? 1 : 0;
-    
-    const x1 = 100 + radius * Math.cos(offset - Math.PI / 2);
-    const y1 = 100 + radius * Math.sin(offset - Math.PI / 2);
-    const x2 = 100 + radius * Math.cos(offset + angle - Math.PI / 2);
-    const y2 = 100 + radius * Math.sin(offset + angle - Math.PI / 2);
-    
-    const ix1 = 100 + innerRadius * Math.cos(offset - Math.PI / 2);
-    const iy1 = 100 + innerRadius * Math.sin(offset - Math.PI / 2);
-    const ix2 = 100 + innerRadius * Math.cos(offset + angle - Math.PI / 2);
-    const iy2 = 100 + innerRadius * Math.sin(offset + angle - Math.PI / 2);
-    
-    return `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${innerRadius} ${innerRadius} 0 ${largeArcFlag} 0 ${ix1} ${iy1} Z`;
-  };
+    const systemComponents = components.map((name, index) => ({
+        name,
+        value: 100 / (components.length || 1), // Distribute value evenly, avoid division by zero
+        color: chartColors[index % chartColors.length]
+    }));
 
-  return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-teal-50">
-      {/* Header with Navigation */}
-      <header className="p-6 w-full bg-white/80 backdrop-blur-sm sticky top-0 z-10 border-b border-gray-200">
-        <div className="container mx-auto flex justify-between items-center">
-          <button 
-            onClick={() => onNavigate && onNavigate('landing')} 
-            className="font-mono text-sm font-semibold hover:text-purple-600 transition-colors"
-          >
-            SYMI
-          </button>
-          <button 
-            onClick={() => onNavigate && onNavigate('pricing')} 
-            className="btn hover:scale-105 transition-transform"
-          >
-            View Pricing
-          </button>
-        </div>
-      </header>
+    // Function to calculate paths for the donut chart segments
+    const createDonutPath = (value, offset) => {
+        const radius = 80;
+        const innerRadius = 50;
+        const angle = (value / 100) * Math.PI * 2;
+        const largeArcFlag = angle >= Math.PI ? 1 : 0;
+        
+        const x1 = 100 + radius * Math.cos(offset - Math.PI / 2);
+        const y1 = 100 + radius * Math.sin(offset - Math.PI / 2);
+        const x2 = 100 + radius * Math.cos(offset + angle - Math.PI / 2);
+        const y2 = 100 + radius * Math.sin(offset + angle - Math.PI / 2);
+        
+        const ix1 = 100 + innerRadius * Math.cos(offset - Math.PI / 2);
+        const iy1 = 100 + innerRadius * Math.sin(offset - Math.PI / 2);
+        const ix2 = 100 + innerRadius * Math.cos(offset + angle - Math.PI / 2);
+        const iy2 = 100 + innerRadius * Math.sin(offset + angle - Math.PI / 2);
+        
+        return `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${innerRadius} ${innerRadius} 0 ${largeArcFlag} 0 ${ix1} ${iy1} Z`;
+    };
+    let cumulativeOffset = 0;
 
-      <div className="container mx-auto px-6 py-8 max-w-7xl">
-        {/* Blueprint Header Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
-          <div className="flex items-center mb-6">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg">
-              <Lightbulb className="w-7 h-7 text-white" />
-            </div>
-            <div className="ml-4">
-              <h1 className="text-3xl font-bold text-gray-900">Your System Blueprint</h1>
-              <p className="text-gray-600">Personalized roadmap to transform your business</p>
-            </div>
-          </div>
-        </div>
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-teal-50">
+            <header className="p-6 w-full bg-white/80 backdrop-blur-sm sticky top-0 z-10 border-b border-gray-200">
+                <div className="container mx-auto flex justify-between items-center">
+                    <button onClick={() => onNavigate && onNavigate('landing')} className="font-mono text-sm font-semibold hover:text-purple-600 transition-colors">
+                        SYMI
+                    </button>
+                    <button onClick={() => onNavigate && onNavigate('pricing')} className="btn btn-primary hover:scale-105 transition-transform">
+                        View Pricing & Plans
+                    </button>
+                </div>
+            </header>
 
-        {/* Core Diagnosis Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Core Diagnosis & Strategic Objective</h2>
-          <div className="space-y-4 text-gray-700">
-            <p className="leading-relaxed">
-              <span className="font-semibold text-purple-600">The Challenge:</span> Your current manual processes are creating a bottleneck that limits your ability to scale effectively. Time spent on repetitive tasks is preventing you from focusing on high-value strategic work.
-            </p>
-            <p className="leading-relaxed">
-              <span className="font-semibold text-purple-600">The Impact:</span> This is directly affecting your profitability and client satisfaction. Manual workflows lead to inconsistent delivery and missed opportunities for growth.
-            </p>
-            <p className="leading-relaxed">
-              <span className="font-semibold text-purple-600">The Opportunity:</span> By automating your core processes, you can reclaim 10-15 hours per week, improve client outcomes by 30%, and unlock the potential to scale your business without proportionally scaling your time investment.
-            </p>
-          </div>
-        </div>
+            <main className="container mx-auto p-4 md:p-8">
+                {/* DYNAMIC: Vision/Goal Section */}
+                <div className="text-center mb-12">
+                    <p className="text-sm uppercase tracking-wide text-purple-600 mb-4">Your Personalized System Blueprint</p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Your Vision: "{userGoal}"</h2>
+                    <p className="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">Here's the strategic blueprint to bridge the gap between your current state and your ultimate goal.</p>
+                </div>
 
-        {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-            <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-full mb-4">
-              <Clock className="w-6 h-6 text-purple-600" />
-            </div>
-            <div className="text-3xl font-bold text-gray-900 mb-2">5-10h</div>
-            <div className="text-sm text-gray-600">Time Saved Weekly</div>
-          </div>
-          
-          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-            <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-4">
-              <Target className="w-6 h-6 text-blue-600" />
-            </div>
-            <div className="text-3xl font-bold text-gray-900 mb-2">+30%</div>
-            <div className="text-sm text-gray-600">Client Success Rate</div>
-          </div>
-          
-          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-            <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4">
-              <Zap className="w-6 h-6 text-green-600" />
-            </div>
-            <div className="text-3xl font-bold text-gray-900 mb-2">3</div>
-            <div className="text-sm text-gray-600">Key Automations</div>
-          </div>
-          
-          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-            <div className="flex items-center justify-center w-12 h-12 bg-orange-100 rounded-full mb-4">
-              <BarChart className="w-6 h-6 text-orange-600" />
-            </div>
-            <div className="text-3xl font-bold text-gray-900 mb-2">4 wks</div>
-            <div className="text-sm text-gray-600">Implementation Time</div>
-          </div>
-        </div>
-
-        {/* Implementation Roadmap - Interactive */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Projected Implementation Roadmap</h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Roadmap Visualization */}
-            <div className="space-y-4">
-              {roadmapPhases.map((phase, index) => (
-                <div key={index} className="relative">
-                  <button
-                    onClick={() => setSelectedPhase(selectedPhase?.name === phase.name ? null : phase)}
-                    className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
-                      selectedPhase?.name === phase.name 
-                        ? 'border-purple-500 bg-purple-50' 
-                        : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900">{phase.name}</h3>
-                        <p className="text-sm text-gray-600 mt-1">{phase.duration}</p>
-                      </div>
-                      <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${
-                        selectedPhase?.name === phase.name ? 'rotate-90' : ''
-                      }`} />
+                {/* DYNAMIC: Priority Action Alert */}
+                {businessModel === 'Trading time for money (1:1 services)' && (
+                    <div className="bg-purple-100 border-l-4 border-purple-500 text-purple-800 p-6 rounded-2xl mb-12 shadow-md max-w-4xl mx-auto">
+                        <h3 className="font-bold text-xl flex items-center gap-3"><Lightbulb size={24}/> Priority Action: Productize Your Expertise</h3>
+                        <p className="mt-2 text-lg">
+                            Based on your 1:1 model, the highest-leverage first step is to package your knowledge into a scalable format. This blueprint focuses on creating a group program or digital product framework to break the time-for-money barrier.
+                        </p>
                     </div>
-                    <div className="mt-3">
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full transition-all duration-500"
-                          style={{ width: `${phase.percentage}%` }}
-                        />
-                      </div>
+                )}
+
+                {/* KPI Cards */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                     <div className="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-lg flex items-center gap-4" style={{backdropFilter: 'blur(20px)'}}><Clock className="w-10 h-10 text-purple-500"/><div><div className="text-3xl font-bold">{kpis.timeSavings}</div><div className="text-gray-500">Hours Saved / Week</div></div></div>
+                     <div className="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-lg flex items-center gap-4" style={{backdropFilter: 'blur(20px)'}}><Users className="w-10 h-10 text-blue-500"/><div><div className="text-3xl font-bold">{kpis.clientSuccess}</div><div className="text-gray-500">Client Success Rate</div></div></div>
+                     <div className="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-lg flex items-center gap-4" style={{backdropFilter: 'blur(20px)'}}><Zap className="w-10 h-10 text-green-500"/><div><div className="text-3xl font-bold">{kpis.agents}</div><div className="text-gray-500">Autonomous Agents</div></div></div>
+                     <div className="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-lg flex items-center gap-4" style={{backdropFilter: 'blur(20px)'}}><Target className="w-10 h-10 text-orange-500"/><div><div className="text-3xl font-bold">{kpis.timeline}</div><div className="text-gray-500">Implementation Time</div></div></div>
+                </div>
+                
+                {/* Core Diagnosis */}
+                <div className="bg-white/60 p-8 rounded-2xl border border-white/50 shadow-lg mb-12 max-w-5xl mx-auto" style={{backdropFilter: 'blur(20px)'}}>
+                    <h3 className="text-2xl font-bold mb-4 text-gray-800">Core Diagnosis</h3>
+                    <div className="space-y-4 text-lg">
+                        <p><strong>Challenge:</strong> {coreDiagnosis.challenge}</p>
+                        <p><strong>Impact:</strong> {coreDiagnosis.impact}</p>
+                        <p><strong>Opportunity:</strong> <span className="text-green-600 font-semibold">{coreDiagnosis.opportunity}</span></p>
                     </div>
-                  </button>
                 </div>
-              ))}
-            </div>
 
-            {/* Phase Details */}
-            <div className={`transition-all duration-300 ${selectedPhase ? 'opacity-100' : 'opacity-0'}`}>
-              {selectedPhase && (
-                <div className="bg-purple-50 rounded-xl p-6 border border-purple-200">
-                  <h3 className="font-bold text-lg text-gray-900 mb-3">{selectedPhase.name}</h3>
-                  <p className="text-gray-700 mb-4">{selectedPhase.description}</p>
-                  <h4 className="font-semibold text-sm text-gray-900 mb-3">Key Deliverables:</h4>
-                  <ul className="space-y-2">
-                    {selectedPhase.tasks.map((task, index) => (
-                      <li key={index} className="flex items-start">
-                        <Check className="w-4 h-4 mr-2 text-purple-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-700">{task}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Roadmap & System Components */}
+                <div className="grid lg:grid-cols-3 gap-8">
+                    {/* Roadmap */}
+                    <div className="lg:col-span-2 bg-white/60 p-8 rounded-2xl border border-white/50 shadow-lg" style={{backdropFilter: 'blur(20px)'}}>
+                       <h3 className="text-2xl font-bold mb-6 text-gray-800">Your Implementation Roadmap</h3>
+                       <div className="space-y-4">
+                           {timeline.map((item, index) => (
+                               <div key={index} className="flex items-start">
+                                   <div className="flex flex-col items-center mr-4">
+                                       <div className="w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold">{index + 1}</div>
+                                       {index < timeline.length - 1 && <div className="w-0.5 h-12 bg-purple-200 mt-1"></div>}
+                                   </div>
+                                   <div className="bg-white p-4 rounded-lg flex-1 border border-gray-200">
+                                       <p className="font-semibold text-gray-800">{item}</p>
+                                   </div>
+                               </div>
+                           ))}
+                       </div>
+                    </div>
+                    {/* System Components */}
+                    <div className="bg-white/60 p-8 rounded-2xl border border-white/50 shadow-lg" style={{backdropFilter: 'blur(20px)'}}>
+                        <h3 className="text-2xl font-bold mb-6 text-gray-800">Your System Components</h3>
+                        <div className="relative flex justify-center items-center">
+                            <svg viewBox="0 0 200 200" className="w-56 h-56 transform -rotate-90">
+                                {systemComponents.map((component, index) => {
+                                    const path = createDonutPath(component.value, cumulativeOffset);
+                                    cumulativeOffset += (component.value / 100) * Math.PI * 2;
+                                    return <path key={index} d={path} fill={component.color} />;
+                                })}
+                            </svg>
+                            <div className="absolute text-center transform rotate-90">
+                                <span className="text-4xl font-bold text-gray-800">{components.length}</span>
+                                <p className="text-gray-500">Core Modules</p>
+                            </div>
+                        </div>
+                        <ul className="mt-6 space-y-3">
+                            {systemComponents.map((component, index) => (
+                                <li key={index} className="flex items-center text-gray-700">
+                                    <span className="w-3 h-3 rounded-full mr-3" style={{ backgroundColor: component.color }}></span>
+                                    {component.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-              )}
-            </div>
-          </div>
-        </div>
 
-        {/* System Components with Enhanced Donut Chart */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Recommended System Components</h2>
-          
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Donut Chart */}
-            <div className="flex justify-center">
-              <svg width="200" height="200" viewBox="0 0 200 200">
-                {(() => {
-                  let offset = 0;
-                  return systemComponents.map((component, index) => {
-                    const path = createDonutPath(component.value, (offset / 100) * Math.PI * 2);
-                    offset += component.value;
-                    return (
-                      <path
-                        key={index}
-                        d={path}
-                        fill={component.color}
-                        className="transition-opacity hover:opacity-80 cursor-pointer"
-                      />
-                    );
-                  });
-                })()}
-              </svg>
-            </div>
-
-            {/* Component List */}
-            <div className="space-y-4">
-              {systemComponents.map((component, index) => (
-                <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                  <div className="flex items-center">
-                    <div 
-                      className="w-4 h-4 rounded-full mr-3"
-                      style={{ backgroundColor: component.color }}
-                    />
-                    <span className="font-medium text-gray-900">{component.name}</span>
-                  </div>
-                  <span className="text-sm text-gray-600">{component.value}%</span>
+                {/* CTA */}
+                <div className="text-center mt-16 bg-white/60 p-10 rounded-2xl max-w-4xl mx-auto border border-white/50 shadow-xl" style={{backdropFilter: 'blur(20px)'}}>
+                    <h3 className="text-3xl font-bold text-gray-800">Ready to build your living system?</h3>
+                    <p className="text-lg text-gray-600 mt-4">Based on your audit, the <strong className="text-purple-600">{recommendation.plan}</strong> is your recommended path forward.</p>
+                    <p className="text-gray-500 mt-2">{recommendation.reason}</p>
+                    <button onClick={() => onNavigate && onNavigate('pricing')} className="btn btn-primary text-lg px-8 py-4 mt-8 group">
+                        Activate Your Blueprint <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </button>
                 </div>
-              ))}
-            </div>
-          </div>
+            </main>
         </div>
-
-        {/* CTA Section */}
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl shadow-lg p-8 text-center text-white">
-          <h2 className="text-2xl font-bold mb-4">Ready to Transform Your Business?</h2>
-          <p className="text-lg mb-6 opacity-90">Your personalized system is ready to be activated. Start your transformation today.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => onNavigate && onNavigate('pricing')}
-              className="btn bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex items-center justify-center"
-            >
-              Activate Your System
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </button>
-            <a 
-              href="mailto:contact@symi.io" 
-              className="btn bg-purple-700 text-white hover:bg-purple-800 px-8 py-4 text-lg font-semibold"
-            >
-              Schedule Strategy Call
-            </a>
-          </div>
-          <p className="text-sm mt-4 opacity-75">30-day execution guarantee • Cancel anytime</p>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Dashboard;
