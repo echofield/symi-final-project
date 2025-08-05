@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Check, ChevronDown, Clock, Users, Zap, Calendar } from 'lucide-react';
+import { Check, ChevronDown, Clock, Users, Zap, Calendar, Key, Target, Microscope } from 'lucide-react';
 
-// --- Page Components ---
-
+// --- Page Components (Header, HeroSection, etc. are unchanged) ---
 const Header = ({ onStartAudit }) => (
     <header className="absolute top-0 left-0 p-6 w-full z-20">
         <div className="container mx-auto flex justify-between items-center">
@@ -69,7 +68,6 @@ const PricingSection = () => (
                             <li className="feature-item"><Check className="checkmark" /><span>Email & Chat Support</span></li>
                         </ul>
                     </div>
-                    {/* --- CORRECTED PAYMENT LINK --- */}
                     <a href="https://buy.stripe.com/00wbJ1ckk9j13PreZN9Zm01" target="_blank" rel="noopener noreferrer"
                        className="btn btn-primary w-full text-center">Activate Now</a>
                 </div>
@@ -124,11 +122,12 @@ const FaqSection = () => {
     );
 };
 
+// --- UPGRADED BLUEPRINT RESULTS COMPONENT ---
 const BlueprintResults = ({ blueprint, onRestart }) => {
     if (!blueprint) {
         return (
             <div className="text-center py-20">
-                <p>Generating your blueprint...</p>
+                <p>Generating your strategic paper...</p>
             </div>
         );
     }
@@ -140,17 +139,28 @@ const BlueprintResults = ({ blueprint, onRestart }) => {
         { icon: <Calendar size={24} />, value: blueprint.kpis?.timeline?.value || 'N/A', label: "Implementation Time" }
     ];
 
+    const AnalysisCard = ({ icon, title, content }) => (
+        <div className="text-left bg-white/60 backdrop-blur-lg border border-white/30 rounded-2xl p-8 shadow-lg">
+            <div className="flex items-center gap-4 mb-4">
+                <div className="text-purple-600">{icon}</div>
+                <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
+            </div>
+            <div className="space-y-4 whitespace-pre-wrap text-gray-700 leading-relaxed">
+                {content || "No analysis available."}
+            </div>
+        </div>
+    );
+
     return (
         <section id="blueprint" className="w-full py-12 md:py-20 blueprint-reveal">
-            <div className="container mx-auto px-6 text-center">
-                <div className="max-w-4xl mx-auto">
-                    <p className="text-sm uppercase tracking-widest text-purple-600">YOUR PERSONALIZED SYSTEM BLUEPRINT</p>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-4">Your Vision: "{blueprint.strategicObjective || 'To build a more efficient system'}"</h2>
-                    <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-                        Here’s the strategic blueprint to bridge the gap between your current state and your ultimate goal.
-                    </p>
+            <div className="container mx-auto px-6">
+                <div className="max-w-4xl mx-auto space-y-12">
+                    <div className="text-center">
+                        <p className="text-sm uppercase tracking-widest text-purple-600">A CONFIDENTIAL STRATEGIC PAPER FOR</p>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-4">Your Vision: "{blueprint.visionStatement}"</h2>
+                    </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 my-10">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                         {kpiItems.map(item => (
                             <div key={item.label} className="bg-white/60 backdrop-blur-lg border border-white/30 rounded-xl p-4 text-center">
                                 <div className="text-purple-600 mx-auto mb-2 w-10 h-10 flex items-center justify-center">{item.icon}</div>
@@ -160,13 +170,16 @@ const BlueprintResults = ({ blueprint, onRestart }) => {
                         ))}
                     </div>
 
-                    <div className="text-left bg-white/60 backdrop-blur-lg border border-white/30 rounded-2xl p-8 shadow-lg">
-                        <h3 className="text-2xl font-bold text-gray-800">Core Diagnosis</h3>
-                        <div className="mt-6 space-y-4 whitespace-pre-wrap">
-                           {blueprint.coreDiagnosis || "No diagnosis available."}
-                        </div>
+                    <AnalysisCard icon={<Target size={28} />} title="Executive Diagnosis" content={blueprint.executiveDiagnosis} />
+                    <AnalysisCard icon={<Key size={28} />} title="IP Excavation & Asset Activation" content={blueprint.ipExcavation} />
+                    <AnalysisCard icon={<Microscope size={28} />} title="Bottleneck Forensics" content={blueprint.bottleneckForensics} />
+                    
+                    <div className="text-center border-t border-gray-300 pt-8 mt-8">
+                        <p className="text-lg italic text-gray-700">Strategic Seal:</p>
+                        <p className="text-xl font-semibold text-purple-700 mt-2">"{blueprint.strategicSeal}"</p>
                     </div>
-                     <div className="mt-10">
+
+                     <div className="text-center mt-12">
                         <a href="#pricing" className="btn btn-primary text-lg px-8 py-4">View Execution Paths</a>
                     </div>
                 </div>
@@ -184,16 +197,15 @@ export default function HomePage() {
     const [blueprint, setBlueprint] = useState(null);
     const [error, setError] = useState(null);
 
+    // ADDED BACK THE DEEPER QUESTIONS
     const questions = [
         { id: 'main_goal', question: 'In one sentence, what legacy do you want to create through your work?', type: 'textarea', placeholder: 'The impact I want to have is...' },
         { id: 'business_model', question: 'How do you currently monetize your expertise?', type: 'radio', options: ['Trading time for money (1:1 services)', 'Group programs/cohorts', 'Digital products/courses', 'Hybrid model (services + products)', 'Building automated client systems'] },
         { id: 'scaling_challenge', question: 'What keeps you awake at night about scaling?', type: 'radio', options: ['Client results aren\'t consistent at scale', 'Manual processes eating profitability', 'Can\'t break time-for-money constraints', 'Growth requires unsustainable personal effort', 'Don\'t know how to productize my methodology'] },
-        { id: 'transformation_type', question: 'What transformation do clients experience with you?', type: 'radio', options: ['Strategic clarity & decision-making', 'Leadership/team performance', 'Business model innovation', 'Personal breakthrough & mindset', 'Technical skill mastery'] },
-        { id: 'system_maturity', question: 'How systematized is your approach today?', type: 'radio', options: ['Fully documented methodology', 'Partial documentation (inconsistent)', 'Know what works but not documented', 'Still refining core methodology', 'Need help defining the system'] },
-        { id: 'value_leak', question: 'Where do you lose most opportunity today?', type: 'radio', options: ['Can\'t capture all client value delivered', 'Underselling transformative outcomes', 'Pricing resistance despite results', 'Clients don\'t see full transformation arc', 'Results aren\'t measurable/visible'] },
-        { id: 'automation_target', question: 'If we could automate one thing tomorrow, what would create the biggest impact?', type: 'textarea', placeholder: 'Be specific about your highest-leverage opportunity...' },
-        { id: 'success_metric', question: 'What would change everything if achieved?', type: 'radio', options: ['3X clients without time increase', '90%+ client completion rate', 'Recurring revenue > $50K/mo', 'Productized offerings > 50% revenue', 'CEO-level focus on vision work'] },
-        { id: 'email', question: 'Where should we send your System Blueprint?', type: 'email', placeholder: 'Your best email address...' }
+        { id: 'client_lifecycle', question: 'What is the most time-consuming part of your client lifecycle?', type: 'radio', options: ['Attracting & converting leads', 'Onboarding new clients', 'Delivering the core service/program', 'Managing ongoing client communication', 'Offboarding & collecting feedback'] },
+        { id: 'biggest_asset', question: 'What is your single most valuable piece of intellectual property (e.g., a framework, a process)?', type: 'textarea', placeholder: 'e.g., My 5-step "Clarity Catalyst" framework...' },
+        { id: 'tech_stack', question: 'What are the 2-3 most critical software tools you currently use?', type: 'textarea', placeholder: 'e.g., Zoom, Google Docs, Stripe...' },
+        { id: 'email', question: 'Where should we send your confidential strategic paper?', type: 'email', placeholder: 'Your best email address...' }
     ];
 
     const handleAnswer = (questionId, value) => {
@@ -261,7 +273,8 @@ export default function HomePage() {
             const parsedBlueprint = JSON.parse(data.blueprint);
             setBlueprint(parsedBlueprint);
             
-        } catch (err) {
+        } catch (err)
+        {
             console.error("Error fetching blueprint:", err);
             setError(err.message);
         } finally {
@@ -359,7 +372,7 @@ export default function HomePage() {
                 <span className="loader-text">analyzing</span>
                 <span className="load"></span>
             </div>
-            <p className="font-mono text-gray-500 mt-6">Contacting SYMI Systems Analyst...</p>
+            <p className="font-mono text-gray-500 mt-6">Aria is composing your strategic paper...</p>
         </div>
     );
 
@@ -380,7 +393,6 @@ export default function HomePage() {
                     );
                 }
                 return (
-                    // The main content area now has padding-top to not be hidden by the absolute header
                     <div className="pt-24"> 
                         <Header onStartAudit={handleRestart} />
                         <BlueprintResults blueprint={blueprint} onRestart={handleRestart} />
