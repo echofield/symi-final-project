@@ -3,48 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { Check, ChevronDown, Clock, Users, Zap, Calendar } from 'lucide-react';
 
-// --- Helper Functions for Blueprint Generation ---
-const generatePersonalizedBlueprint = (answers) => {
-    // --- Core Diagnosis Logic ---
-    const defaultDiagnosis = {
-        challenge: "You're facing a common but critical inflection point in your business.",
-        impact: "Without a systematic approach, growth can lead to burnout and inconsistent client results.",
-        opportunity: "There is a significant opportunity to productize your expertise and scale your impact."
-    };
-    const diagnoses = {
-        'Trading time for money (1:1 services)': {
-            challenge: "Your 1:1 service model is hitting a ceiling. Every new client requires more of your personal time, creating an unsustainable growth trajectory.",
-            impact: "This is capping your income potential and preventing you from serving more clients who need your expertise.",
-            opportunity: `By systemizing your "${answers.automation_target || 'core processes'}", you can serve 3x more clients while actually working fewer hours.`
-        },
-        'Manual processes eating profitability': {
-            challenge: "Manual workflows are silently draining 30-40% of your profit margins through hidden time costs and inefficiencies.",
-            impact: "Every hour spent on repetitive tasks is an hour not spent on revenue-generating activities or strategic growth.",
-            opportunity: `Automating "${answers.automation_target || 'a key workflow'}" alone could save you 10-15 hours weekly and increase profit margins by 25%.`
-        }
-    };
-    const coreDiagnosis = diagnoses[answers.scaling_pain] || defaultDiagnosis;
-
-    // --- KPIs Logic ---
-    const kpis = {
-        timeSavings: answers.scaling_pain?.includes('Manual') ? '15-20h' : '8-12h',
-        clientSuccess: answers.transformation_type?.includes('Strategic') ? '+40%' : '+30%',
-        agents: answers.system_maturity?.includes('documented') ? '5' : '3',
-        timeline: answers.business_model?.includes('Building') ? '6 wks' : '4 wks'
-    };
-    
-    // --- Combine into a single blueprint object ---
-    return {
-        vision: answers.main_goal || "your ultimate goal",
-        coreDiagnosis,
-        kpis
-    };
-};
-
-
 // --- Page Components ---
 
 const Header = ({ onStartAudit }) => (
+    // The header is now always visible and correctly positioned
     <header className="absolute top-0 left-0 p-6 w-full z-20">
         <div className="container mx-auto flex justify-between items-center">
             <span className="font-semibold text-gray-800">Symi System</span>
@@ -59,7 +21,7 @@ const Header = ({ onStartAudit }) => (
 );
 
 const HeroSection = ({ onStartAudit }) => (
-    <section className="relative w-full h-screen flex flex-col items-center justify-center text-center -mt-16">
+    <section className="relative w-full h-screen flex flex-col items-center justify-center text-center">
          <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-[600px] h-[600px] bg-purple-200 rounded-full opacity-40 blur-3xl" />
         </div>
@@ -108,7 +70,6 @@ const PricingSection = () => (
                             <li className="feature-item"><Check className="checkmark" /><span>Email & Chat Support</span></li>
                         </ul>
                     </div>
-                    {/* --- UPDATED PAYMENT LINK --- */}
                     <a href="https://buy.stripe.com/00wbJ1ckk9j13PreZN" target="_blank" rel="noopener noreferrer"
                        className="btn btn-primary w-full text-center">Activate Now</a>
                 </div>
@@ -163,13 +124,21 @@ const FaqSection = () => {
     );
 };
 
-// --- NEW BLUEPRINT RESULTS COMPONENT ---
 const BlueprintResults = ({ blueprint, onRestart }) => {
+    // Fallback for blueprint data while it's loading or if it fails
+    if (!blueprint) {
+        return (
+            <div className="text-center py-20">
+                <p>Generating your blueprint...</p>
+            </div>
+        );
+    }
+    
     const kpiItems = [
-        { icon: <Clock size={24} />, value: blueprint.kpis.timeSavings, label: "Hours Saved / Week" },
-        { icon: <Users size={24} />, value: blueprint.kpis.clientSuccess, label: "Client Success Rate" },
-        { icon: <Zap size={24} />, value: blueprint.kpis.agents, label: "Autonomous Agents" },
-        { icon: <Calendar size={24} />, value: blueprint.kpis.timeline, label: "Implementation Time" }
+        { icon: <Clock size={24} />, value: blueprint.kpis?.timeSavings?.value || 'N/A', label: "Hours Saved / Week" },
+        { icon: <Users size={24} />, value: blueprint.kpis?.clientSuccess?.value || 'N/A', label: "Client Success Rate" },
+        { icon: <Zap size={24} />, value: blueprint.kpis?.agentsDeployed?.value || 'N/A', label: "Autonomous Agents" },
+        { icon: <Calendar size={24} />, value: blueprint.kpis?.timeline?.value || 'N/A', label: "Implementation Time" }
     ];
 
     return (
@@ -177,7 +146,7 @@ const BlueprintResults = ({ blueprint, onRestart }) => {
             <div className="container mx-auto px-6 text-center">
                 <div className="max-w-4xl mx-auto">
                     <p className="text-sm uppercase tracking-widest text-purple-600">YOUR PERSONALIZED SYSTEM BLUEPRINT</p>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-4">Your Vision: "{blueprint.vision}"</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-4">Your Vision: "{blueprint.strategicObjective || 'To build a more efficient system'}"</h2>
                     <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
                         Here’s the strategic blueprint to bridge the gap between your current state and your ultimate goal.
                     </p>
@@ -194,19 +163,8 @@ const BlueprintResults = ({ blueprint, onRestart }) => {
 
                     <div className="text-left bg-white/60 backdrop-blur-lg border border-white/30 rounded-2xl p-8 shadow-lg">
                         <h3 className="text-2xl font-bold text-gray-800">Core Diagnosis</h3>
-                        <div className="mt-6 space-y-4">
-                            <div>
-                                <h4 className="font-semibold text-gray-700">Challenge:</h4>
-                                <p className="text-gray-600">{blueprint.coreDiagnosis.challenge}</p>
-                            </div>
-                            <div>
-                                <h4 className="font-semibold text-gray-700">Impact:</h4>
-                                <p className="text-gray-600">{blueprint.coreDiagnosis.impact}</p>
-                            </div>
-                            <div>
-                                <h4 className="font-semibold text-purple-700">Opportunity:</h4>
-                                <p className="text-purple-600">{blueprint.coreDiagnosis.opportunity}</p>
-                            </div>
+                        <div className="mt-6 space-y-4 whitespace-pre-wrap">
+                           {blueprint.coreDiagnosis || "No diagnosis available."}
                         </div>
                     </div>
                      <div className="mt-10">
@@ -221,15 +179,16 @@ const BlueprintResults = ({ blueprint, onRestart }) => {
 
 // --- Main App Component ---
 export default function HomePage() {
-    const [appState, setAppState] = useState('landing'); // 'landing', 'audit', 'scanning', 'report'
+    const [appState, setAppState] = useState('landing');
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState({});
     const [blueprint, setBlueprint] = useState(null);
+    const [error, setError] = useState(null);
 
     const questions = [
         { id: 'main_goal', question: 'In one sentence, what legacy do you want to create through your work?', type: 'textarea', placeholder: 'The impact I want to have is...' },
         { id: 'business_model', question: 'How do you currently monetize your expertise?', type: 'radio', options: ['Trading time for money (1:1 services)', 'Group programs/cohorts', 'Digital products/courses', 'Hybrid model (services + products)', 'Building automated client systems'] },
-        { id: 'scaling_pain', question: 'What keeps you awake at night about scaling?', type: 'radio', options: ['Client results aren\'t consistent at scale', 'Manual processes eating profitability', 'Can\'t break time-for-money constraints', 'Growth requires unsustainable personal effort', 'Don\'t know how to productize my methodology'] },
+        { id: 'scaling_challenge', question: 'What keeps you awake at night about scaling?', type: 'radio', options: ['Client results aren\'t consistent at scale', 'Manual processes eating profitability', 'Can\'t break time-for-money constraints', 'Growth requires unsustainable personal effort', 'Don\'t know how to productize my methodology'] },
         { id: 'transformation_type', question: 'What transformation do clients experience with you?', type: 'radio', options: ['Strategic clarity & decision-making', 'Leadership/team performance', 'Business model innovation', 'Personal breakthrough & mindset', 'Technical skill mastery'] },
         { id: 'system_maturity', question: 'How systematized is your approach today?', type: 'radio', options: ['Fully documented methodology', 'Partial documentation (inconsistent)', 'Know what works but not documented', 'Still refining core methodology', 'Need help defining the system'] },
         { id: 'value_leak', question: 'Where do you lose most opportunity today?', type: 'radio', options: ['Can\'t capture all client value delivered', 'Underselling transformative outcomes', 'Pricing resistance despite results', 'Clients don\'t see full transformation arc', 'Results aren\'t measurable/visible'] },
@@ -264,20 +223,62 @@ export default function HomePage() {
         if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1);
     };
 
-    const handleSubmit = () => {
+    // --- NEW: ENTER KEY NAVIGATION ---
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Enter' && appState === 'audit') {
+                // Prevents submitting a form if inside a textarea
+                if (document.activeElement.tagName.toLowerCase() === 'textarea' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleNext();
+                } else if (document.activeElement.tagName.toLowerCase() !== 'textarea') {
+                    e.preventDefault();
+                    handleNext();
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [appState, currentQuestion, answers]); // Re-bind when state changes
+
+    // --- UPDATED: handleSubmit to call the API ---
+    const handleSubmit = async () => {
         setAppState('scanning');
-        const generatedBlueprint = generatePersonalizedBlueprint(answers);
-        setBlueprint(generatedBlueprint);
-        
-        setTimeout(() => {
-            setAppState('report');
-        }, 2500);
+        setError(null);
+
+        try {
+            const response = await fetch('/api/generate-blueprint', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ answers })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to fetch blueprint.');
+            }
+
+            const data = await response.json();
+            // The blueprint from the API is a string, so we need to parse it
+            const parsedBlueprint = JSON.parse(data.blueprint);
+            setBlueprint(parsedBlueprint);
+            
+        } catch (err) {
+            console.error("Error fetching blueprint:", err);
+            setError(err.message);
+        } finally {
+             setAppState('report');
+        }
     };
     
     const handleRestart = () => {
         setAnswers({});
         setCurrentQuestion(0);
         setBlueprint(null);
+        setError(null);
         setAppState('landing');
     };
 
@@ -363,7 +364,7 @@ export default function HomePage() {
                 <span className="loader-text">analyzing</span>
                 <span className="load"></span>
             </div>
-            <p className="font-mono text-gray-500 mt-6">Creating your personalized blueprint...</p>
+            <p className="font-mono text-gray-500 mt-6">Contacting SYMI Systems Analyst...</p>
         </div>
     );
 
@@ -374,6 +375,15 @@ export default function HomePage() {
             case 'scanning':
                 return renderScanning();
             case 'report':
+                 if (error) {
+                    return (
+                        <div className="text-center py-20">
+                            <h2 className="text-2xl font-bold text-red-600">Generation Failed</h2>
+                            <p className="text-gray-600 mt-4">{error}</p>
+                            <button onClick={handleRestart} className="btn btn-primary mt-6">Try Again</button>
+                        </div>
+                    );
+                }
                 return (
                     <>
                         <Header onStartAudit={handleRestart} />
@@ -400,17 +410,14 @@ export default function HomePage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-800">
+        // The outer div structure is simplified to fix the header issue
+        <div className="min-h-screen bg-gray-50 text-gray-800 relative">
             <div className="fixed inset-0 opacity-30 -z-10">
                 <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
                 <div className="absolute top-0 right-0 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
                 <div className="absolute bottom-20 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
             </div>
-             <div className="relative z-10">
-                <div className="w-full">
-                    {renderContent()}
-                </div>
-            </div>
+            {renderContent()}
         </div>
     );
 }
