@@ -87,3 +87,132 @@
 .faq-item[open] .faq-icon {
     transform: rotate(180deg);
 }
+
+/* === NEW STYLES FOR BLUEPRINT ENHANCEMENT === */
+
+/* Blueprint reveal animation */
+.blueprint-reveal {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Question transitions */
+.question-fade-in {
+  animation: questionFade 0.5s ease-out;
+}
+
+@keyframes questionFade {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Progress bar */
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden;
+}
+
+.progress-fill {
+  @apply bg-gradient-to-r from-purple-500 to-purple-600 h-full rounded-full transition-all duration-300 ease-out;
+}
+
+/* Enhanced radio buttons */
+.radio-option {
+  @apply flex items-center w-full cursor-pointer bg-white border-2 border-gray-200 rounded-lg p-3 md:p-4 text-base md:text-lg text-gray-700 transition-all duration-200 hover:border-purple-400 hover:shadow-sm;
+}
+
+.radio-option.selected {
+  @apply border-purple-600 bg-purple-50 shadow-sm;
+}
+
+/* Smooth state transitions */
+.state-transition {
+  @apply transition-opacity duration-500 ease-in-out;
+}
+
+/* Header pricing button fade */
+.header-pricing {
+  @apply transition-opacity duration-500 ease-in-out;
+}
+
+.header-pricing.hidden {
+  @apply opacity-0 pointer-events-none;
+}
+
+.header-pricing.visible {
+  @apply opacity-100;
+}
+
+/* Loading enhancement */
+.blueprint-loading {
+  @apply flex flex-col items-center justify-center py-12;
+}
+
+/* Form textarea enhancement */
+.form-textarea {
+  @apply form-input min-h-[100px] resize-none;
+}
+
+/* Professional spacing for audit container */
+.audit-container {
+  @apply w-full max-w-2xl mx-auto;
+}
+
+/* Question navigation buttons */
+.nav-button {
+  @apply flex items-center gap-2 transition-transform hover:scale-105;
+}
+
+/* Email input specific styling */
+input[type="email"].form-input {
+  @apply lowercase;
+}
+
+/* Responsive text sizing */
+.question-text {
+  @apply text-xl md:text-2xl font-bold mb-2 text-gray-800;
+}
+
+/* Counter styling */
+.question-counter {
+  @apply font-mono text-sm text-gray-500;
+}
+
+/* Button disabled state */
+.btn:disabled {
+  @apply opacity-50 cursor-not-allowed hover:bg-white;
+}
+
+.btn-primary:disabled {
+  @apply hover:bg-purple-600;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+  .form-input, .radio-option {
+    @apply text-base p-3;
+  }
+  
+  .btn {
+    @apply px-5 py-2.5 text-sm;
+  }
+  
+  .question-text {
+    @apply text-lg;
+  }
+}
