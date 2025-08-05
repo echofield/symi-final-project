@@ -3,40 +3,44 @@
 import React, { useState, useEffect } from 'react';
 import { Check, ChevronDown } from 'lucide-react';
 
-// --- Helper Functions for Blueprint Generation (As provided, robust for personalization) ---
-const defaultDiagnosis = {
-    challenge: "You're facing a common but critical inflection point in your business.",
-    impact: "Without a systematic approach, growth can lead to burnout and inconsistent client results.",
-    opportunity: "There is a significant opportunity to productize your expertise and scale your impact."
-};
+// --- Helper Functions for Blueprint Generation ---
+const generatePersonalizedResults = (answers) => {
+    // This is a simplified scoring logic. You can make this as complex as you need.
+    let score = 50; // Base score
+    if (answers.business_model?.includes('services')) score += 10;
+    if (answers.scaling_pain?.includes('Manual')) score += 15;
+    if (answers.system_maturity === 'Fully documented methodology') score += 20;
+    if (answers.value_leak?.includes('capture')) score -= 10;
 
-const generatePersonalizedDiagnosis = (answers) => {
-    const diagnoses = {
-        'Trading time for money (1:1 services)': {
-            challenge: "Your 1:1 service model is hitting a ceiling. Every new client requires more of your personal time, creating an unsustainable growth trajectory.",
-            impact: "This is capping your income potential and preventing you from serving more clients who need your expertise.",
-            opportunity: `By systemizing your "${answers.automation_target || 'core processes'}", you can serve 3x more clients while actually working fewer hours.`
-        },
-        'Manual processes eating profitability': {
-            challenge: "Manual workflows are silently draining 30-40% of your profit margins through hidden time costs and inefficiencies.",
-            impact: "Every hour spent on repetitive tasks is an hour not spent on revenue-generating activities or strategic growth.",
-            opportunity: `Automating "${answers.automation_target || 'a key workflow'}" alone could save you 10-15 hours weekly and increase profit margins by 25%.`
+    score = Math.max(10, Math.min(99, score)); // Clamp score between 10 and 99
+
+    let recommendation = {
+        path: 'SYMI – Business Twin Starter',
+        reason: 'This is the perfect starting point to systematize your methodology and unlock initial scaling opportunities.',
+        cta: 'Activate Now',
+        link: 'https://buy.stripe.com/00wbJ1ckk9j13PreZN'
+    };
+
+    if (score > 75) {
+        recommendation = {
+            path: 'SYMI OS – Complete System',
+            reason: 'Your sophisticated model requires a comprehensive infrastructure to scale effectively.',
+            cta: 'Explore SYMI OS',
+            link: 'mailto:contact@symi.system?subject=SYMI%20OS%20Inquiry'
+        };
+    }
+
+    return {
+        score,
+        recommendation,
+        kpis: {
+            timeSavings: score > 60 ? '15-20h' : '8-12h',
+            clientSuccess: score > 70 ? '+40%' : '+30%',
+            timeline: score > 75 ? '6 wks' : '4 wks'
         }
     };
-    return diagnoses[answers.business_model] || diagnoses[answers.scaling_pain] || defaultDiagnosis;
 };
 
-const generatePersonalizedKPIs = (answers) => {
-    const baseMetrics = {
-        timeSavings: answers.scaling_pain?.includes('Manual') ? '15-20h' : '8-12h',
-        clientSuccess: answers.transformation_type?.includes('Strategic') ? '+40%' : '+30%',
-        agents: answers.system_maturity?.includes('documented') ? '3' : '5',
-        timeline: answers.business_model?.includes('Building') ? '6 wks' : '4 wks'
-    };
-    return baseMetrics;
-};
-
-// Other helper functions (generatePersonalizedTimeline, etc.) remain as they were...
 
 // --- Page Components ---
 
@@ -68,13 +72,18 @@ const HeroSection = ({ onStartAudit }) => (
             <p className="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-600">
                 The intelligent layer that transforms your goals and strategies into systems that think, act, and evolve with you.
             </p>
+             <div className="mt-8">
+                <button onClick={onStartAudit} className="btn btn-primary text-lg px-8 py-4">
+                    Generate My Blueprint
+                </button>
+            </div>
         </div>
     </section>
 );
 
 
 const PricingSection = () => (
-    <section id="pricing" className="w-full py-20 bg-white/30 backdrop-blur-md rounded-3xl">
+    <section id="pricing" className="w-full py-20">
         <div className="container mx-auto px-6">
             <div className="text-center mb-12 max-w-3xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Execution Path</h2>
@@ -83,7 +92,6 @@ const PricingSection = () => (
                 </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
-                {/* --- Business Twin Starter Card --- */}
                 <div className="price-card">
                     <div className="flex-grow">
                         <h3 className="text-2xl font-bold mb-2">Business Twin Starter</h3>
@@ -105,7 +113,6 @@ const PricingSection = () => (
                     <a href="https://buy.stripe.com/00wbJ1ckk9j13PreZN" target="_blank" rel="noopener noreferrer"
                        className="btn btn-primary w-full text-center">Activate Now</a>
                 </div>
-                {/* --- SYMI OS Card --- */}
                 <div className="price-card recommended">
                     <div className="flex-grow">
                         <h3 className="text-2xl font-bold mb-2">SYMI OS</h3>
@@ -157,15 +164,59 @@ const FaqSection = () => {
     );
 };
 
+const ResultsSection = ({ results, onRestart }) => (
+    <section id="results" className="w-full py-20 blueprint-reveal">
+        <div className="container mx-auto px-6 text-center">
+            <div className="max-w-3xl mx-auto bg-white/60 backdrop-blur-lg border border-white/30 rounded-2xl p-8 shadow-xl">
+                <h2 className="text-sm uppercase tracking-widest text-purple-600">Your Personalized Blueprint</h2>
+                <div className="my-8">
+                    <div className="inline-block relative">
+                        <div className="text-7xl font-bold text-gray-800">{results.score}</div>
+                        <div className="absolute -top-2 -right-8 text-2xl font-bold text-purple-500">/100</div>
+                    </div>
+                    <p className="text-lg text-gray-600 mt-2">System Readiness Score</p>
+                </div>
+
+                <div className="text-left bg-purple-50 rounded-lg p-6 my-8">
+                    <h3 className="font-bold text-lg text-gray-800">Recommended Path: {results.recommendation.path}</h3>
+                    <p className="text-gray-700 mt-2">{results.recommendation.reason}</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center my-8">
+                    <div>
+                        <p className="text-3xl font-bold text-purple-600">{results.kpis.timeSavings}</p>
+                        <p className="text-sm text-gray-600">Weekly Time Saved</p>
+                    </div>
+                    <div>
+                        <p className="text-3xl font-bold text-purple-600">{results.kpis.clientSuccess}</p>
+                        <p className="text-sm text-gray-600">Client Success Rate</p>
+                    </div>
+                    <div>
+                        <p className="text-3xl font-bold text-purple-600">{results.kpis.timeline}</p>
+                        <p className="text-sm text-gray-600">Implementation Time</p>
+                    </div>
+                </div>
+
+                <a href={results.recommendation.link} className="btn btn-primary w-full md:w-auto text-lg px-8 py-4">
+                    {results.recommendation.cta}
+                </a>
+            </div>
+             <button onClick={onRestart} className="text-sm text-gray-600 mt-8 hover:text-purple-600">
+                Or, start a new audit
+            </button>
+        </div>
+    </section>
+);
+
+
 // --- Main App Component ---
 export default function HomePage() {
     const [appState, setAppState] = useState('landing'); // 'landing', 'audit', 'scanning', 'report'
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState({});
-    const [blueprintData, setBlueprintData] = useState(null);
+    const [results, setResults] = useState(null);
 
     const questions = [
-        // Your 9-question framework remains here...
         { id: 'main_goal', question: 'In one sentence, what legacy do you want to create through your work?', type: 'textarea', placeholder: 'The impact I want to have is...' },
         { id: 'business_model', question: 'How do you currently monetize your expertise?', type: 'radio', options: ['Trading time for money (1:1 services)', 'Group programs/cohorts', 'Digital products/courses', 'Hybrid model (services + products)', 'Building automated client systems'] },
         { id: 'scaling_pain', question: 'What keeps you awake at night about scaling?', type: 'radio', options: ['Client results aren\'t consistent at scale', 'Manual processes eating profitability', 'Can\'t break time-for-money constraints', 'Growth requires unsustainable personal effort', 'Don\'t know how to productize my methodology'] },
@@ -176,9 +227,6 @@ export default function HomePage() {
         { id: 'success_metric', question: 'What would change everything if achieved?', type: 'radio', options: ['3X clients without time increase', '90%+ client completion rate', 'Recurring revenue > $50K/mo', 'Productized offerings > 50% revenue', 'CEO-level focus on vision work'] },
         { id: 'email', question: 'Where should we send your System Blueprint?', type: 'email', placeholder: 'Your best email address...' }
     ];
-
-    // All hooks (useEffect for persistence, keydown, etc.) and handlers (handleNext, handleSubmit, etc.) remain as they were...
-    // The existing logic for form handling, validation, and submission is robust and maintained.
 
     const handleAnswer = (questionId, value) => {
         setAnswers(prev => ({ ...prev, [questionId]: value }));
@@ -206,26 +254,27 @@ export default function HomePage() {
         if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1);
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = () => {
         setAppState('scanning');
-        // Placeholder for result generation logic
-        const results = {
-            // ... dynamically generated results based on answers
-        };
-        // Simulating API call
+        const generatedResults = generatePersonalizedResults(answers);
+        setResults(generatedResults);
+        
         setTimeout(() => {
-            setBlueprintData(results);
             setAppState('report');
-        }, 2000);
+        }, 2500);
     };
-
-    // The render functions for audit, scanning, and report remain as they were...
+    
+    const handleRestart = () => {
+        setAnswers({});
+        setCurrentQuestion(0);
+        setResults(null);
+        setAppState('landing');
+    };
 
     const renderAudit = () => (
         <div className="audit-container">
             <div className="w-full max-w-2xl mx-auto bg-white/50 p-6 md:p-8 rounded-2xl shadow-lg border border-white/30 question-fade-in"
                  style={{ backdropFilter: 'blur(20px)' }}>
-                {/* Progress bar */}
                 <div className="progress-bar">
                     <div
                         className="progress-fill"
@@ -234,9 +283,53 @@ export default function HomePage() {
                 </div>
                 
                 <h2 className="question-text">{questions[currentQuestion].question}</h2>
+                
                 <div className="mt-6">
-                    {/* Input rendering logic (textarea, email, radio) remains here... */}
+                    {questions[currentQuestion].type === 'textarea' && (
+                        <textarea
+                            rows="4"
+                            className="form-textarea"
+                            placeholder={questions[currentQuestion].placeholder}
+                            onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)}
+                            value={answers[questions[currentQuestion].id] || ''}
+                            autoFocus
+                        />
+                    )}
+                    {questions[currentQuestion].type === 'email' && (
+                        <input
+                            type="email"
+                            className="form-input"
+                            placeholder={questions[currentQuestion].placeholder}
+                            onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)}
+                            value={answers[questions[currentQuestion].id] || ''}
+                            autoFocus
+                        />
+                    )}
+                    {questions[currentQuestion].type === 'radio' && (
+                        <div className="space-y-3">
+                            {questions[currentQuestion].options.map(option => (
+                                <label
+                                    key={option}
+                                    className={`radio-option ${answers[questions[currentQuestion].id] === option ? 'selected' : ''}`}
+                                >
+                                    <input
+                                        type="radio"
+                                        name={questions[currentQuestion].id}
+                                        value={option}
+                                        className="sr-only"
+                                        onChange={() => {
+                                            handleAnswer(questions[currentQuestion].id, option);
+                                            setTimeout(handleNext, 250);
+                                        }}
+                                        checked={answers[questions[currentQuestion].id] === option}
+                                    />
+                                    <span className="flex-1">{option}</span>
+                                </label>
+                            ))}
+                        </div>
+                    )}
                 </div>
+
                 <div className="mt-8 flex justify-between items-center">
                     {currentQuestion > 0 ? (
                         <button onClick={handleBack} className="btn nav-button">← Back</button>
@@ -255,15 +348,12 @@ export default function HomePage() {
     );
     
     const renderScanning = () => (
-        <div className="text-center">
-            <p className="text-lg">Analyzing your responses...</p>
-        </div>
-    );
-
-    const renderReport = () => (
-         <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4">Thank You!</h2>
-            <p className="text-lg">Your personalized blueprint has been generated and sent to your email.</p>
+        <div className="flex flex-col items-center justify-center min-h-screen">
+            <div className="loader">
+                <span className="loader-text">analyzing</span>
+                <span className="load"></span>
+            </div>
+            <p className="font-mono text-gray-500 mt-6">Creating your personalized blueprint...</p>
         </div>
     );
 
@@ -274,8 +364,7 @@ export default function HomePage() {
             case 'scanning':
                 return renderScanning();
             case 'report':
-                // The dynamic Dashboard component would be rendered here
-                return renderReport(); 
+                return <ResultsSection results={results} onRestart={handleRestart} />;
             case 'landing':
             default:
                 return (
