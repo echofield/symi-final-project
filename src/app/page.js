@@ -70,7 +70,7 @@ const PricingSection = () => (
                         </ul>
                     </div>
                     {/* --- CORRECTED PAYMENT LINK --- */}
-                    <a href="https://buy.stripe.com/00wbJ1ckk9j13PreZN" target="_blank" rel="noopener noreferrer"
+                    <a href="https://buy.stripe.com/00wbJ1ckk9j13PreZN9Zm01" target="_blank" rel="noopener noreferrer"
                        className="btn btn-primary w-full text-center">Activate Now</a>
                 </div>
                 <div className="price-card recommended">
