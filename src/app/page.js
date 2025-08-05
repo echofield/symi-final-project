@@ -2,22 +2,34 @@
 
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Check } from 'lucide-react';
+import { Check, ChevronDown } from 'lucide-react';
 
-// --- NOUVELLE SECTION D'ACCUEIL ---
-const LandingSection = ({ onStartAudit }) => (
-    <div className="w-full max-w-2xl text-center">
-        <h2 className="text-sm font-bold tracking-widest text-purple-600 uppercase">SYMI STRATEGIC ASSESSMENT</h2>
-        <h1 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900">Stop Guessing. Start Systemizing.</h1>
-        <p className="mt-6 text-lg text-gray-600 max-w-xl mx-auto">A 3-minute assessment to identify your strategic gaps, clarify your vision, and create an actionable implementation roadmap that drives real results.</p>
-        <button onClick={onStartAudit} className="btn btn-primary mt-8 text-lg px-10 py-4">
-            Generate My Blueprint
-        </button>
-    </div>
+// --- Composants de la Page d'Accueil ---
+
+const Header = ({ onStartAudit }) => (
+    <header className="p-6 w-full">
+        <div className="container mx-auto flex justify-between items-center">
+            <span className="font-mono text-sm font-semibold">Symi System</span>
+            <div className="flex items-center space-x-4">
+                <a href="#pricing" className="btn hidden md:inline-flex">Pricing</a>
+                <button onClick={onStartAudit} className="btn btn-primary">Start Audit</button>
+            </div>
+        </div>
+    </header>
 );
 
+const HeroSection = ({ onStartAudit }) => (
+    <section className="w-full text-center py-20">
+        <div className="max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-gray-800">Turn Vision Into Living Systems</h1>
+            <p className="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-600">The intelligent layer that transforms your goals and strategies into systems that think, act, and evolve with you.</p>
+            <div className="mt-8">
+                <button onClick={onStartAudit} className="btn btn-primary text-lg px-8 py-4">Start Your Free Audit</button>
+            </div>
+        </div>
+    </section>
+);
 
-// --- SECTION PRIX (MAINTENANT UN COMPOSANT SÉPARÉ) ---
 const PricingSection = () => (
     <section id="pricing" className="w-full py-20">
         <div className="text-center mb-12 max-w-3xl mx-auto">
@@ -58,40 +70,60 @@ const PricingSection = () => (
     </section>
 );
 
-// --- COMPOSANT PRINCIPAL DE L'APPLICATION ---
+const FaqSection = () => {
+    const faqItems = [
+        { q: "What exactly is a \"living system\"?", a: "Unlike static documents or to-do lists, SYMI creates intelligent systems that adapt, remind, optimize, and evolve based on your progress and changing needs." },
+        { q: "How is this different from project management tools?", a: "Project management tracks tasks. SYMI creates intelligence—systems that understand your objectives, anticipate needs, and optimize execution automatically." },
+        { q: "Can I cancel or modify my system?", a: "Yes. Monthly hosting can be paused anytime, and systems can be modified as your needs evolve. We build for growth, not lock-in." },
+    ];
+    return (
+        <section id="faq" className="w-full py-20">
+            <div className="text-center mb-12 max-w-3xl mx-auto">
+                <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+            </div>
+            <div className="max-w-3xl mx-auto space-y-4">
+                {faqItems.map((item, index) => (
+                    <details key={index} className="faq-item bg-white/50 rounded-2xl border border-white/30" style={{ backdropFilter: 'blur(20px)' }}>
+                        <summary>
+                            <span>{item.q}</span>
+                            <ChevronDown className="faq-icon w-5 h-5" />
+                        </summary>
+                        <div className="faq-content">{item.a}</div>
+                    </details>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+
+// --- Composant Principal de l'Application ---
 const Dashboard = dynamic(() => import('../components/Dashboard'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center h-screen w-full"><p className="text-lg text-gray-600">Loading Dashboard...</p></div>
 });
 
 export default function HomePage() {
-    const [appState, setAppState] = useState('landing'); // landing, audit, scanning, report, pricing
+    const [appState, setAppState] = useState('landing'); // landing, audit, scanning, report
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState({});
     const [blueprintData, setBlueprintData] = useState(null);
 
+    // VOTRE FRAMEWORK DE 9 QUESTIONS
     const questions = [
-        { id: 'main_goal', question: 'Before we begin — what transformation do you want to create for your clients?', type: 'textarea', placeholder: 'Describe the outcome you help people achieve...' },
-        { id: 'business_model', question: 'How do you currently work with clients? (Select all that apply)', type: 'checkbox', options: [ 'One-on-one sessions', 'Group programs', 'Digital products', 'Mix of services and systems' ] },
-        { id: 'scaling_challenge', question: 'What\'s your biggest challenge in scaling your expertise?', type: 'radio', options: [ 'Limited by hours in the day', 'Clients don\'t follow through', 'Hard to track client progress', 'Manual work to automate' ] },
-        { id: 'email', question: 'Finally, where should we send your personalized blueprint?', type: 'email', placeholder: 'Your primary email...' }
+      { id: 'main_goal', question: 'In one sentence, what legacy do you want to create through your work?', type: 'textarea', placeholder: 'The impact I want to have is...' },
+      { id: 'business_model', question: 'How do you currently monetize your expertise?', type: 'radio', options: ['Trading time for money (1:1 services)', 'Group programs/cohorts', 'Digital products/courses', 'Hybrid model (services + products)', 'Building automated client systems'] },
+      { id: 'scaling_pain', question: 'What keeps you awake at night about scaling?', type: 'radio', options: ['Client results aren\'t consistent at scale', 'Manual processes eating profitability', 'Can\'t break time-for-money constraints', 'Growth requires unsustainable personal effort', 'Don\'t know how to productize my methodology'] },
+      { id: 'transformation_type', question: 'What transformation do clients experience with you?', type: 'radio', options: ['Strategic clarity & decision-making', 'Leadership/team performance', 'Business model innovation', 'Personal breakthrough & mindset', 'Technical skill mastery'] },
+      { id: 'system_maturity', question: 'How systematized is your approach today?', type: 'radio', options: ['Fully documented methodology', 'Partial documentation (inconsistent)', 'Know what works but not documented', 'Still refining core methodology', 'Need help defining the system'] },
+      { id: 'value_leak', question: 'Where do you lose most opportunity today?', type: 'radio', options: ['Can\'t capture all client value delivered', 'Underselling transformative outcomes', 'Pricing resistance despite results', 'Clients don\'t see full transformation arc', 'Results aren\'t measurable/visible'] },
+      { id: 'automation_target', question: 'If we could automate one thing tomorrow...', type: 'textarea', placeholder: 'The one thing that would change the game is...' },
+      { id: 'success_metric', question: 'What would change everything if achieved?', type: 'radio', options: ['3X clients without time increase', '90%+ client completion rate', 'Recurring revenue > $50K/mo', 'Productized offerings > 50% revenue', 'CEO-level focus on vision work'] },
+      { id: 'email', question: 'Where should we send your System Blueprint?', type: 'email', placeholder: 'Your primary email...' }
     ];
 
     const handleAnswer = (questionId, value) => {
-        setAnswers(prev => {
-            const newAnswers = { ...prev };
-            if (questions[currentQuestion].type === 'checkbox') {
-                const currentValues = prev[questionId] || [];
-                if (currentValues.includes(value)) {
-                    newAnswers[questionId] = currentValues.filter(v => v !== value);
-                } else {
-                    newAnswers[questionId] = [...currentValues, value];
-                }
-            } else {
-                newAnswers[questionId] = value;
-            }
-            return newAnswers;
-        });
+        setAnswers(prev => ({ ...prev, [questionId]: value }));
     };
 
     const handleNext = () => {
@@ -125,30 +157,36 @@ export default function HomePage() {
             setAppState('audit');
         }
     };
-    
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' && (questions[currentQuestion].type === 'textarea' || questions[currentQuestion].type === 'email')) {
+            if (!e.shiftKey) {
+                e.preventDefault();
+                handleNext();
+            }
+        }
+    };
+
     const renderAudit = () => (
-        <div className="w-full max-w-2xl">
-            <div className="text-center mb-12">
-                 <h2 className="text-2xl font-bold mb-2 text-gray-800">{questions[currentQuestion].question}</h2>
-            </div>
+        <div className="w-full max-w-2xl bg-white/50 p-8 rounded-2xl shadow-lg border border-white/30" style={{ backdropFilter: 'blur(20px)' }}>
+            <h2 className="text-2xl font-bold mb-2 text-gray-800">{questions[currentQuestion].question}</h2>
             <div className="mt-6">
-                {questions[currentQuestion].type === 'textarea' && <textarea rows="4" className="form-input" placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
-                {questions[currentQuestion].type === 'email' && <input type="email" className="form-input" placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
-                {(questions[currentQuestion].type === 'radio' || questions[currentQuestion].type === 'checkbox') && (
-                    <div className="space-y-3 max-w-lg mx-auto">
+                {questions[currentQuestion].type === 'textarea' && <textarea rows="4" className="form-input" onKeyDown={handleKeyDown} placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
+                {questions[currentQuestion].type === 'email' && <input type="email" className="form-input" onKeyDown={handleKeyDown} placeholder={questions[currentQuestion].placeholder} onChange={e => handleAnswer(questions[currentQuestion].id, e.target.value)} value={answers[questions[currentQuestion].id] || ''} />}
+                {questions[currentQuestion].type === 'radio' && (
+                    <div className="space-y-3">
                         {questions[currentQuestion].options.map(option => (
                             <label key={option} className="block w-full cursor-pointer bg-white border-2 border-gray-200 rounded-lg p-4 text-lg text-gray-700 hover:border-purple-500 transition-colors duration-200 has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50">
                                 <input 
-                                    type={questions[currentQuestion].type} 
+                                    type="radio"
                                     name={questions[currentQuestion].id} 
                                     value={option} 
                                     className="hidden" 
-                                    onChange={() => handleAnswer(questions[currentQuestion].id, option)}
-                                    checked={
-                                        questions[currentQuestion].type === 'checkbox' 
-                                        ? (answers[questions[currentQuestion].id] || []).includes(option)
-                                        : answers[questions[currentQuestion].id] === option
-                                    }
+                                    onChange={() => {
+                                        handleAnswer(questions[currentQuestion].id, option);
+                                        setTimeout(handleNext, 250); // Auto-advance on radio select
+                                    }}
+                                    checked={answers[questions[currentQuestion].id] === option}
                                 />
                                 {option}
                             </label>
@@ -156,7 +194,7 @@ export default function HomePage() {
                     </div>
                 )}
             </div>
-            <div className="mt-8 flex justify-between items-center max-w-lg mx-auto">
+            <div className="mt-8 flex justify-between items-center">
                 {currentQuestion > 0 ? <button onClick={handleBack} className="btn">Back</button> : <div />}
                 <span className="font-mono text-sm text-gray-500">{currentQuestion + 1} / {questions.length}</span>
                 <button onClick={handleNext} className="btn btn-primary">
@@ -175,17 +213,21 @@ export default function HomePage() {
 
     const renderContent = () => {
         switch (appState) {
-            case 'landing': return <LandingSection onStartAudit={() => setAppState('audit')} />;
-            case 'audit': return renderAudit();
-            case 'scanning': return renderScanning();
-            case 'report': 
+            case 'landing':
                 return (
                     <div className="w-full">
-                        <Dashboard data={blueprintData} />
-                        <PricingSection />
+                        <Header onStartAudit={() => setAppState('audit')} />
+                        <main className="container mx-auto px-6">
+                            <HeroSection onStartAudit={() => setAppState('audit')} />
+                            <PricingSection />
+                            <FaqSection />
+                        </main>
                     </div>
                 );
-            default: return <LandingSection onStartAudit={() => setAppState('audit')} />;
+            case 'audit': return renderAudit();
+            case 'scanning': return renderScanning();
+            case 'report': return <Dashboard data={blueprintData} />;
+            default: return <div />;
         }
     };
 
