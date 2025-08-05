@@ -20,7 +20,7 @@
   .animation-delay-4000 { animation-delay: 4s; }
 }
 
-/* Styles de l'Ancien Projet Intégrés */
+/* Styles pour l'Audit, le Scanner et le Dashboard */
 .loader { width: 80px; height: 50px; position: relative; }
 .loader-text {
     position: absolute; top: 0; padding: 0; margin: 0; color: #C8B6FF;
@@ -52,7 +52,7 @@
     @apply border-purple-600 bg-purple-600 text-white hover:bg-purple-700;
 }
 
-/* Nouveaux Styles pour les Cartes de Prix */
+/* Styles pour la Section Prix */
 .price-card {
     @apply bg-white/50 p-8 rounded-2xl border border-white/30 shadow-lg flex flex-col;
     backdrop-filter: blur(20px);
@@ -69,4 +69,21 @@
 }
 .checkmark {
     @apply w-5 h-5 mr-3 text-purple-500 flex-shrink-0;
+}
+
+/* Styles pour la FAQ */
+.faq-item summary {
+    @apply flex justify-between items-center cursor-pointer p-6 font-semibold;
+}
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+.faq-item .faq-content {
+    @apply px-6 pb-6 text-gray-600;
+}
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+.faq-item[open] .faq-icon {
+    transform: rotate(180deg);
 }
