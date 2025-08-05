@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 /* --- Base Layer --- */
-/* Sets the default font for the entire application. */
 @layer base {
   body {
     font-family: 'Inter', sans-serif;
@@ -11,7 +10,6 @@
 }
 
 /* --- Components Layer --- */
-/* Defines reusable component styles. */
 @layer components {
   /* --- Buttons --- */
   .btn {
@@ -32,7 +30,7 @@
 
   /* --- Form Elements --- */
   .form-input, .form-textarea {
-    @apply w-full rounded-lg border border-gray-300 bg-white/70 p-3.5 text-base text-gray-900 transition-all placeholder:text-gray-400 focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-500/20;
+    @apply w-full rounded-lg border border-gray-300 bg-white/70 p-3.5 text-base text-gray-900 transition-all placeholder:text-gray-400 focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-500/20 caret-purple-600; /* <-- Bug fix is here */
   }
   .form-textarea {
     @apply min-h-[100px] resize-none;
@@ -107,7 +105,6 @@
 }
 
 /* --- Utilities Layer --- */
-/* Contains animations and other utility classes. */
 @layer utilities {
   /* --- Animations --- */
   @keyframes blob {
@@ -152,20 +149,6 @@
   @keyframes text_713 { 0% { letter-spacing: 1px; transform: translateX(0px); } 40% { letter-spacing: 2px; transform: translateX(26px); } 80% { letter-spacing: 1px; transform: translateX(32px); } 90% { letter-spacing: 2px; transform: translateX(0px); } 100% { letter-spacing: 1px; transform: translateX(0px); } }
   @keyframes loading_713 { 0% { width: 16px; transform: translateX(0px); } 40% { width: 100%; transform: translateX(0px); } 80% { width: 16px; transform: translateX(64px); } 90% { width: 100%; transform: translateX(0px); } 100% { width: 16px; transform: translateX(0px); } }
   @keyframes loading2_713 { 0% { transform: translateX(0px); width: 16px; } 40% { transform: translateX(0%); width: 80%; } 80% { width: 100%; transform: translateX(0px); } 90% { width: 80%; transform: translateX(15px); } 100% { transform: translateX(0px); width: 16px; } }
-
-  /* --- Transitions & Visibility --- */
-  .state-transition {
-    @apply transition-opacity duration-500 ease-in-out;
-  }
-  .header-pricing {
-    @apply transition-opacity duration-500 ease-in-out;
-  }
-  .header-pricing.hidden {
-    @apply opacity-0 pointer-events-none;
-  }
-  .header-pricing.visible {
-    @apply opacity-100;
-  }
 
   /* --- Responsive Adjustments --- */
   @media (max-width: 640px) {
