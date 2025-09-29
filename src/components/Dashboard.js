@@ -17,8 +17,8 @@ const Dashboard = ({ data, onNavigate }) => {
 
     const { userGoal, businessModel, coreDiagnosis, kpis, timeline, components, recommendation } = safeData;
 
-    // Enhanced color palette for the chart
-    const chartColors = ['#8B5CF6', '#3B82F6', '#10B981', '#F59E0B', '#EF4444'];
+    // Swiss system palette for the chart
+    const chartColors = ['#1B4332', '#000000', '#4B5563', '#6B7280', '#111827'];
 
     const systemComponents = components.map((name, index) => ({
         name,
@@ -48,13 +48,13 @@ const Dashboard = ({ data, onNavigate }) => {
     let cumulativeOffset = 0;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-teal-50">
-            <header className="p-6 w-full bg-white/80 backdrop-blur-sm sticky top-0 z-10 border-b border-gray-200">
+        <div className="min-h-screen bg-white">
+            <header className="p-6 w-full bg-white sticky top-0 z-10 border-b border-black">
                 <div className="container mx-auto flex justify-between items-center">
-                    <button onClick={() => onNavigate && onNavigate('landing')} className="font-mono text-sm font-semibold hover:text-purple-600 transition-colors">
+                    <button onClick={() => onNavigate && onNavigate('landing')} className="font-mono text-sm font-medium hover:opacity-80">
                         SYMI
                     </button>
-                    <button onClick={() => onNavigate && onNavigate('pricing')} className="btn btn-primary hover:scale-105 transition-transform">
+                    <button onClick={() => onNavigate && onNavigate('pricing')} className="btn btn-primary">
                         View Pricing & Plans
                     </button>
                 </div>
@@ -63,14 +63,14 @@ const Dashboard = ({ data, onNavigate }) => {
             <main className="container mx-auto p-4 md:p-8">
                 {/* DYNAMIC: Vision/Goal Section */}
                 <div className="text-center mb-12">
-                    <p className="text-sm uppercase tracking-wide text-purple-600 mb-4">Your Personalized System Blueprint</p>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Your Vision: "{userGoal}"</h2>
-                    <p className="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">Here's the strategic blueprint to bridge the gap between your current state and your ultimate goal.</p>
+                    <p className="text-sm uppercase tracking-wide text-[var(--forest-green)] mb-4">Your Personalized System Blueprint</p>
+                    <h2 className="text-3xl md:text-4xl font-light text-black">Your Vision: "{userGoal}"</h2>
+                    <p className="text-lg text-black mt-2 max-w-3xl mx-auto">Here's the strategic blueprint to bridge the gap between your current state and your ultimate goal.</p>
                 </div>
 
                 {/* DYNAMIC: Priority Action Alert */}
                 {businessModel === 'Trading time for money (1:1 services)' && (
-                    <div className="bg-purple-100 border-l-4 border-purple-500 text-purple-800 p-6 rounded-2xl mb-12 shadow-md max-w-4xl mx-auto">
+                    <div className="bg-white border-l-4 border-black text-black p-6 rounded-none mb-12 shadow-none max-w-4xl mx-auto">
                         <h3 className="font-bold text-xl flex items-center gap-3"><Lightbulb size={24}/> Priority Action: Productize Your Expertise</h3>
                         <p className="mt-2 text-lg">
                             Based on your 1:1 model, the highest-leverage first step is to package your knowledge into a scalable format. This blueprint focuses on creating a group program or digital product framework to break the time-for-money barrier.
@@ -80,44 +80,44 @@ const Dashboard = ({ data, onNavigate }) => {
 
                 {/* KPI Cards */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                     <div className="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-lg flex items-center gap-4" style={{backdropFilter: 'blur(20px)'}}><Clock className="w-10 h-10 text-purple-500"/><div><div className="text-3xl font-bold">{kpis.timeSavings}</div><div className="text-gray-500">Hours Saved / Week</div></div></div>
-                     <div className="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-lg flex items-center gap-4" style={{backdropFilter: 'blur(20px)'}}><Users className="w-10 h-10 text-blue-500"/><div><div className="text-3xl font-bold">{kpis.clientSuccess}</div><div className="text-gray-500">Client Success Rate</div></div></div>
-                     <div className="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-lg flex items-center gap-4" style={{backdropFilter: 'blur(20px)'}}><Zap className="w-10 h-10 text-green-500"/><div><div className="text-3xl font-bold">{kpis.agents}</div><div className="text-gray-500">Autonomous Agents</div></div></div>
-                     <div className="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-lg flex items-center gap-4" style={{backdropFilter: 'blur(20px)'}}><Target className="w-10 h-10 text-orange-500"/><div><div className="text-3xl font-bold">{kpis.timeline}</div><div className="text-gray-500">Implementation Time</div></div></div>
+                     <div className="bg-white p-6 rounded-none border border-black flex items-center gap-4"><Clock className="w-10 h-10 text-[var(--forest-green)]"/><div><div className="text-3xl font-light">{kpis.timeSavings}</div><div className="text-black">Hours Saved / Week</div></div></div>
+                     <div className="bg-white p-6 rounded-none border border-black flex items-center gap-4"><Users className="w-10 h-10 text-black"/><div><div className="text-3xl font-light">{kpis.clientSuccess}</div><div className="text-black">Client Success Rate</div></div></div>
+                     <div className="bg-white p-6 rounded-none border border-black flex items-center gap-4"><Zap className="w-10 h-10 text-black"/><div><div className="text-3xl font-light">{kpis.agents}</div><div className="text-black">Autonomous Agents</div></div></div>
+                     <div className="bg-white p-6 rounded-none border border-black flex items-center gap-4"><Target className="w-10 h-10 text-black"/><div><div className="text-3xl font-light">{kpis.timeline}</div><div className="text-black">Implementation Time</div></div></div>
                 </div>
                 
                 {/* Core Diagnosis */}
-                <div className="bg-white/60 p-8 rounded-2xl border border-white/50 shadow-lg mb-12 max-w-5xl mx-auto" style={{backdropFilter: 'blur(20px)'}}>
-                    <h3 className="text-2xl font-bold mb-4 text-gray-800">Core Diagnosis</h3>
+                <div className="bg-white p-8 rounded-none border border-black mb-12 max-w-5xl mx-auto">
+                    <h3 className="text-2xl font-light mb-4 text-black">Core Diagnosis</h3>
                     <div className="space-y-4 text-lg">
                         <p><strong>Challenge:</strong> {coreDiagnosis.challenge}</p>
                         <p><strong>Impact:</strong> {coreDiagnosis.impact}</p>
-                        <p><strong>Opportunity:</strong> <span className="text-green-600 font-semibold">{coreDiagnosis.opportunity}</span></p>
+                        <p><strong>Opportunity:</strong> <span className="text-[var(--forest-green)] font-medium">{coreDiagnosis.opportunity}</span></p>
                     </div>
                 </div>
 
                 {/* Roadmap & System Components */}
                 <div className="grid lg:grid-cols-3 gap-8">
                     {/* Roadmap */}
-                    <div className="lg:col-span-2 bg-white/60 p-8 rounded-2xl border border-white/50 shadow-lg" style={{backdropFilter: 'blur(20px)'}}>
-                       <h3 className="text-2xl font-bold mb-6 text-gray-800">Your Implementation Roadmap</h3>
+                    <div className="lg:col-span-2 bg-white p-8 rounded-none border border-black">
+                       <h3 className="text-2xl font-light mb-6 text-black">Your Implementation Roadmap</h3>
                        <div className="space-y-4">
                            {timeline.map((item, index) => (
                                <div key={index} className="flex items-start">
                                    <div className="flex flex-col items-center mr-4">
-                                       <div className="w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold">{index + 1}</div>
-                                       {index < timeline.length - 1 && <div className="w-0.5 h-12 bg-purple-200 mt-1"></div>}
+                                       <div className="w-6 h-6 rounded-none bg-black text-white flex items-center justify-center font-medium">{index + 1}</div>
+                                       {index < timeline.length - 1 && <div className="w-0.5 h-12 bg-black mt-1"></div>}
                                    </div>
-                                   <div className="bg-white p-4 rounded-lg flex-1 border border-gray-200">
-                                       <p className="font-semibold text-gray-800">{item}</p>
+                                   <div className="bg-white p-4 rounded-none flex-1 border border-black">
+                                       <p className="font-light text-black">{item}</p>
                                    </div>
                                </div>
                            ))}
                        </div>
                     </div>
                     {/* System Components */}
-                    <div className="bg-white/60 p-8 rounded-2xl border border-white/50 shadow-lg" style={{backdropFilter: 'blur(20px)'}}>
-                        <h3 className="text-2xl font-bold mb-6 text-gray-800">Your System Components</h3>
+                    <div className="bg-white p-8 rounded-none border border-black">
+                        <h3 className="text-2xl font-light mb-6 text-black">Your System Components</h3>
                         <div className="relative flex justify-center items-center">
                             <svg viewBox="0 0 200 200" className="w-56 h-56 transform -rotate-90">
                                 {systemComponents.map((component, index) => {
@@ -127,14 +127,14 @@ const Dashboard = ({ data, onNavigate }) => {
                                 })}
                             </svg>
                             <div className="absolute text-center transform rotate-90">
-                                <span className="text-4xl font-bold text-gray-800">{components.length}</span>
-                                <p className="text-gray-500">Core Modules</p>
+                                <span className="text-4xl font-light text-black">{components.length}</span>
+                                <p className="text-black">Core Modules</p>
                             </div>
                         </div>
                         <ul className="mt-6 space-y-3">
                             {systemComponents.map((component, index) => (
-                                <li key={index} className="flex items-center text-gray-700">
-                                    <span className="w-3 h-3 rounded-full mr-3" style={{ backgroundColor: component.color }}></span>
+                                <li key={index} className="flex items-center text-black">
+                                    <span className="w-3 h-3 rounded-none mr-3" style={{ backgroundColor: component.color }}></span>
                                     {component.name}
                                 </li>
                             ))}
@@ -143,10 +143,10 @@ const Dashboard = ({ data, onNavigate }) => {
                 </div>
 
                 {/* CTA */}
-                <div className="text-center mt-16 bg-white/60 p-10 rounded-2xl max-w-4xl mx-auto border border-white/50 shadow-xl" style={{backdropFilter: 'blur(20px)'}}>
-                    <h3 className="text-3xl font-bold text-gray-800">Ready to build your living system?</h3>
-                    <p className="text-lg text-gray-600 mt-4">Based on your audit, the <strong className="text-purple-600">{recommendation.plan}</strong> is your recommended path forward.</p>
-                    <p className="text-gray-500 mt-2">{recommendation.reason}</p>
+                <div className="text-center mt-16 bg-white p-10 rounded-none max-w-4xl mx-auto border border-black">
+                    <h3 className="text-3xl font-light text-black">Ready to build your living system?</h3>
+                    <p className="text-lg text-black mt-4">Based on your audit, the <strong className="text-[var(--forest-green)]">{recommendation.plan}</strong> is your recommended path forward.</p>
+                    <p className="text-black mt-2">{recommendation.reason}</p>
                     <button onClick={() => onNavigate && onNavigate('pricing')} className="btn btn-primary text-lg px-8 py-4 mt-8 group">
                         Activate Your Blueprint <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </button>

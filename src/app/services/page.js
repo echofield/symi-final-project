@@ -13,13 +13,13 @@ const typicalProjects = [
 export default function ServicesPage() {
   return (
     <div className="bg-white">
-      <section className="border-b border-slate-200 bg-gradient-to-br from-purple-100 via-white to-slate-100 py-24">
+      <section className="border-b border-black bg-white py-24">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-purple-600">Services</p>
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+          <p className="text-sm font-medium uppercase tracking-[0.4em] text-[var(--forest-green)]">Services</p>
+          <h1 className="mt-6 text-4xl font-light tracking-tight text-black sm:text-5xl">
             Custom Software Development
           </h1>
-          <p className="mt-4 text-lg leading-8 text-slate-600">
+          <p className="mt-4 text-lg leading-8 text-black">
             We design and build internal platforms that capture how your organization actually operates. Every project is
             scoped to your workflow—no off-the-shelf compromises.
           </p>
@@ -28,8 +28,8 @@ export default function ServicesPage() {
 
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="text-2xl font-semibold text-slate-900">Typical projects include:</h2>
-          <ul className="mt-6 space-y-3 text-lg text-slate-600">
+          <h2 className="text-2xl font-light text-black">Typical projects include:</h2>
+          <ul className="mt-6 space-y-3 text-lg text-black">
             {typicalProjects.map((item) => (
               <li key={item}>• {item}</li>
             ))}
@@ -39,9 +39,9 @@ export default function ServicesPage() {
 
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-6">
-          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-            <h2 className="text-2xl font-semibold text-slate-900">Timeline</h2>
-            <p className="mt-4 text-lg text-slate-600">
+          <div className="rounded-none border border-black bg-white p-8">
+            <h2 className="text-2xl font-light text-black">Timeline</h2>
+            <p className="mt-4 text-lg text-black">
               Engagements typically run 4–16 weeks depending on complexity, integrations, and compliance requirements. We
               work in phases so you see tangible outcomes at the end of each milestone.
             </p>
@@ -51,11 +51,11 @@ export default function ServicesPage() {
 
       <section className="pb-24">
         <div className="mx-auto max-w-4xl px-6">
-          <div className="rounded-3xl border border-purple-200 bg-gradient-to-r from-purple-100 via-white to-slate-100 p-10 text-center shadow-sm">
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900">
+          <div className="rounded-none border border-black bg-white p-10 text-center">
+            <h2 className="text-3xl font-light tracking-tight text-black">
               Ready to scope your build?
             </h2>
-            <p className="mt-4 text-lg text-slate-600">
+            <p className="mt-4 text-lg text-black">
               Share your objectives and existing systems and we’ll outline a phased roadmap.
             </p>
             <a
