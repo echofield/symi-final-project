@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { staggerContainer, staggerItem } from "../lib/animations";
+import { ContactButton } from "../components/ContactModal";
 
 const industries = [
   "Business Services",
@@ -73,9 +74,7 @@ export default function HomePage() {
             </motion.p>
             <motion.div variants={staggerItem} className="mt-10 flex flex-wrap items-center gap-4">
               <Link href="/services" className="btn btn-primary">Explore Services</Link>
-              <button type="button" className="btn border border-black bg-white text-black hover:opacity-80" onClick={() => import('../components/ContactModal').then(m => m.useContactModal().open())}>
-                Contact for Project Consultation
-              </button>
+              <ContactButton className="border border-black bg-white text-black hover:opacity-80" variant="secondary">Contact for Project Consultation</ContactButton>
             </motion.div>
           </motion.div>
         </div>
@@ -154,7 +153,7 @@ export default function HomePage() {
             <Link href="/process" className="btn border border-black bg-white text-black hover:opacity-80">
               Our Approach
             </Link>
-            <button type="button" className="btn btn-primary" onClick={() => import('../components/ContactModal').then(m => m.useContactModal().open())}>Contact for Project Consultation</button>
+            <ContactButton>Contact for Project Consultation</ContactButton>
           </div>
         </div>
       </section>
