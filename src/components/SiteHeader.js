@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactButton } from "./ContactModal";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -12,8 +13,9 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-20 border-b border-black bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <Link href="/" className="text-lg font-medium tracking-tight text-black">
-          Symi System
+        <Link href="/" className="text-lg font-medium tracking-tight text-black flex items-center gap-2">
+          <span className="text-[var(--forest-green)]">✦</span>
+          <span>Symi System</span>
         </Link>
         <nav className="hidden items-center gap-8 text-base font-light text-black md:flex">
           {navItems.map((item) => (
@@ -22,9 +24,7 @@ export default function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <a href="mailto:contact@symi.system?subject=Project%20Consultation" className="btn btn-primary">
-          Contact Us
-        </a>
+        <ContactButton>Contact Us</ContactButton>
       </div>
     </header>
   );

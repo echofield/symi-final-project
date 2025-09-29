@@ -54,12 +54,7 @@ export default function AboutPage() {
               We collaborate with founders and operators who need software that mirrors their methodology and client
               experience.
             </p>
-            <a
-              href="mailto:contact@symi.system?subject=Project%20Consultation"
-              className="btn btn-primary mt-6"
-            >
-              Contact for Project Consultation
-            </a>
+            <button type="button" className="btn btn-primary mt-6" onClick={() => import('../components/ContactModal').then(m => m.useContactModal().open())}>Contact for Project Consultation</button>
           </div>
         </div>
       </section>

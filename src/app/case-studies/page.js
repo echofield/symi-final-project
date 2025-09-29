@@ -10,6 +10,18 @@ const highlights = [
   "15+ hours weekly time savings for the core team",
 ];
 
+const retail = {
+  title: 'Retail Intelligence Dashboard',
+  client: 'Mid-size retail group with 50+ stores',
+  challenge: 'No central visibility over sales, logistics, and stock.',
+  solution: 'Integrated POS + logistics into a real-time operations dashboard.',
+  results: [
+    'Out-of-stock incidents reduced 30%.',
+    'Regional managers saved 10+ hours/week on reporting.',
+    'Improved forecasting accuracy and margin control.',
+  ],
+};
+
 export default function CaseStudiesPage() {
   return (
     <div className="bg-white">
@@ -50,6 +62,23 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
+      <section className="py-20">
+        <div className="mx-auto max-w-4xl px-6 space-y-6">
+          <h2 className="text-2xl font-light text-black">Retail Intelligence Dashboard</h2>
+          <p className="text-lg text-black">Client: {retail.client}</p>
+          <div className="grid gap-4">
+            <p className="text-lg text-black"><span className="font-medium">Challenge:</span> {retail.challenge}</p>
+            <p className="text-lg text-black"><span className="font-medium">Solution:</span> {retail.solution}</p>
+            <div>
+              <p className="text-lg text-black font-medium">Results:</p>
+              <ul className="mt-2 list-disc pl-6 text-lg text-black">
+                {retail.results.map((r) => (<li key={r}>{r}</li>))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="pb-24">
         <div className="mx-auto max-w-4xl px-6">
           <div className="rounded-none border border-black bg-white p-10 text-center">
@@ -58,12 +87,7 @@ export default function CaseStudiesPage() {
               We partner with teams in business services, professional services, and specialized markets to turn complex
               workflows into software.
             </p>
-            <a
-              href="mailto:contact@symi.system?subject=Project%20Consultation"
-              className="btn btn-primary mt-6"
-            >
-              Contact for Project Consultation
-            </a>
+            <button type="button" className="btn btn-primary mt-6" onClick={() => import('../../components/ContactModal').then(m => m.useContactModal().open())}>Contact for Project Consultation</button>
           </div>
         </div>
       </section>

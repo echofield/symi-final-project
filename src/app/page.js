@@ -73,9 +73,9 @@ export default function HomePage() {
             </motion.p>
             <motion.div variants={staggerItem} className="mt-10 flex flex-wrap items-center gap-4">
               <Link href="/services" className="btn btn-primary">Explore Services</Link>
-              <a href="mailto:contact@symi.system?subject=Project%20Consultation" className="btn border border-black bg-white text-black hover:opacity-80">
+              <button type="button" className="btn border border-black bg-white text-black hover:opacity-80" onClick={() => import('../components/ContactModal').then(m => m.useContactModal().open())}>
                 Contact for Project Consultation
-              </a>
+              </button>
             </motion.div>
           </motion.div>
         </div>
@@ -117,11 +117,7 @@ export default function HomePage() {
               <li>• Automated valuation system aligned to broker playbook</li>
               <li>• 15+ hours weekly time savings for the core team</li>
             </ul>
-            <div className="mt-8">
-              <Link href="/case-studies" className="btn btn-primary">
-                View Full Case Study
-              </Link>
-            </div>
+            <div className="mt-8"><Link href="/case-studies" className="btn btn-primary">View Full Case Study</Link></div>
           </div>
         </div>
       </section>
@@ -158,12 +154,7 @@ export default function HomePage() {
             <Link href="/process" className="btn border border-black bg-white text-black hover:opacity-80">
               Our Approach
             </Link>
-            <a
-              href="mailto:contact@symi.system?subject=Project%20Consultation"
-              className="btn btn-primary"
-            >
-              Contact for Project Consultation
-            </a>
+            <button type="button" className="btn btn-primary" onClick={() => import('../components/ContactModal').then(m => m.useContactModal().open())}>Contact for Project Consultation</button>
           </div>
         </div>
       </section>
