@@ -9,6 +9,8 @@ export const metadata = {
   description: "The team behind Symi System and the expertise we bring to specialized industries.",
 };
 
+import { ContactButton } from "../../components/ContactModal";
+
 export default function AboutPage() {
   return (
     <div className="bg-white">
@@ -54,7 +56,7 @@ export default function AboutPage() {
               We collaborate with founders and operators who need software that mirrors their methodology and client
               experience.
             </p>
-            <button type="button" className="btn btn-primary mt-6" onClick={() => import('../components/ContactModal').then(m => m.useContactModal().open())}>Contact for Project Consultation</button>
+            <ContactButton className="mt-6">Contact for Project Consultation</ContactButton>
           </div>
         </div>
       </section>

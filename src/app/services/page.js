@@ -10,6 +10,8 @@ const typicalProjects = [
   "Custom CRM and pipeline systems",
 ];
 
+import { ContactButton } from "../../components/ContactModal";
+
 export default function ServicesPage() {
   return (
     <div className="bg-white">
@@ -58,7 +60,7 @@ export default function ServicesPage() {
             <p className="mt-4 text-lg text-black">
               Share your objectives and existing systems and we’ll outline a phased roadmap.
             </p>
-            <button type="button" className="btn btn-primary mt-6" onClick={() => import('../../components/ContactModal').then(m => m.useContactModal().open())}>Contact for Project Consultation</button>
+            <ContactButton className="mt-6">Contact for Project Consultation</ContactButton>
           </div>
         </div>
       </section>

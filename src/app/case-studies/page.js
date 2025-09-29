@@ -22,6 +22,8 @@ const retail = {
   ],
 };
 
+import { ContactButton } from "../../components/ContactModal";
+
 export default function CaseStudiesPage() {
   return (
     <div className="bg-white">
@@ -87,7 +89,7 @@ export default function CaseStudiesPage() {
               We partner with teams in business services, professional services, and specialized markets to turn complex
               workflows into software.
             </p>
-            <button type="button" className="btn btn-primary mt-6" onClick={() => import('../../components/ContactModal').then(m => m.useContactModal().open())}>Contact for Project Consultation</button>
+            <ContactButton className="mt-6">Contact for Project Consultation</ContactButton>
           </div>
         </div>
       </section>
