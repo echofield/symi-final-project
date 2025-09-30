@@ -1,0 +1,21 @@
+{
+  "services.title": "Services",
+  "services.card1.title": "Legal Research Copilot",
+  "services.card1.b1": "Légifrance / JO connections",
+  "services.card1.b2": "Summaries and references",
+  "services.card1.b3": "Alerts & monitoring",
+  "services.card2.title": "Compliance & Monitoring",
+  "services.card2.b1": "Risk mapping",
+  "services.card2.b2": "Compliance reporting",
+  "services.card2.b3": "Audit trail",
+  "services.card3.title": "Real-Estate Ops Dashboards",
+  "services.card3.b1": "Lease & rent data",
+  "services.card3.b2": "Cashflow & vacancy",
+  "services.card3.b3": "Legal risks",
+  "services.card4.title": "Data Pipelines & Integrations",
+  "services.card4.b1": "ETL/ELT",
+  "services.card4.b2": "APIs",
+  "services.card4.b3": "Quality & governance"
+}
+
+

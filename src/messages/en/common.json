@@ -1,0 +1,25 @@
+{
+  "nav.home": "Home",
+  "nav.services": "Services",
+  "nav.cases": "Case Studies",
+  "nav.process": "Process",
+  "nav.about": "About",
+  "nav.legal": "Legal",
+  "nav.contact": "Contact",
+  "cta.book": "Book a consultation",
+  "cta.exploreCases": "Explore case studies",
+  "switch.language": "FR",
+  "hero.title": "Operations Intelligence for Legal & Real Estate",
+  "hero.subtitle": "We turn your expertise into systems that de-risk compliance, speed execution, and grow margin.",
+  "hero.primary": "Get started",
+  "hero.secondary": "See real outcomes",
+  "engine.title": "Research & Validation Engine",
+  "engine.stream.placeholder1": "Parsing Légifrance / JO…",
+  "engine.stream.placeholder2": "Extracting articles and concordance links…",
+  "engine.stream.placeholder3": "Flagging risks & opportunities…",
+  "industries.title": "Industries served",
+  "industries.legal": "Legal",
+  "industries.realestate": "Real Estate"
+}
+
+

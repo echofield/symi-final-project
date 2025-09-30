@@ -1,0 +1,21 @@
+{
+  "services.title": "Services",
+  "services.card1.title": "Copilot de recherche juridique",
+  "services.card1.b1": "Connexion Légifrance / JO",
+  "services.card1.b2": "Synthèses et références",
+  "services.card1.b3": "Alertes & monitoring",
+  "services.card2.title": "Compliance & Monitoring",
+  "services.card2.b1": "Cartographie des risques",
+  "services.card2.b2": "Reporting conformité",
+  "services.card2.b3": "Audit trail",
+  "services.card3.title": "Tableaux de bord immobiliers",
+  "services.card3.b1": "Données locatives",
+  "services.card3.b2": "Cashflow & vacance",
+  "services.card3.b3": "Risques juridiques",
+  "services.card4.title": "Pipelines & Intégrations données",
+  "services.card4.b1": "ETL/ELT",
+  "services.card4.b2": "APIs",
+  "services.card4.b3": "Qualité & gouvernance"
+}
+
+

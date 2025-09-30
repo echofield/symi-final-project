@@ -41,6 +41,7 @@ function ContactModal({ onClose }) {
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
   const [error, setError] = useState('');
+  const toEmail = process.env.NEXT_PUBLIC_CONTACT_TO || '';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -100,7 +101,11 @@ function ContactModal({ onClose }) {
             </div>
             {error && <p className="text-sm text-red-600">{error}</p>}
             <div className="flex items-center justify-between pt-2">
-              <span className="text-sm text-black">We’ll send this to <span className="font-medium">contact@symi.io</span>.</span>
+              {toEmail ? (
+                <span className="text-sm text-black">We’ll send this to <span className="font-medium">{toEmail}</span>.</span>
+              ) : (
+                <span className="text-sm text-red-600">Email not configured</span>
+              )}
               <button type="submit" className="btn btn-primary" disabled={status === 'submitting'}>
                 {status === 'submitting' ? 'Submitting…' : 'Submit'}
               </button>

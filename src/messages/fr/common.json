@@ -1,0 +1,25 @@
+{
+  "nav.home": "Accueil",
+  "nav.services": "Services",
+  "nav.cases": "Études de cas",
+  "nav.process": "Méthode",
+  "nav.about": "À propos",
+  "nav.legal": "Légal",
+  "nav.contact": "Contact",
+  "cta.book": "Planifier une consultation",
+  "cta.exploreCases": "Explorer les études de cas",
+  "switch.language": "EN",
+  "hero.title": "Operations Intelligence pour le juridique et l’immobilier",
+  "hero.subtitle": "Nous transformons votre expertise en systèmes qui sécurisent la conformité, accélèrent l’exécution, et augmentent la marge.",
+  "hero.primary": "Commencer",
+  "hero.secondary": "Voir des cas concrets",
+  "engine.title": "Moteur de recherche & validation",
+  "engine.stream.placeholder1": "Analyse Légifrance / JO…",
+  "engine.stream.placeholder2": "Extraction d’articles et liens de concordance…",
+  "engine.stream.placeholder3": "Détection de risque & opportunités…",
+  "industries.title": "Industries servies",
+  "industries.legal": "Juridique",
+  "industries.realestate": "Immobilier"
+}
+
+

@@ -1,0 +1,12 @@
+{
+  "process.title": "Process",
+  "process.step1": "Discovery",
+  "process.step2": "Design",
+  "process.step3": "Build",
+  "process.step4": "Run",
+  "process.card.security": "Security & Privacy",
+  "process.card.residency": "Data Residency",
+  "process.card.ip": "Ownership of IP"
+}
+
+
