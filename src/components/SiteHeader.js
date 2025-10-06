@@ -25,9 +25,7 @@ export default function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-4">
-          <Link href="/contact" className="btn btn-primary">Schedule 15-Min Demo</Link>
-        </div>
+        <div className="flex items-center gap-4" />
       </div>
     </header>
   );

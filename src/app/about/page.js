@@ -56,7 +56,7 @@ export default function AboutPage() {
               We collaborate with founders and operators who need software that mirrors their methodology and client
               experience.
             </p>
-            <Link href="/contact" className="btn btn-primary mt-6">Schedule 15-Min Demo</Link>
+            <Link href="/contact" className="btn btn-primary mt-6">Request Intelligence Analysis</Link>
           </div>
         </div>
       </section>

@@ -79,7 +79,7 @@ export default function ServicesPage() {
           <div className="rounded-none border border-black bg-white p-10 text-center">
             <h2 className="text-3xl font-light tracking-tight text-black">Ready to see a sample report?</h2>
             <p className="mt-4 text-lg text-black">Request a free sample intelligence report tailored to your sector.</p>
-            <Link href="/contact" className="btn btn-primary mt-6">Schedule 15-Min Demo</Link>
+            <Link href="/contact" className="btn btn-primary mt-6">Request Intelligence Analysis</Link>
           </div>
         </div>
       </section>
