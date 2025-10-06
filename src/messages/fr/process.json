@@ -1,9 +1,9 @@
 {
   "process.title": "Méthode",
-  "process.step1": "Discovery",
-  "process.step2": "Design",
-  "process.step3": "Build",
-  "process.step4": "Run",
+  "process.step1": "Discover — Cartographiez votre paysage d’opportunités : quels signaux comptent pour votre activité, quelles sources officielles les contiennent, et quelles actions votre équipe entreprend lorsqu’ils apparaissent.",
+  "process.step2": "Design — Concevez l’architecture d’intelligence : sources de données, logique de validation, seuils d’alerte et points d’intégration avec vos systèmes existants.",
+  "process.step3": "Develop — Construisez des systèmes en production avec démos hebdomadaires. Démarrez par des rapports d’intelligence manuels pour valider la valeur, puis automatisez progressivement à mesure que les intégrations de données sont complétées.",
+  "process.step4": "Deliver — Déployez l’infrastructure de veille, formez les équipes à l’interprétation des signaux, et assurez un support continu à mesure que le système devient central aux opérations.",
   "process.card.security": "Sécurité & Confidentialité",
   "process.card.residency": "Résidence des données",
   "process.card.ip": "Propriété intellectuelle"

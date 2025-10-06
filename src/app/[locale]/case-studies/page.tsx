@@ -2,9 +2,8 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 const cases = [
-  { slugFr: 'cabinet-avocats', slugEn: 'law-firm', titleFr: "Cabinet d’avocats — Veille juridique augmentée", titleEn: 'Law firm — Augmented legal watch' },
-  { slugFr: 'asset-manager', slugEn: 'asset-manager', titleFr: 'Asset Manager — Ops immobilières pilotées par la donnée', titleEn: 'Asset Manager — Data-driven RE ops' },
-  { slugFr: 'promoteur', slugEn: 'developer', titleFr: 'Promoteur — Due diligence & suivi réglementaire', titleEn: 'Developer — Due diligence & regulatory follow-up' }
+  { slugFr: 'cabinet-avocats', slugEn: 'corporate-law-firm', titleFr: "Plateforme d’intelligence pour cabinet d’avocats", titleEn: 'Corporate Law Firm Intelligence Platform' },
+  { slugFr: 'intelligence-construction', slugEn: 'construction-intelligence', titleFr: 'Intelligence marché pour PME du BTP', titleEn: 'Construction PME Market Intelligence' }
 ];
 
 export default function CaseStudiesList({ params }: { params: { locale: 'fr' | 'en' }}) {

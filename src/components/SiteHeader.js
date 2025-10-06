@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ContactButton } from "./ContactModal";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -13,6 +13,7 @@ const navItems = [
 
 export default function SiteHeader() {
   const locale = useLocale?.() || 'fr';
+  const t = useTranslations();
   return (
     <header className="sticky top-0 z-20 border-b border-black bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
@@ -23,13 +24,13 @@ export default function SiteHeader() {
         <nav className="hidden items-center gap-8 text-base font-light text-black md:flex">
           {navItems.map((item) => (
             <Link key={item.href} href={`/${locale}${item.href}`} className="transition hover:opacity-80">
-              {item.label}
+              {t(`nav.${item.label.toLowerCase()}`)}
             </Link>
           ))}
         </nav>
         <div className="flex items-center gap-4">
           <LanguageSwitcher locale={locale === 'en' ? 'en' : 'fr'} />
-          <ContactButton>Contact Us</ContactButton>
+          <ContactButton>{t('cta.book')}</ContactButton>
         </div>
       </div>
     </header>

@@ -13,6 +13,7 @@ export default function ServicesPage() {
     <section className="bg-white py-20 text-black">
       <div className="mx-auto max-w-6xl px-6">
         <h1 className="text-4xl font-light">{t('services.title')}</h1>
+        <p className="mt-4 max-w-3xl text-lg">{t('services.intro')}</p>
         <div className="mt-12 grid gap-8 sm:grid-cols-2">
           {services.map((s) => (
             <div key={s.key} className="border border-black bg-white p-8">
@@ -20,7 +21,7 @@ export default function ServicesPage() {
               <ul className="mt-4 list-disc pl-5 space-y-1">
                 {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
               </ul>
-              <div className="mt-6"><ContactButton>Contact</ContactButton></div>
+              <div className="mt-6"><ContactButton>{t('cta.requestAnalysis')}</ContactButton></div>
             </div>
           ))}
         </div>

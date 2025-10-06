@@ -30,10 +30,8 @@ export default function CaseStudiesPage() {
       <section className="border-b border-black bg-white py-24 text-black">
         <div className="mx-auto max-w-4xl px-6">
           <p className="text-sm font-medium uppercase tracking-[0.4em] text-[var(--forest-green)]">Case Study</p>
-          <h1 className="mt-6 text-4xl font-light tracking-tight text-black sm:text-5xl">
-            Business Brokerage Operations Platform
-          </h1>
-          <p className="mt-4 text-lg text-black">Southeastern US Business Broker (anonymized)</p>
+          <h1 className="mt-6 text-4xl font-light tracking-tight text-black sm:text-5xl">Corporate Law Firm Intelligence Platform</h1>
+          <p className="mt-4 text-lg text-black">Mid-size Paris law firm, 15 attorneys</p>
         </div>
       </section>
 
@@ -49,32 +47,31 @@ export default function CaseStudiesPage() {
           <div>
             <h2 className="text-2xl font-light text-black">Key capabilities</h2>
             <ul className="mt-4 space-y-3 text-lg text-black">
-              {highlights.map((item) => (
-                <li key={item}>• {item}</li>
-              ))}
+              <li>• Automated monitoring of commercial registries, legal publications, and procurement platforms</li>
+              <li>• Weekly intelligence reports by practice area</li>
+              <li>• Alerts for urgent client risks and competitive movements</li>
             </ul>
           </div>
           <div>
             <h2 className="text-2xl font-light text-black">Impact</h2>
-            <p className="mt-4 text-lg text-black">
-              The brokerage gained back over 15 hours each week, tightened underwriting discipline, and built a proprietary
-              data asset that compounds with every deal.
-            </p>
+            <p className="mt-4 text-lg text-black">€180k+ in new business opportunities identified monthly. 3-4 additional client engagements per quarter. Zero manual research time required from attorneys.</p>
           </div>
         </div>
       </section>
 
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-6 space-y-6">
-          <h2 className="text-2xl font-light text-black">Retail Intelligence Dashboard</h2>
-          <p className="text-lg text-black">Client: {retail.client}</p>
+          <h2 className="text-2xl font-light text-black">Construction PME Market Intelligence</h2>
+          <p className="text-lg text-black">Client: Lyon-based construction firm, 25 employees</p>
           <div className="grid gap-4">
-            <p className="text-lg text-black"><span className="font-medium">Challenge:</span> {retail.challenge}</p>
-            <p className="text-lg text-black"><span className="font-medium">Solution:</span> {retail.solution}</p>
+            <p className="text-lg text-black"><span className="font-medium">Challenge:</span> Reactive to market changes. Missing public tender opportunities, unaware of new building permits in target zones, late to regulatory updates affecting projects.</p>
+            <p className="text-lg text-black"><span className="font-medium">Solution:</span> Custom dashboard monitoring official land registry, public procurement, and regulatory databases. Geographic filters for Rhône-Alpes region with sector-specific alerts. Integration with internal CRM for opportunity tracking.</p>
             <div>
               <p className="text-lg text-black font-medium">Results:</p>
               <ul className="mt-2 list-disc pl-6 text-lg text-black">
-                {retail.results.map((r) => (<li key={r}>{r}</li>))}
+                <li>8 qualified tender opportunities per month (vs 2 previously)</li>
+                <li>€500k+ in new project pipeline within first quarter</li>
+                <li>15 hours/week saved on market research</li>
               </ul>
             </div>
           </div>
@@ -84,12 +81,9 @@ export default function CaseStudiesPage() {
       <section className="pb-24">
         <div className="mx-auto max-w-4xl px-6">
           <div className="rounded-none border border-black bg-white p-10 text-center">
-            <h2 className="text-3xl font-light tracking-tight text-black">Build your next internal platform</h2>
-            <p className="mt-4 text-lg text-black">
-              We partner with teams in business services, professional services, and specialized markets to turn complex
-              workflows into software.
-            </p>
-            <ContactButton className="mt-6">Contact for Project Consultation</ContactButton>
+            <h2 className="text-3xl font-light tracking-tight text-black">Build your cross-industry intelligence platform</h2>
+            <p className="mt-4 text-lg text-black">We partner with professional services firms to surface opportunities across legal, regulatory, and market signals.</p>
+            <ContactButton className="mt-6">Schedule 15-Min Demo</ContactButton>
           </div>
         </div>
       </section>

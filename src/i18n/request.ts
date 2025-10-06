@@ -1,7 +1,8 @@
 import {getRequestConfig} from 'next-intl/server';
 
 export default getRequestConfig(async ({requestLocale}) => {
-  let locale = requestLocale || 'fr';
+  const resolvedLocale = await requestLocale;
+  let locale: string = resolvedLocale || 'fr';
   if (!['fr', 'en'].includes(locale)) locale = 'fr';
   const common = (await import(`../messages/${locale}/common.json`)).default;
   const services = (await import(`../messages/${locale}/services.json`)).default;

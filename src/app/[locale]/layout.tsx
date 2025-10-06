@@ -1,5 +1,6 @@
 import '../globals.css';
 import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
 import {ReactNode} from 'react';
 import {notFound} from 'next/navigation';
 import {ContactModalProvider} from '../../components/ContactModal';
@@ -17,7 +18,7 @@ export default async function LocaleLayout({
 }) {
   const {locale} = params;
   if (!['fr', 'en'].includes(locale)) return notFound();
-  const messages = (await import(`../../messages/${locale}/common.json`)).default;
+  const messages = await getMessages();
   return (
     <html lang={locale}>
       <body>

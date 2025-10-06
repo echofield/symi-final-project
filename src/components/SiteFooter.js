@@ -2,7 +2,14 @@ export default function SiteFooter() {
   const toEmail = process.env.NEXT_PUBLIC_CONTACT_TO || '';
   return (
     <footer className="border-t border-black bg-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-black sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto max-w-6xl px-6 py-6 text-sm text-black">
+        <div className="mb-4 rounded-none border border-black bg-white p-4">
+          <p>
+            Tous les systèmes d’intelligence utilisent exclusivement des données légales et publiques issues de sources gouvernementales officielles et de bases autorisées. Conformité RGPD complète.
+          </p>
+        </div>
+      </div>
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-6 text-sm text-black sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-1">
           <p className="font-medium text-black">© 2025 Symi System — All Rights Reserved</p>
           {toEmail && (
