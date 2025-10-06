@@ -60,7 +60,7 @@ export default function ProcessPage() {
             <p className="mt-4 text-lg text-black">
               Share where your process is breaking down and we’ll recommend a phased roadmap with clear deliverables.
             </p>
-            <ContactButton className="mt-6">Contact for Project Consultation</ContactButton>
+            <ContactButton className="mt-6">Schedule 15-Min Demo</ContactButton>
           </div>
         </div>
       </section>

@@ -1,6 +1,24 @@
 {
-  "about.title": "À propos",
-  "about.credo": "Operations Intelligence — méthodologie et credo."
+  "about.title": "Spécialistes de l’intelligence intersectorielle",
+  "about.intro": "Symi construit des systèmes de détection d’opportunités pour les cabinets et sociétés de services opérant sur des marchés spécialisés où les outils standards ne capturent pas les signaux intersectoriels qui créent du business.",
+  "about.what.title": "Ce que nous apportons",
+  "about.what.items": [
+    "Intégration multi-sources : bases juridiques, réglementaires, financières et de recherche",
+    "Validation de niveau recherche et scoring de confiance",
+    "Conception de workflows spécifiques par secteur (juridique, construction, finance, conseil)",
+    "Capacité bilingue pour les marchés francophones et anglophones"
+  ],
+  "about.why.title": "Pourquoi les clients travaillent avec nous",
+  "about.why.p1": "Nous avons construit des systèmes pour des cabinets d’avocats, des entreprises de construction et des conseillers financiers qui ont besoin d’une intelligence qui traverse les frontières sectorielles. Nos plateformes relient signaux de bases juridiques, registres publics, publications de recherche et données de marché — créant des opportunités que les outils mono-vertical manquent.",
+  "about.why.p2": "Pour les équipes opérant sur des marchés spécialisés où les solutions sur étagère sont insuffisantes, nous devenons une extension de votre capacité d’intelligence stratégique.",
+  "about.markets.title": "Marchés servis",
+  "about.markets.items": [
+    {"title": "Cabinets d’avocats", "desc": "Corporate, M&A, restructuring, conformité réglementaire, contentieux"},
+    {"title": "Construction", "desc": "Travaux publics, développement commercial, conformité réglementaire"},
+    {"title": "Finance & Conseil", "desc": "Actifs en difficulté, évaluation, conseil en investissement"},
+    {"title": "Immobilier", "desc": "Promotion, transactions, gestion d’actifs"},
+    {"title": "Conseil en management", "desc": "Stratégie, opérations, entrée de marché, veille réglementaire"}
+  ]
 }
 
 

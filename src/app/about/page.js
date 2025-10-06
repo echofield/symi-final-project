@@ -56,7 +56,7 @@ export default function AboutPage() {
               We collaborate with founders and operators who need software that mirrors their methodology and client
               experience.
             </p>
-            <ContactButton className="mt-6">Contact for Project Consultation</ContactButton>
+            <ContactButton className="mt-6">Schedule 15-Min Demo</ContactButton>
           </div>
         </div>
       </section>

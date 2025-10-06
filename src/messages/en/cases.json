@@ -1,10 +1,36 @@
 {
-  "law-firm.title": "Law firm — Augmented legal watch",
-  "law-firm.impact": "−30 h/week on monitoring & briefs",
-  "asset-manager.title": "Asset Manager — Data-driven RE ops",
-  "asset-manager.impact": "Consolidated reporting, legal risk reduced",
-  "developer.title": "Developer — Due diligence & regulatory tracking",
-  "developer.impact": "Faster decisions, controlled compliance"
+  "law-firm.title": "Corporate Law Firm Intelligence Platform",
+  "law-firm.client": "Mid-size Paris law firm, 15 attorneys",
+  "law-firm.challenge.title": "Challenge",
+  "law-firm.challenge.body": "Missing cross-industry opportunities: clients entering bankruptcy proceedings, regulatory changes affecting their portfolio companies, and public tenders requiring specialized legal counsel.",
+  "law-firm.solution.title": "Solution",
+  "law-firm.solution.items": [
+    "Automated monitoring of official government databases including commercial registries, legal publications, and public procurement platforms",
+    "Weekly intelligence reports highlighting opportunities by practice area",
+    "Alert system for urgent client risks and competitive movements"
+  ],
+  "law-firm.results.title": "Results",
+  "law-firm.results.items": [
+    "€180k+ in new business opportunities identified monthly",
+    "3-4 additional client engagements closed per quarter",
+    "Zero manual research time required from attorneys"
+  ],
+  "construction.title": "Construction PME Market Intelligence",
+  "construction.client": "Lyon-based construction firm, 25 employees",
+  "construction.challenge.title": "Challenge",
+  "construction.challenge.body": "Reactive to market changes. Missing public tender opportunities, unaware of new building permits in target zones, late to regulatory updates affecting projects.",
+  "construction.solution.title": "Solution",
+  "construction.solution.items": [
+    "Custom dashboard monitoring official land registry, public procurement, and regulatory databases",
+    "Geographic filters for Rhône-Alpes region with sector-specific alerts",
+    "Integration with internal CRM for opportunity tracking"
+  ],
+  "construction.results.title": "Results",
+  "construction.results.items": [
+    "8 qualified tender opportunities per month (vs 2 previously)",
+    "€500k+ in new project pipeline within first quarter",
+    "15 hours/week saved on market research"
+  ]
 }
 
 

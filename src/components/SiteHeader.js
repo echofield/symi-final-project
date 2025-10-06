@@ -29,7 +29,7 @@ export default function SiteHeader() {
         </nav>
         <div className="flex items-center gap-4">
           <LanguageSwitcher locale={locale === 'en' ? 'en' : 'fr'} />
-          <ContactButton>Contact Us</ContactButton>
+          <ContactButton>Schedule 15-Min Demo</ContactButton>
         </div>
       </div>
     </header>
