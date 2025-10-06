@@ -1,6 +1,17 @@
 interface Params { params: { locale: 'fr' | 'en'; slug: string } }
 
-const CONTENT = {
+type CaseEntry = {
+  title: string;
+  client?: string;
+  challengeTitle: string;
+  challengeBody: string;
+  solutionTitle: string;
+  solutionItems: string[];
+  resultsTitle: string;
+  resultsItems: string[];
+};
+
+const CONTENT: Record<'fr' | 'en', Record<string, CaseEntry>> = {
   fr: {
     'cabinet-avocats': {
       title: "Plateforme d’intelligence pour cabinet d’avocats",
@@ -77,12 +88,12 @@ const CONTENT = {
       ]
     }
   }
-} as const;
+};
 
 export default function CaseStudyPage({ params }: Params) {
   const { locale, slug } = params;
-  const dict = CONTENT[locale as 'fr' | 'en'];
-  const entry = dict[slug as keyof typeof dict];
+  const dict = CONTENT[locale];
+  const entry: CaseEntry | undefined = dict[slug];
   if (!entry) return null;
   return (
     <section className="bg-white py-20 text-black">
