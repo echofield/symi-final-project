@@ -13,7 +13,7 @@ export default function HomeLocalePage() {
           <div className="mt-6 text-sm leading-relaxed text-black">Monitoring official government databases and public registries • 100% legal & verified data • Weekly intelligence delivery</div>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link href="/contact" className="btn btn-primary">View Sample Report</Link>
-            <Link href="/contact" className="border border-black bg-white text-black hover:opacity-80 btn" >Schedule 15-Min Demo</Link>
+            <Link href="/contact" className="border border-black bg-white text-black hover:opacity-80 btn" >Request Intelligence Analysis</Link>
           </div>
         </div>
       </section>

@@ -90,24 +90,24 @@ export default function HomePage() {
             <h2 className="text-3xl font-light tracking-tight text-black sm:text-4xl">Intelligence Systems Built For Your Industry</h2>
             <p className="mt-4 text-lg text-black">Every engagement starts with understanding what signals matter in your market. We build monitoring systems that correlate data across legal, regulatory, financial, and operational sources—then route opportunities directly to your team.</p>
           </div>
-          <div className="mt-12 grid gap-12 sm:grid-cols-2">
-            <div className="rounded-none border border-black bg-white p-8">
+          <motion.div className="mt-12 grid gap-12 sm:grid-cols-2" variants={staggerContainer} initial="initial" whileInView="animate" viewport={{ once: true, margin: "-10%" }}>
+            <motion.div variants={staggerItem} className="rounded-none border border-black bg-white p-8 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-sm">
               <h3 className="text-xl font-light text-black">Opportunity Detection Engines</h3>
               <p className="mt-3 text-base leading-7 text-black">Automated monitoring of bankruptcies, regulatory changes, public tenders, and market movements that create new business opportunities.</p>
-            </div>
-            <div className="rounded-none border border-black bg-white p-8">
+            </motion.div>
+            <motion.div variants={staggerItem} className="rounded-none border border-black bg-white p-8 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-sm">
               <h3 className="text-xl font-light text-black">Cross-Source Intelligence</h3>
               <p className="mt-3 text-base leading-7 text-black">Connect signals from legal databases, government registries, research publications, and financial filings into actionable insights.</p>
-            </div>
-            <div className="rounded-none border border-black bg-white p-8">
+            </motion.div>
+            <motion.div variants={staggerItem} className="rounded-none border border-black bg-white p-8 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-sm">
               <h3 className="text-xl font-light text-black">Custom Alert Systems</h3>
               <p className="mt-3 text-base leading-7 text-black">Real-time notifications calibrated to your expertise, geography, and client base—delivered to your existing workflow.</p>
-            </div>
-            <div className="rounded-none border border-black bg-white p-8">
+            </motion.div>
+            <motion.div variants={staggerItem} className="rounded-none border border-black bg-white p-8 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-sm">
               <h3 className="text-xl font-light text-black">Validated Intelligence</h3>
               <p className="mt-3 text-base leading-7 text-black">Research-grade verification of every signal with confidence scoring, source validation, and false positive filtering.</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -159,7 +159,7 @@ export default function HomePage() {
             <Link href="/process" className="btn border border-black bg-white text-black hover:opacity-80">
               Our Approach
             </Link>
-            <ContactButton>Schedule 15-Min Demo</ContactButton>
+            <Link href="/contact" className="btn btn-primary">Request Intelligence Analysis</Link>
           </div>
         </div>
       </section>
