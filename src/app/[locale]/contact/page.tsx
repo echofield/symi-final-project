@@ -21,8 +21,8 @@ export default function ContactPage() {
   return (
     <section className="bg-white py-20 text-black">
       <div className="mx-auto max-w-xl px-6">
-        <h1 className="text-4xl font-light">{t('contact.title')}</h1>
-        <p className="mt-2 text-base text-black opacity-80">{t('contact.sampleNote')}</p>
+        <h1 className="text-4xl font-light">Contact</h1>
+        <p className="mt-2 text-base text-black opacity-80">Request your free sample intelligence report.</p>
         {ok ? (
           <p className="mt-6">{t('contact.success')}</p>
         ) : (

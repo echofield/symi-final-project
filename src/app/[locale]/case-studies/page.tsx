@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
 
 const cases = [
   { slugFr: 'cabinet-avocats', slugEn: 'corporate-law-firm', titleFr: "Plateforme d’intelligence pour cabinet d’avocats", titleEn: 'Corporate Law Firm Intelligence Platform' },
@@ -8,11 +7,10 @@ const cases = [
 
 export default function CaseStudiesList({ params }: { params: { locale: 'fr' | 'en' }}) {
   const { locale } = params;
-  const t = useTranslations();
   return (
     <section className="bg-white py-20 text-black">
       <div className="mx-auto max-w-6xl px-6">
-        <h1 className="text-4xl font-light">{t('nav.cases')}</h1>
+        <h1 className="text-4xl font-light">Case Studies</h1>
         <div className="mt-8 space-y-6">
           {cases.map((c) => {
             const slug = locale === 'fr' ? c.slugFr : c.slugEn;

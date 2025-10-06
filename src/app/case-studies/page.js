@@ -22,7 +22,7 @@ const retail = {
   ],
 };
 
-import { ContactButton } from "../../components/ContactModal";
+import Link from "next/link";
 
 export default function CaseStudiesPage() {
   return (
@@ -83,7 +83,7 @@ export default function CaseStudiesPage() {
           <div className="rounded-none border border-black bg-white p-10 text-center">
             <h2 className="text-3xl font-light tracking-tight text-black">Build your cross-industry intelligence platform</h2>
             <p className="mt-4 text-lg text-black">We partner with professional services firms to surface opportunities across legal, regulatory, and market signals.</p>
-            <ContactButton className="mt-6">Schedule 15-Min Demo</ContactButton>
+            <Link href="/contact" className="btn btn-primary mt-6">Schedule 15-Min Demo</Link>
           </div>
         </div>
       </section>

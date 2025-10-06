@@ -9,7 +9,7 @@ export const metadata = {
   description: "The team behind Symi System and the expertise we bring to specialized industries.",
 };
 
-import { ContactButton } from "../../components/ContactModal";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -56,7 +56,7 @@ export default function AboutPage() {
               We collaborate with founders and operators who need software that mirrors their methodology and client
               experience.
             </p>
-            <ContactButton className="mt-6">Schedule 15-Min Demo</ContactButton>
+            <Link href="/contact" className="btn btn-primary mt-6">Schedule 15-Min Demo</Link>
           </div>
         </div>
       </section>

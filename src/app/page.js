@@ -79,7 +79,7 @@ export default function HomePage() {
             </motion.div>
             <motion.div variants={staggerItem} className="mt-10 flex flex-wrap items-center gap-4">
               <Link href="/contact" className="btn btn-primary">View Sample Report</Link>
-              <ContactButton className="border border-black bg-white text-black hover:opacity-80" variant="secondary">Schedule 15-Min Demo</ContactButton>
+              <Link href="/contact" className="border border-black bg-white text-black hover:opacity-80 btn" >Schedule 15-Min Demo</Link>
             </motion.div>
           </motion.div>
         </div>

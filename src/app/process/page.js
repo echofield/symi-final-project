@@ -26,7 +26,7 @@ export const metadata = {
   description: "The phased process we use to design, build, and deploy custom internal software.",
 };
 
-import { ContactButton } from "../../components/ContactModal";
+import Link from "next/link";
 
 export default function ProcessPage() {
   return (
@@ -60,7 +60,7 @@ export default function ProcessPage() {
             <p className="mt-4 text-lg text-black">
               Share where your process is breaking down and we’ll recommend a phased roadmap with clear deliverables.
             </p>
-            <ContactButton className="mt-6">Schedule 15-Min Demo</ContactButton>
+            <Link href="/contact" className="btn btn-primary mt-6">Schedule 15-Min Demo</Link>
           </div>
         </div>
       </section>
