@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "render:report": "node scripts/render-report-pdf.mjs"
   },
   "dependencies": {
     "chart.js": "^4.4.3",
@@ -24,6 +25,7 @@
     "@types/react": "^19.2.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8",
+    "puppeteer": "^22.15.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.9.3"
   }
