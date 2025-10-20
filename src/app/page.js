@@ -78,7 +78,7 @@ export default function HomePage() {
               Monitoring official government databases and public registries • 100% legal & verified data • Weekly intelligence delivery
             </motion.div>
             <motion.div variants={staggerItem} className="mt-10 flex flex-wrap items-center gap-4">
-              <Link href="/contact" className="btn btn-primary">View Sample Report</Link>
+              <ContactButton className="min-w-[220px]">Request Intelligence Analysis</ContactButton>
             </motion.div>
           </motion.div>
         </div>

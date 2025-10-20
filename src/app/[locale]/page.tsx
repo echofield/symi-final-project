@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { ContactButton } from '../../components/ContactModal';
 
 export default function HomeLocalePage() {
   return (
@@ -12,8 +12,9 @@ export default function HomeLocalePage() {
           <p className="mt-4 text-sm font-light uppercase tracking-widest text-black">Law Firms • Construction • Finance • Real Estate • Consulting</p>
           <div className="mt-6 text-sm leading-relaxed text-black">Monitoring official government databases and public registries • 100% legal & verified data • Weekly intelligence delivery</div>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link href="/contact" className="btn btn-primary">View Sample Report</Link>
-            <Link href="/contact" className="border border-black bg-white text-black hover:opacity-80 btn" >Request Intelligence Analysis</Link>
+            <ContactButton className="min-w-[220px]" variant="primary">
+              Request Intelligence Analysis
+            </ContactButton>
           </div>
         </div>
       </section>
