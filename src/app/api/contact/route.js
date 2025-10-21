@@ -11,7 +11,7 @@ export async function POST(request) {
     const smtpPort = Number(process.env.SMTP_PORT || 587);
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
-  const toEmail = process.env.CONTACT_TO_EMAIL || process.env.SMTP_TO_EMAIL || '';
+  const toEmail = process.env.CONTACT_TO_EMAIL || process.env.SMTP_TO_EMAIL || 'contact@symi.io';
 
     if (!smtpHost || !smtpUser || !smtpPass || !toEmail) {
       return new Response(JSON.stringify({ message: 'Email not configured' }), { status: 500 });
