@@ -5,7 +5,7 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 py-6 text-sm text-black">
         <div className="mb-4 rounded-none border border-black bg-white p-4">
           <p>
-            All intelligence systems use exclusively legal, publicly available data from official government sources and authorized databases. Full GDPR compliance.
+            We deliver bespoke operations intelligence platforms and autonomous agents that respect your governance requirements and scale with your organization.
           </p>
         </div>
       </div>

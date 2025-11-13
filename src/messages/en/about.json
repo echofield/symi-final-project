@@ -1,24 +1,9 @@
 {
-  "about.title": "Specialized in Cross-Industry Intelligence",
-  "about.intro": "Symi builds opportunity detection systems for professional services firms operating in specialized markets where standard tools don't capture cross-industry signals that create new business.",
-  "about.what.title": "What We Bring",
-  "about.what.items": [
-    "Multi-source data integration across legal, regulatory, financial, and research databases",
-    "Research-grade validation and confidence scoring systems",
-    "Industry-specific workflow design for law, construction, finance, and consulting",
-    "Bilingual capability for French and English-speaking markets"
-  ],
-  "about.why.title": "Why Clients Work With Us",
-  "about.why.p1": "We've built systems for law firms, construction companies, and financial advisors who need intelligence that crosses traditional industry boundaries. Our platforms connect signals from legal databases, government registries, research publications, and market data—creating opportunities that single-vertical tools miss.",
-  "about.why.p2": "For teams operating in specialized markets where off-the-shelf software falls short, we become an extension of your strategic intelligence capability.",
-  "about.markets.title": "Markets We Serve",
-  "about.markets.items": [
-    {"title": "Law Firms", "desc": "Corporate, M&A, restructuring, regulatory compliance, litigation"},
-    {"title": "Construction", "desc": "Public works, commercial development, regulatory compliance"},
-    {"title": "Finance & Advisory", "desc": "Distressed assets, property valuation, investment advisory"},
-    {"title": "Real Estate", "desc": "Development, transactions, property management"},
-    {"title": "Business Consulting", "desc": "Strategy, operations, market entry, regulatory intelligence"}
-  ]
+  "about.title": "Architects of operations intelligence",
+  "about.intro": "Founded in Paris, Symi System architects bespoke intelligence platforms for leaders operating in high-complexity environments.",
+  "about.focus.title": "Operating in the grey space",
+  "about.focus.p1": "We partner with founders, investors, and creative leaders navigating expansion, restructuring, and rapid scale. Each engagement blends systems architecture, knowledge design, and automation so teams can see, decide, and act without friction.",
+  "about.focus.p2": "Our studio assembles strategists, engineers, and designers who thrive in ambiguity—where operational clarity is the advantage that unlocks momentum."
 }
 
 

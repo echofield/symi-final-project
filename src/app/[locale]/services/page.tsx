@@ -1,31 +1,64 @@
 import Link from 'next/link';
-import {motion} from 'framer-motion';
+
+const offerings = [
+  {
+    title: "THE FOUNDER'S OS",
+    audience: 'For post-raise founders drowning in tool sprawl',
+    pricing: '€15-25K | 1-2 week sprint',
+    description:
+      "A unified dashboard that replaces 10+ SaaS tabs. Your entire business in one beautiful interface. Built for founders who raised Series A/B and need operational clarity NOW.",
+  },
+  {
+    title: "THE PORTFOLIO OS",
+    audience: 'For VCs & Family Offices managing complex portfolios',
+    pricing: '€20-40K | 2 week intervention sprint',
+    description:
+      'We embed in your highest-chaos portfolio company and build them an AI-powered operating system. You become the hero. They get leverage.',
+  },
+  {
+    title: "THE CREATIVE STUDIO OS",
+    audience: 'For prize-winning designers & creators scaling from artist to business',
+    pricing: '€10-20K | 1 week sprint',
+    description:
+      "You just won €300K and the industry's spotlight. Your job is to create. Our job: build you the system to manage orders, production, and the chaos.",
+  },
+  {
+    title: 'THE EXPANSION PLAYBOOK',
+    audience: 'For groups opening new markets/offices/properties',
+    pricing: '€25-50K | 2-4 week sprint',
+    description:
+      "You're expanding to a new geography. We build you the repeatable playbook for setup, operations, and brand consistency across your new territory.",
+  },
+];
 
 export default function ServicesPage() {
-  const services = [
-    {title: 'Opportunity Detection Engines', key: 'svc1', bullets: ['Monitor bankruptcies, regulatory changes, tenders, market movements', 'Calibrated to practice area, geography, client base', 'Weekly delivery; real-time urgent alerts']},
-    {title: 'Cross-Source Intelligence Integration', key: 'svc2', bullets: ['Official registries, legal databases, research publications, financial filings', 'Normalization, deduplication, entity resolution', 'APIs and connectors into your existing systems']},
-    {title: 'Custom Alert & Delivery Systems', key: 'svc3', bullets: ['Scored opportunities with confidence thresholds', 'Delivery via email, dashboards, or your CRM', 'Team-level routing and follow-up workflows']},
-    {title: 'Validation & Governance', key: 'svc4', bullets: ['Research-grade verification and source validation', 'False-positive filtering and audit trail', 'Security, privacy, and data residency controls']}
-  ];
   return (
-    <section className="bg-white py-20 text-black">
+    <div className="bg-white py-20 text-black">
       <div className="mx-auto max-w-6xl px-6">
-        <h1 className="text-4xl font-light">Intelligence Services</h1>
-        <p className="mt-4 max-w-3xl text-lg">We build cross-industry intelligence systems that detect opportunities by correlating signals from legal, regulatory, financial and operational sources—then route them into your workflow.</p>
-        <motion.div className="mt-12 grid gap-8 sm:grid-cols-2" initial="hidden" whileInView="visible" viewport={{once: true}} variants={{hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:0.15,delayChildren:0.2}}}}>
-          {services.map((s) => (
-            <motion.div key={s.key} variants={{hidden:{opacity:0,y:20},visible:{opacity:1,y:0,transition:{duration:0.4,ease:'easeOut'}}}} className="border border-black bg-white p-8 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-sm">
-              <h3 className="text-xl font-light">{s.title}</h3>
-              <ul className="mt-4 list-disc pl-5 space-y-1">
-                {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
-              </ul>
-              <div className="mt-6"><Link href="/contact" className="btn btn-primary">Request Intelligence Analysis</Link></div>
-            </motion.div>
+        <p className="text-sm font-medium uppercase tracking-[0.4em] text-[var(--forest-green)]">Services</p>
+        <h1 className="mt-6 text-4xl font-light">Operations intelligence programs</h1>
+        <p className="mt-4 max-w-3xl text-lg">
+          Four archetypes that compress months of operational chaos into clarity, leverage, and execution momentum.
+        </p>
+        <div className="mt-12 grid gap-10 lg:grid-cols-2">
+          {offerings.map((offering) => (
+            <div key={offering.title} className="border border-black bg-white p-10">
+              <p className="text-sm font-medium uppercase tracking-[0.35em] text-[var(--forest-green)]">{offering.pricing}</p>
+              <h2 className="mt-4 text-2xl font-light text-black">{offering.title}</h2>
+              <p className="mt-3 text-base font-light uppercase tracking-[0.2em] text-black">{offering.audience}</p>
+              <p className="mt-5 text-lg leading-7 text-black">{offering.description}</p>
+            </div>
           ))}
-        </motion.div>
+        </div>
+        <div className="mt-16 rounded-none border border-black bg-white p-10 text-center">
+          <h2 className="text-3xl font-light tracking-tight text-black">Ready to scope your next sprint?</h2>
+          <p className="mt-4 text-lg text-black">
+            Share the operational challenge in front of you and we’ll recommend the archetype or hybrid build that unlocks the most leverage.
+          </p>
+          <Link href="/contact" className="btn btn-primary mt-6">Request Consultation</Link>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
 

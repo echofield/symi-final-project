@@ -1,16 +1,40 @@
 export const metadata = {
   title: "Services — Symi System",
-  description: "Cross-industry intelligence and opportunity detection for professional services.",
+  description: "Operations intelligence systems for founders, investors, and creative leaders navigating complexity.",
 };
 
-const typicalProjects = [
-  "Operations dashboards",
-  "Workflow automation",
-  "Internal intelligence platforms",
-  "Custom CRM and pipeline systems",
-];
-
 import Link from "next/link";
+
+const offerings = [
+  {
+    title: "THE FOUNDER'S OS",
+    audience: "For post-raise founders drowning in tool sprawl",
+    pricing: "€15-25K | 1-2 week sprint",
+    description:
+      "A unified dashboard that replaces 10+ SaaS tabs. Your entire business in one beautiful interface. Built for founders who raised Series A/B and need operational clarity NOW.",
+  },
+  {
+    title: "THE PORTFOLIO OS",
+    audience: "For VCs & Family Offices managing complex portfolios",
+    pricing: "€20-40K | 2 week intervention sprint",
+    description:
+      "We embed in your highest-chaos portfolio company and build them an AI-powered operating system. You become the hero. They get leverage.",
+  },
+  {
+    title: "THE CREATIVE STUDIO OS",
+    audience: "For prize-winning designers & creators scaling from artist to business",
+    pricing: "€10-20K | 1 week sprint",
+    description:
+      "You just won €300K and the industry's spotlight. Your job is to create. Our job: build you the system to manage orders, production, and the chaos.",
+  },
+  {
+    title: "THE EXPANSION PLAYBOOK",
+    audience: "For groups opening new markets/offices/properties",
+    pricing: "€25-50K | 2-4 week sprint",
+    description:
+      "You're expanding to a new geography. We build you the repeatable playbook for setup, operations, and brand consistency across your new territory.",
+  },
+];
 
 export default function ServicesPage() {
   return (
@@ -18,58 +42,24 @@ export default function ServicesPage() {
       <section className="border-b border-black bg-white py-24">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <p className="text-sm font-medium uppercase tracking-[0.4em] text-[var(--forest-green)]">Services</p>
-          <h1 className="mt-6 text-4xl font-light tracking-tight text-black sm:text-5xl">Intelligence Services</h1>
-          <p className="mt-4 text-lg leading-8 text-black">We build cross-industry intelligence systems that detect opportunities by correlating signals from legal, regulatory, financial and operational sources—then route them into your workflow.</p>
+          <h1 className="mt-6 text-4xl font-light tracking-tight text-black sm:text-5xl">Operations intelligence programs</h1>
+          <p className="mt-4 text-lg leading-8 text-black">
+            Four archetypes that compress months of operational chaos into clarity, leverage, and execution momentum.
+          </p>
         </div>
       </section>
 
       <section className="py-20">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="grid gap-8 sm:grid-cols-2">
-            <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Opportunity Detection Engines</h3>
-              <ul className="mt-4 list-disc pl-5 space-y-1">
-                <li>Monitor bankruptcies, regulatory changes, tenders, market movements</li>
-                <li>Calibrated to practice area, geography, client base</li>
-                <li>Weekly intelligence delivery; real-time urgent alerts</li>
-              </ul>
-            </div>
-            <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Cross-Source Intelligence Integration</h3>
-              <ul className="mt-4 list-disc pl-5 space-y-1">
-                <li>Official registries, legal databases, research publications, financial filings</li>
-                <li>Normalization, deduplication, entity resolution</li>
-                <li>APIs/connectors into your existing systems</li>
-              </ul>
-            </div>
-            <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Custom Alert & Delivery Systems</h3>
-              <ul className="mt-4 list-disc pl-5 space-y-1">
-                <li>Scored opportunities and confidence thresholds</li>
-                <li>Delivery via email, dashboards, or your CRM</li>
-                <li>Routing and follow-up workflows</li>
-              </ul>
-            </div>
-            <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Validation & Governance</h3>
-              <ul className="mt-4 list-disc pl-5 space-y-1">
-                <li>Source validation and research-grade verification</li>
-                <li>False-positive filtering and audit trail</li>
-                <li>Security, privacy, and data residency controls</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="rounded-none border border-black bg-white p-8">
-            <h2 className="text-2xl font-light text-black">Timeline</h2>
-            <p className="mt-4 text-lg text-black">
-              Engagements typically run 4–16 weeks depending on complexity, integrations, and compliance requirements. We
-              work in phases so you see tangible outcomes at the end of each milestone.
-            </p>
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="grid gap-10 lg:grid-cols-2">
+            {offerings.map((offering) => (
+              <div key={offering.title} className="rounded-none border border-black bg-white p-10 text-left">
+                <p className="text-sm font-medium uppercase tracking-[0.35em] text-[var(--forest-green)]">{offering.pricing}</p>
+                <h2 className="mt-4 text-2xl font-light tracking-tight text-black">{offering.title}</h2>
+                <p className="mt-3 text-base font-light uppercase tracking-[0.2em] text-black">{offering.audience}</p>
+                <p className="mt-5 text-lg leading-7 text-black">{offering.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -77,9 +67,11 @@ export default function ServicesPage() {
       <section className="pb-24">
         <div className="mx-auto max-w-4xl px-6">
           <div className="rounded-none border border-black bg-white p-10 text-center">
-            <h2 className="text-3xl font-light tracking-tight text-black">Ready to see a sample report?</h2>
-            <p className="mt-4 text-lg text-black">Request a free sample intelligence report tailored to your sector.</p>
-            <Link href="/contact" className="btn btn-primary mt-6">Request Intelligence Analysis</Link>
+            <h2 className="text-3xl font-light tracking-tight text-black">Ready to scope your next sprint?</h2>
+            <p className="mt-4 text-lg text-black">
+              Share the operational challenge in front of you and we’ll recommend the archetype or hybrid build that unlocks the most leverage.
+            </p>
+            <Link href="/contact" className="btn btn-primary mt-6">Request Consultation</Link>
           </div>
         </div>
       </section>
