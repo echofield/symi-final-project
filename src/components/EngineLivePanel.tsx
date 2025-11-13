@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 
 const STREAMS = [
-  "Parsing Légifrance / JO…",
-  "Extracting articles & concordance links…",
-  "Flagging legal risk in clause §…",
-  "Crossing with market signals (placeholder)…",
-  "Generating teaching note & validity score…"
+  "Syncing finance + delivery workstreams…",
+  "Reconciling CRM, Notion, and SQL snapshots…",
+  "Flagging operational risk in escalation queue…",
+  "Enriching playbook with autonomous agent notes…",
+  "Publishing updated command dashboard…"
 ];
 
 export default function EngineLivePanel() {

@@ -1,50 +1,44 @@
 "use client";
-import { useState } from 'react';
+
 import { useTranslations } from 'next-intl';
+import ContactForm from '../../../components/ContactForm';
 
 export default function ContactPage() {
   const t = useTranslations();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [company, setCompany] = useState('');
-  const [vertical, setVertical] = useState('Legal');
-  const [message, setMessage] = useState('');
-  const [consent, setConsent] = useState(false);
-  const [ok, setOk] = useState(false);
 
-  const onSubmit = (e: any) => {
-    e.preventDefault();
-    console.log({ name, email, company, vertical, message, consent });
-    setOk(true);
+  const copy = {
+    eyebrow: t('contact.eyebrow'),
+    title: t('contact.title'),
+    subtitle: t('contact.subtitle'),
+    fields: {
+      name: t('contact.fields.name'),
+      email: t('contact.fields.email'),
+      company: t('contact.fields.company'),
+      projectType: t('contact.fields.projectType'),
+      projectTypePlaceholder: t('contact.fields.projectTypePlaceholder'),
+      message: t('contact.fields.message'),
+    },
+    projectOptions: [
+      { value: 'founders-os', label: t('contact.options.founders') },
+      { value: 'portfolio-os', label: t('contact.options.portfolio') },
+      { value: 'creative-studio-os', label: t('contact.options.studio') },
+      { value: 'expansion-playbook', label: t('contact.options.expansion') },
+      { value: 'other', label: t('contact.options.other') },
+    ],
+    submitLabel: t('contact.submit'),
+    successMessage: t('contact.success'),
+    errors: {
+      generic: t('contact.errors.generic'),
+      required: t('contact.errors.required'),
+      email: t('contact.errors.email'),
+    },
+    direct: {
+      heading: t('contact.direct.heading'),
+      email: t('contact.direct.email'),
+      location: t('contact.direct.location'),
+      responseTime: t('contact.direct.responseTime'),
+    },
   };
 
-  return (
-    <section className="bg-white py-20 text-black">
-      <div className="mx-auto max-w-xl px-6">
-        <h1 className="text-4xl font-light">Contact</h1>
-        <p className="mt-2 text-base text-black opacity-80">Request your free sample intelligence report.</p>
-        {ok ? (
-          <p className="mt-6">{t('contact.success')}</p>
-        ) : (
-          <form onSubmit={onSubmit} className="mt-8 space-y-4">
-            <input className="form-input" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} required />
-            <input className="form-input" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            <input className="form-input" placeholder="Société" value={company} onChange={(e) => setCompany(e.target.value)} />
-            <select className="form-input" value={vertical} onChange={(e) => setVertical(e.target.value)}>
-              <option>Legal</option>
-              <option>Real Estate</option>
-            </select>
-            <textarea className="form-textarea" placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} required />
-            <label className="flex items-center gap-2 text-sm">
-              <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} required />
-              <span>{t('contact.consent')}</span>
-            </label>
-            <button className="btn btn-primary" type="submit">{t('contact.submit')}</button>
-          </form>
-        )}
-      </div>
-    </section>
-  );
+  return <ContactForm copy={copy} />;
 }
-
-

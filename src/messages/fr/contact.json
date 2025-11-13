@@ -1,9 +1,25 @@
 {
-  "contact.title": "Contact",
-  "contact.success": "Merci, nous revenons vers vous rapidement.",
-  "contact.consent": "J’accepte la politique de confidentialité.",
-  "contact.submit": "Envoyer",
-  "contact.sampleNote": "Demandez votre rapport d’intelligence gratuit."
+  "contact.eyebrow": "Contact",
+  "contact.title": "Entrer en contact",
+  "contact.subtitle": "Prêt à architecturer votre système opératoire ?",
+  "contact.fields.name": "Nom",
+  "contact.fields.email": "Email",
+  "contact.fields.company": "Société (optionnel)",
+  "contact.fields.projectType": "Type de projet",
+  "contact.fields.projectTypePlaceholder": "Sélectionnez un type de projet (optionnel)",
+  "contact.fields.message": "Message",
+  "contact.options.founders": "Founder's OS",
+  "contact.options.portfolio": "Portfolio OS",
+  "contact.options.studio": "Creative Studio OS",
+  "contact.options.expansion": "Expansion Playbook",
+  "contact.options.other": "Autre",
+  "contact.submit": "Demander une consultation",
+  "contact.success": "Merci. Nous revenons vers vous sous 24 à 48 heures.",
+  "contact.errors.generic": "Une erreur est survenue. Merci de réessayer.",
+  "contact.errors.required": "Merci de compléter tous les champs obligatoires.",
+  "contact.errors.email": "Veuillez saisir une adresse email valide.",
+  "contact.direct.heading": "Contact direct",
+  "contact.direct.email": "Email : contact@symi.io",
+  "contact.direct.location": "Basé à Paris, France",
+  "contact.direct.responseTime": "Temps de réponse : 24-48 heures"
 }
-
-

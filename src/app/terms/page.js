@@ -13,7 +13,15 @@ export default function TermsPage() {
           <h2 className="mt-10 text-2xl font-light text-black">Liability</h2>
           <p className="mt-2 text-lg text-black">Liability is limited to the fees paid for the project.</p>
           <h2 className="mt-10 text-2xl font-light text-black">Governing Law</h2>
-          <p className="mt-2 text-lg text-black">SYMI operates internationally. All contracts are governed by the applicable client jurisdiction, with international arbitration available in Geneva, Switzerland.</p>
+          <p className="mt-2 text-lg text-black">
+            All contracts are governed by French law. In case of dispute, parties agree to seek resolution through mediation. If
+            mediation fails, disputes shall be settled by arbitration in Paris, France, under the rules of the Paris International
+            Arbitration Chamber.
+          </p>
+          <p className="mt-4 text-lg text-black">
+            For international clients, Swiss arbitration (Geneva) may be elected by mutual written agreement prior to contract
+            signature.
+          </p>
         </div>
       </section>
     </div>

@@ -1,12 +1,6 @@
-const expertise = [
-  "System architecture and software development",
-  "Business process optimization",
-  "Industry-specific workflow design",
-];
-
 export const metadata = {
   title: "About — Symi System",
-  description: "The team behind Symi System and the expertise we bring to specialized industries.",
+  description: "Symi System architects bespoke operations intelligence platforms for high-complexity environments.",
 };
 
 import Link from "next/link";
@@ -17,32 +11,26 @@ export default function AboutPage() {
       <section className="border-b border-black bg-white py-24">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <p className="text-sm font-medium uppercase tracking-[0.4em] text-[var(--forest-green)]">About</p>
-          <h1 className="mt-6 text-4xl font-light tracking-tight text-black sm:text-5xl">
-            Bridging strategy, systems, and specialized industries
-          </h1>
+          <h1 className="mt-6 text-4xl font-light tracking-tight text-black sm:text-5xl">Architects of operations intelligence</h1>
           <p className="mt-4 text-lg leading-8 text-black">
-            Symi System brings together operators and technologists who have shipped systems across capital markets,
-            professional services, and other specialized environments where off-the-shelf software falls short.
+            Founded in Paris, Symi System architects bespoke intelligence platforms for leaders operating in high-complexity
+            environments. Our work sits at the intersection of strategic operations, AI systems, and interface design.
           </p>
         </div>
       </section>
 
       <section className="py-20">
-        <div className="mx-auto max-w-4xl px-6 space-y-10">
-          <div>
-            <h2 className="text-2xl font-light text-black">What we bring</h2>
-            <ul className="mt-4 space-y-3 text-lg text-black">
-              {expertise.map((item) => (
-                <li key={item}>• {item}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-2xl font-light text-black">Why clients work with us</h2>
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="rounded-none border border-black bg-white p-10">
+            <h2 className="text-2xl font-light text-black">Operating in the grey space</h2>
             <p className="mt-4 text-lg text-black">
-              We speak the language of operators. Our work spans capital markets, professional services, and niche
-              industries where software has to adapt to existing IP—not the other way around. For teams that need custom
-              internal tools, not templatized solutions, we become an extension of your strategic brain.
+              We partner with founders, investors, and creative leaders navigating expansion, restructuring, and rapid scale.
+              Every engagement blends systems architecture, knowledge design, and automation so teams can see, decide, and act
+              without friction.
+            </p>
+            <p className="mt-4 text-lg text-black">
+              Our studio assembles strategists, engineers, and designers who thrive in ambiguous environments—where operational
+              clarity is the difference between momentum and stagnation.
             </p>
           </div>
         </div>
@@ -53,10 +41,10 @@ export default function AboutPage() {
           <div className="rounded-none border border-black bg-white p-10 text-center">
             <h2 className="text-3xl font-light tracking-tight text-black">Let’s build the system your team deserves</h2>
             <p className="mt-4 text-lg text-black">
-              We collaborate with founders and operators who need software that mirrors their methodology and client
-              experience.
+              Share your operational mandate and we’ll architect the intelligence platform that keeps you ahead of the next
+              move.
             </p>
-            <Link href="/contact" className="btn btn-primary mt-6">Request Intelligence Analysis</Link>
+            <Link href="/contact" className="btn btn-primary mt-6">Request Consultation</Link>
           </div>
         </div>
       </section>

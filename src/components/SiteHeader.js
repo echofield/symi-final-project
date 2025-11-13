@@ -5,9 +5,9 @@ import { ContactButton } from "./ContactModal";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/case-studies", label: "Case Studies" },
   { href: "/process", label: "Process" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function SiteHeader() {

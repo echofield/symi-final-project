@@ -6,39 +6,39 @@ export default function HomeLocalePage() {
       <section className="relative isolate overflow-hidden py-24 sm:py-32">
         <div className="absolute inset-0 -z-10 bg-white" aria-hidden="true" />
         <div className="mx-auto max-w-6xl px-6">
-          <p className="mb-6 text-sm font-medium uppercase tracking-[0.4em] text-[var(--forest-green)]">Cross-Industry Intelligence</p>
-          <h1 className="text-4xl font-light tracking-tight text-black sm:text-5xl lg:text-6xl">Cross-Industry Intelligence</h1>
-          <p className="mt-6 text-lg leading-8 text-black sm:text-xl">Opportunity detection for professional services</p>
-          <p className="mt-4 text-sm font-light uppercase tracking-widest text-black">Law Firms • Construction • Finance • Real Estate • Consulting</p>
-          <div className="mt-6 text-sm leading-relaxed text-black">Monitoring official government databases and public registries • 100% legal & verified data • Weekly intelligence delivery</div>
+          <p className="mb-6 text-sm font-medium uppercase tracking-[0.4em] text-[var(--forest-green)]">Cross-industry systems</p>
+          <h1 className="text-4xl font-light tracking-tight text-black sm:text-5xl lg:text-6xl">Operations Intelligence</h1>
+          <p className="mt-6 text-lg leading-8 text-black sm:text-xl">Strategic systems for operational clarity</p>
+          <p className="mt-4 text-sm font-light uppercase tracking-widest text-black">Venture portfolios • Expansion plays • Creative studios • Post-raise chaos</p>
+          <p className="mt-6 text-lg leading-8 text-black sm:text-xl">We architect unified intelligence platforms and autonomous agents for leaders managing complexity at scale.</p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link href="/contact" className="btn btn-primary">View Sample Report</Link>
-            <Link href="/contact" className="border border-black bg-white text-black hover:opacity-80 btn" >Request Intelligence Analysis</Link>
+            <Link href="/services" className="border border-black bg-white text-black hover:opacity-80 btn">Explore Services</Link>
+            <Link href="/contact" className="btn btn-primary">Request Consultation</Link>
           </div>
         </div>
       </section>
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-2xl">
-            <h2 className="text-3xl font-light tracking-tight text-black sm:text-4xl">Intelligence Systems Built For Your Industry</h2>
-            <p className="mt-4 text-lg text-black">Every engagement starts with understanding what signals matter in your market. We build monitoring systems that correlate data across legal, regulatory, financial, and operational sources—then route opportunities directly to your team.</p>
+            <h2 className="text-3xl font-light tracking-tight text-black sm:text-4xl">Operating systems for complex teams</h2>
+            <p className="mt-4 text-lg text-black">Every build consolidates fragmented tools, data, and rituals into a single operational nervous system that keeps leadership ahead of the chaos.</p>
           </div>
           <div className="mt-12 grid gap-12 sm:grid-cols-2">
             <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Opportunity Detection Engines</h3>
-              <p className="mt-3 text-base leading-7 text-black">Automated monitoring of bankruptcies, regulatory changes, public tenders, and market movements that create new business opportunities.</p>
+              <h3 className="text-xl font-light text-black">Unified operations dashboards</h3>
+              <p className="mt-3 text-base leading-7 text-black">Live visibility across revenue, delivery, finance, and talent so founders and operators steer decisions from one interface.</p>
             </div>
             <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Cross-Source Intelligence</h3>
-              <p className="mt-3 text-base leading-7 text-black">Connect signals from legal databases, government registries, research publications, and financial filings into actionable insights.</p>
+              <h3 className="text-xl font-light text-black">Autonomous workflow agents</h3>
+              <p className="mt-3 text-base leading-7 text-black">Orchestrated agents manage handoffs, escalate exceptions, and document outcomes so teams stay focused on high-leverage work.</p>
             </div>
             <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Custom Alert Systems</h3>
-              <p className="mt-3 text-base leading-7 text-black">Real-time notifications calibrated to your expertise, geography, and client base—delivered to your existing workflow.</p>
+              <h3 className="text-xl font-light text-black">Knowledge-integrated interfaces</h3>
+              <p className="mt-3 text-base leading-7 text-black">Institutional knowledge, operating rituals, and real-time data surfaced together to guide decisions in context.</p>
             </div>
             <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Validated Intelligence</h3>
-              <p className="mt-3 text-base leading-7 text-black">Research-grade verification of every signal with confidence scoring, source validation, and false positive filtering.</p>
+              <h3 className="text-xl font-light text-black">Change-ready architecture</h3>
+              <p className="mt-3 text-base leading-7 text-black">Modular systems, source-of-truth governance, and automation guardrails engineered to evolve with each strategic move.</p>
             </div>
           </div>
         </div>

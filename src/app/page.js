@@ -60,25 +60,23 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6">
           <motion.div className="max-w-3xl" variants={staggerContainer} initial="initial" animate="animate">
             <motion.p variants={staggerItem} className="mb-6 text-sm font-medium uppercase tracking-[0.4em] text-[var(--forest-green)]">
-              Operations Intelligence
+              Cross-industry systems
             </motion.p>
             <motion.h1 variants={staggerItem} className="text-4xl font-light tracking-tight text-black sm:text-5xl lg:text-6xl">
-              Cross-Industry Intelligence
+              Operations Intelligence
             </motion.h1>
             <motion.h2 variants={staggerItem} className="mt-2 text-xl font-light tracking-tight text-black sm:text-2xl">
-              Opportunity detection systems for professional services firms
+              Strategic Systems for Operational Clarity
             </motion.h2>
             <motion.p variants={staggerItem} className="mt-6 text-lg leading-8 text-black sm:text-xl">
-              Custom intelligence platforms that monitor legal, regulatory, and market signals across industries—surfacing opportunities your competitors miss.
+              We architect unified intelligence platforms and autonomous agents for leaders managing complexity at scale.
             </motion.p>
             <motion.p variants={staggerItem} className="mt-6 text-sm font-light uppercase tracking-widest text-black">
-              Law Firms • Construction • Finance • Real Estate • Consulting
+              Venture Portfolios • Expansion Plays • Creative Studios • Post-Raise Chaos
             </motion.p>
-            <motion.div variants={staggerItem} className="mt-4 text-sm leading-relaxed text-black">
-              Monitoring official government databases and public registries • 100% legal & verified data • Weekly intelligence delivery
-            </motion.div>
             <motion.div variants={staggerItem} className="mt-10 flex flex-wrap items-center gap-4">
-              <Link href="/contact" className="btn btn-primary">View Sample Report</Link>
+              <Link href="/services" className="btn border border-black bg-white text-black hover:opacity-80">Explore Services</Link>
+              <Link href="/contact" className="btn btn-primary">Request Consultation</Link>
             </motion.div>
           </motion.div>
         </div>
@@ -87,43 +85,27 @@ export default function HomePage() {
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-2xl">
-            <h2 className="text-3xl font-light tracking-tight text-black sm:text-4xl">Intelligence Systems Built For Your Industry</h2>
-            <p className="mt-4 text-lg text-black">Every engagement starts with understanding what signals matter in your market. We build monitoring systems that correlate data across legal, regulatory, financial, and operational sources—then route opportunities directly to your team.</p>
+            <h2 className="text-3xl font-light tracking-tight text-black sm:text-4xl">Operating systems for complex teams</h2>
+            <p className="mt-4 text-lg text-black">Every build consolidates fragmented tools, data, and rituals into a single operational nervous system that keeps leadership ahead of the chaos.</p>
           </div>
           <motion.div className="mt-12 grid gap-12 sm:grid-cols-2" variants={staggerContainer} initial="initial" whileInView="animate" viewport={{ once: true, margin: "-10%" }}>
             <motion.div variants={staggerItem} className="rounded-none border border-black bg-white p-8 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-sm">
-              <h3 className="text-xl font-light text-black">Opportunity Detection Engines</h3>
-              <p className="mt-3 text-base leading-7 text-black">Automated monitoring of bankruptcies, regulatory changes, public tenders, and market movements that create new business opportunities.</p>
+              <h3 className="text-xl font-light text-black">Unified operations dashboards</h3>
+              <p className="mt-3 text-base leading-7 text-black">Live visibility across revenue, delivery, finance, and talent so founders and operators steer decisions from one interface.</p>
             </motion.div>
             <motion.div variants={staggerItem} className="rounded-none border border-black bg-white p-8 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-sm">
-              <h3 className="text-xl font-light text-black">Cross-Source Intelligence</h3>
-              <p className="mt-3 text-base leading-7 text-black">Connect signals from legal databases, government registries, research publications, and financial filings into actionable insights.</p>
+              <h3 className="text-xl font-light text-black">Autonomous workflow agents</h3>
+              <p className="mt-3 text-base leading-7 text-black">Orchestrated agents manage handoffs, escalate exceptions, and document outcomes so teams stay focused on high-leverage work.</p>
             </motion.div>
             <motion.div variants={staggerItem} className="rounded-none border border-black bg-white p-8 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-sm">
-              <h3 className="text-xl font-light text-black">Custom Alert Systems</h3>
-              <p className="mt-3 text-base leading-7 text-black">Real-time notifications calibrated to your expertise, geography, and client base—delivered to your existing workflow.</p>
+              <h3 className="text-xl font-light text-black">Knowledge-integrated interfaces</h3>
+              <p className="mt-3 text-base leading-7 text-black">Institutional knowledge, operating rituals, and real-time data surfaced together to guide decisions in context.</p>
             </motion.div>
             <motion.div variants={staggerItem} className="rounded-none border border-black bg-white p-8 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-sm">
-              <h3 className="text-xl font-light text-black">Validated Intelligence</h3>
-              <p className="mt-3 text-base leading-7 text-black">Research-grade verification of every signal with confidence scoring, source validation, and false positive filtering.</p>
+              <h3 className="text-xl font-light text-black">Change-ready architecture</h3>
+              <p className="mt-3 text-base leading-7 text-black">Modular systems, source-of-truth governance, and automation guardrails engineered to evolve with each strategic move.</p>
             </motion.div>
           </motion.div>
-        </div>
-      </section>
-
-      <section className="bg-white py-20 text-black">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="max-w-3xl">
-            <p className="text-sm font-medium uppercase tracking-[0.35em] text-[var(--forest-green)]">Case Study Highlight</p>
-            <h2 className="mt-4 text-3xl font-light sm:text-4xl">Corporate Law Firm Intelligence Platform</h2>
-            <p className="mt-4 text-lg text-black">Mid-size Paris law firm, 15 attorneys</p>
-            <ul className="mt-6 space-y-3 text-base leading-7 text-black">
-              <li>• Automated monitoring of commercial registries, legal publications, and procurement platforms</li>
-              <li>• Weekly intelligence reports by practice area</li>
-              <li>• Alerts for urgent client risks and competitive movements</li>
-            </ul>
-            <div className="mt-8"><Link href="/case-studies" className="btn btn-primary">View Full Case Study</Link></div>
-          </div>
         </div>
       </section>
 
@@ -150,16 +132,16 @@ export default function HomePage() {
       <section className="pb-24">
         <div className="mx-auto max-w-4xl rounded-none border border-black bg-white px-6 py-16 text-center">
           <h2 className="text-3xl font-light tracking-tight text-black sm:text-4xl">
-            Ready to build software that mirrors how your business wins?
+            Ready to architect your operations intelligence?
           </h2>
           <p className="mt-4 text-lg text-black">
-            Let’s scope your workflow, align on outcomes, and outline a build plan calibrated to your team.
+            Let’s audit your operations, align on leverage points, and design a system that keeps your organization ahead of scale.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/process" className="btn border border-black bg-white text-black hover:opacity-80">
               Our Approach
             </Link>
-            <Link href="/contact" className="btn btn-primary">Request Intelligence Analysis</Link>
+            <Link href="/contact" className="btn btn-primary">Request Consultation</Link>
           </div>
         </div>
       </section>
