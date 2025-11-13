@@ -61,6 +61,10 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
+          <p className="mt-16 mb-8 text-center text-sm leading-6 text-neutral-500">
+            All engagements are scoped project-by-project. Pricing depends on complexity and delivery timeline. Contact us for a
+            custom proposal tailored to your specific needs.
+          </p>
         </div>
       </section>
 

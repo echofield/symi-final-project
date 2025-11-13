@@ -51,7 +51,13 @@ function ContactModal({ onClose }) {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fullName, company, email, description }),
+        body: JSON.stringify({
+          name: fullName,
+          company,
+          email,
+          projectType: 'modal-contact',
+          message: description,
+        }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
