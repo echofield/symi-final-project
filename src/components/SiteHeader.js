@@ -3,7 +3,8 @@ import { ContactButton } from "./ContactModal";
 // no client-only hooks needed
 
 const navItems = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Home (EN)" },
+  { href: "/evidence-pack", label: "Evidence Pack (FR)" },
   { href: "/services", label: "Services" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/process", label: "Process" },
