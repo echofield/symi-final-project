@@ -5,6 +5,7 @@ import { ContactButton } from "./ContactModal";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/evidence-pack", label: "Evidence Pack" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/process", label: "Process" },
   { href: "/about", label: "About" },
