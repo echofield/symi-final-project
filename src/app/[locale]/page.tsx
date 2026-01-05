@@ -22,8 +22,13 @@ export default function HomeLocalePage() {
           <p className="mt-4 text-sm font-light uppercase tracking-widest text-black">{t('hero.industries')}</p>
           <div className="mt-6 text-sm leading-relaxed text-black">{t('hero.trust')}</div>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link href="/contact" className="btn btn-primary">{t('cta.viewSampleReport')}</Link>
-            <Link href="/contact" className="border border-black bg-white text-black hover:opacity-80 btn">{t('cta.requestAnalysis')}</Link>
+            <Link href="/report.pdf" className="btn btn-primary">{t('cta.viewSampleReport')}</Link>
+            <a
+              href="mailto:contact@symi.io"
+              className="border border-black bg-white text-black hover:opacity-80 btn"
+            >
+              {t('cta.requestAnalysis')}
+            </a>
           </div>
         </div>
       </section>
@@ -46,4 +51,3 @@ export default function HomeLocalePage() {
     </>
   );
 }
-

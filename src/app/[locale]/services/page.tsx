@@ -20,7 +20,9 @@ export default function ServicesPage() {
               <ul className="mt-4 list-disc pl-5 space-y-1">
                 {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
               </ul>
-              <div className="mt-6"><Link href="/contact" className="btn btn-primary">Request Intelligence Analysis</Link></div>
+              <div className="mt-6">
+                <a href="mailto:contact@symi.io" className="btn btn-primary">Request a Structural Analysis</a>
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -28,5 +30,4 @@ export default function ServicesPage() {
     </section>
   );
 }
-
 

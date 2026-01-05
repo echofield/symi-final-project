@@ -78,7 +78,7 @@ export default function HomePage() {
               Monitoring official government databases and public registries • 100% legal & verified data • Weekly intelligence delivery
             </motion.div>
             <motion.div variants={staggerItem} className="mt-10 flex flex-wrap items-center gap-4">
-              <Link href="/contact" className="btn btn-primary">View Sample Report</Link>
+              <Link href="/report.pdf" className="btn btn-primary">View Sample Report</Link>
             </motion.div>
           </motion.div>
         </div>
@@ -159,7 +159,7 @@ export default function HomePage() {
             <Link href="/process" className="btn border border-black bg-white text-black hover:opacity-80">
               Our Approach
             </Link>
-            <Link href="/contact" className="btn btn-primary">Request Intelligence Analysis</Link>
+            <a href="mailto:contact@symi.io" className="btn btn-primary">Request a Structural Analysis</a>
           </div>
         </div>
       </section>

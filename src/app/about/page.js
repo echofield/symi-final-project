@@ -56,7 +56,7 @@ export default function AboutPage() {
               We collaborate with founders and operators who need software that mirrors their methodology and client
               experience.
             </p>
-            <Link href="/contact" className="btn btn-primary mt-6">Request Intelligence Analysis</Link>
+            <a href="mailto:contact@symi.io" className="btn btn-primary mt-6">Request a Structural Analysis</a>
           </div>
         </div>
       </section>
