@@ -1,14 +1,20 @@
 {
-  "brand.name": "SYMI",
-  "nav.home": "Accueil",
-  "nav.audit": "Audit industriel",
-  "nav.evidence": "Evidence Pack",
-  "nav.monitoring": "Monitoring",
-  "nav.services": "Services",
-  "nav.cases": "Études de cas",
-  "nav.process": "Process",
-  "nav.contact": "Contact",
-  "nav.about": "À propos",
-  "nav.legal": "Légal",
-  "switch.language": "EN"
+  "brand": {
+    "name": "SYMI"
+  },
+  "nav": {
+    "home": "Accueil",
+    "audit": "Audit industriel",
+    "evidence": "Evidence Pack",
+    "monitoring": "Monitoring",
+    "services": "Services",
+    "cases": "Études de cas",
+    "process": "Process",
+    "contact": "Contact",
+    "about": "À propos",
+    "legal": "Légal"
+  },
+  "switch": {
+    "language": "EN"
+  }
 }
