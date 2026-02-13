@@ -1,14 +1,34 @@
 {
   "process": {
-    "title": "Processus",
-    "step1": "Cadre decisionnel - Cartographier les dependances critiques, les contraintes reglementaires et les points de non-retour.",
-    "step2": "Architecture de preuve - Definir les sources, les regles de verification et la tracabilite documentaire.",
-    "step3": "Mise en oeuvre tactique - Mettre en place des rituels d'analyse, des alertes et des livrables actionnables.",
-    "step4": "Pilotage continu - Ajuster les arbitrages selon les signaux publics, les risques et l'execution terrain.",
+    "title": "Methode et gouvernance",
+    "step1": "Cadrage decisionnel: perimetre, hypotheses critiques, contraintes reglementaires.",
+    "step2": "Cartographie: dependances, points de non-retour, scenarios fragiles.",
+    "step3": "Production: evidence pack, alertes tactiques, protocoles d arbitrage.",
+    "step4": "Pilotage: revue executive recurrente et ajustement des decisions.",
     "card": {
       "security": "Securite et confidentialite",
       "residency": "Residence et gouvernance des donnees",
       "ip": "Propriete intellectuelle et reutilisation"
+    },
+    "governance": {
+      "title": "Qui participe et comment",
+      "items": [
+        "Comite de pilotage: direction industrielle, DSI, conformite, achats, operations.",
+        "Rythme: point hebdomadaire + revue decisionnelle executive mensuelle.",
+        "Escalade: arbitrage sous 48h sur les signaux critiques."
+      ]
+    },
+    "weekly": {
+      "title": "Livrables et criteres de decision",
+      "items": [
+        "Hebdo: tableau des risques, signaux nouveaux, decisions recommandees.",
+        "Mensuel: evidence pack mis a jour et statut de conformite documentaire.",
+        "Critere go/no-go: impact marge, exposition conformite, delai execution."
+      ]
+    },
+    "cta": {
+      "primary": "Demander un cadrage 30 min",
+      "secondary": "Recevoir un exemple d Evidence Pack"
     }
   }
 }

@@ -1,58 +1,93 @@
 {
   "seo": {
-    "title": "SYMI | Réduire le risque décisionnel en environnement industriel réglementé",
-    "description": "Système de réduction du risque décisionnel pour environnements industriels réglementés : audit de trajectoire, chaîne de preuve conformité et monitoring stratégique."
+    "title": "SYMI | Reduire le risque decisionnel en environnement industriel reglemente",
+    "description": "Systeme de reduction du risque decisionnel pour environnements industriels reglementes: audit de trajectoire, chaine de preuve conformite et monitoring tactique."
   },
   "hero": {
-    "kicker": "Systèmes décisionnels en contexte industriel & régulé",
-    "title": "Réduire le risque décisionnel en environnement industriel réglementé",
-    "subtitle": "Cartographier dépendances critiques, points de rupture et obligations avant qu’une décision n’engage des coûts irréversibles.",
-    "intro": "Nous structurons les arbitrages critiques avec une lecture opérationnelle des risques, preuves et trajectoires.",
-    "trust": "Conçu pour COMEX, DSI, stratégie, conformité, achats et directions opérationnelles.",
-    "ctaPrimary": "Démarrer un audit industriel",
-    "ctaSecondary": "Voir l’Evidence Pack"
+    "kicker": "Systemes decisionnels en contexte industriel et regule",
+    "title": "Reduire le risque decisionnel en environnement industriel reglemente",
+    "subtitle": "Cartographier dependances critiques, points de rupture et obligations avant qu une decision n engage des couts irreversibles.",
+    "intro": "SYMI structure les arbitrages critiques avec une lecture operationnelle des risques, preuves et trajectoires d execution.",
+    "trust": "Concu pour COMEX, DSI, strategie, conformite, achats et directions operationnelles.",
+    "ctaPrimary": "Demander un cadrage 30 min",
+    "ctaSecondary": "Recevoir un exemple d Evidence Pack"
+  },
+  "risk": {
+    "title": "Ce que le systeme evite",
+    "items": [
+      "Retards de decision qui degradent le planning industriel et la marge.",
+      "Non-conformites documentaires qui font sortir un dossier au premier filtre AO.",
+      "Arbitrages tardifs sur des dependances deja verrouillees."
+    ]
   },
   "pillars": {
     "items": [
       {
         "title": "Audit de trajectoire industrielle",
-        "body": "Identifier dépendances critiques, scénarios fragiles et points de non-retour avant tout engagement stratégique.",
+        "body": "Identifier dependances critiques, scenarios fragiles et points de non-retour avant tout engagement strategique.",
         "href": "audit-industriel",
-        "cta": "Accéder à l’audit"
+        "cta": "Voir l audit industriel"
       },
       {
         "title": "Evidence Pack",
-        "body": "Structurer la chaîne de preuve nécessaire pour passer le premier filtre conformité et marchés publics sans friction.",
+        "body": "Structurer la chaine de preuve necessaire pour passer le premier filtre conformite et marches publics.",
         "href": "evidence-pack",
-        "cta": "Accéder à l’Evidence Pack"
+        "cta": "Voir l Evidence Pack"
       },
       {
         "title": "Monitoring intelligence",
-        "body": "Détecter en continu les évolutions réglementaires et signaux publics susceptibles d’altérer vos décisions d’exécution.",
+        "body": "Detecter les evolutions reglementaires et signaux publics susceptibles d alterer les decisions d execution.",
         "href": "monitoring",
-        "cta": "Accéder au monitoring"
+        "cta": "Voir le monitoring"
+      }
+    ]
+  },
+  "offers": {
+    "title": "Formats d intervention",
+    "items": [
+      {
+        "name": "Diagnostic industriel",
+        "duration": "10 jours",
+        "body": "Cadrage des decisions structurantes, risques de trajectoire et priorites de gouvernance.",
+        "href": "contact",
+        "cta": "Planifier un cadrage"
+      },
+      {
+        "name": "Evidence Pack tender-ready",
+        "duration": "30 jours",
+        "body": "Production d un dossier conforme, tracable et presentable au premier filtre marches publics.",
+        "href": "evidence-pack",
+        "cta": "Voir les livrables"
+      },
+      {
+        "name": "Monitoring continu",
+        "duration": "Abonnement",
+        "body": "Surveillance tactique des signaux publics, alertes operationnelles et revue d arbitrage recurrente.",
+        "href": "monitoring",
+        "cta": "Activer le monitoring"
       }
     ]
   },
   "deliverables": {
     "title": "Ce que vous recevez",
     "items": [
-      "Cartographie des décisions structurantes",
-      "Matrice dépendances/contraintes/risques",
-      "Evidence Pack indexé et opposable",
-      "Tableau de monitoring avec priorisation opérationnelle"
+      "Cartographie des decisions structurantes.",
+      "Matrice dependances, contraintes, risques.",
+      "Evidence Pack indexe et opposable.",
+      "Tableau de monitoring avec priorisation operationnelle."
     ]
   },
   "cta": {
-    "label": "Démarrer un audit industriel",
+    "label": "Demarrer un audit industriel",
+    "secondaryLabel": "Recevoir un exemple d Evidence Pack",
     "href": "audit-industriel"
   },
   "audience": {
-    "title": "Équipes concernées",
+    "title": "Equipes concernees",
     "items": [
-      "Directions industrielles et comités exécutifs",
-      "DSI, stratégie, conformité et achats",
-      "PME soumises à des exigences réglementaires et appels d’offres"
+      "Directions industrielles et comites executifs.",
+      "DSI, strategie, conformite et achats.",
+      "PME soumises a des exigences reglementaires et appels d offres."
     ]
   }
 }

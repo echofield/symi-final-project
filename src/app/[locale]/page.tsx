@@ -18,6 +18,8 @@ export default async function HomeLocalePage({params}: {params: {locale: 'fr' | 
   const pillars = t.raw('pillars.items') as Array<{title: string; body: string; href: string; cta: string}>;
   const deliverables = t.raw('deliverables.items') as string[];
   const audience = t.raw('audience.items') as string[];
+  const riskItems = t.raw('risk.items') as string[];
+  const offers = t.raw('offers.items') as Array<{name: string; duration: string; body: string; href: string; cta: string}>;
 
   return (
     <section className="bg-white py-20 text-black">
@@ -29,9 +31,18 @@ export default async function HomeLocalePage({params}: {params: {locale: 'fr' | 
           <p className="mt-4 text-lg leading-8">{t('hero.intro')}</p>
           <p className="mt-4 text-sm uppercase tracking-widest">{t('hero.trust')}</p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link href={`/${params.locale}/audit-industriel`} className="btn btn-primary">{t('hero.ctaPrimary')}</Link>
+            <Link href={`/${params.locale}/contact`} className="btn btn-primary">{t('hero.ctaPrimary')}</Link>
             <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80">{t('hero.ctaSecondary')}</Link>
           </div>
+        </div>
+
+        <div className="border border-black bg-white p-8">
+          <h2 className="text-2xl font-light">{t('risk.title')}</h2>
+          <ul className="mt-4 list-disc space-y-2 pl-6">
+            {riskItems.map((item, idx) => (
+              <li key={`${idx}-${item}`}>{item}</li>
+            ))}
+          </ul>
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
@@ -45,13 +56,30 @@ export default async function HomeLocalePage({params}: {params: {locale: 'fr' | 
         </div>
 
         <div className="border border-black bg-white p-8">
+          <h2 className="text-2xl font-light">{t('offers.title')}</h2>
+          <div className="mt-6 grid gap-6 md:grid-cols-3">
+            {offers.map((offer, idx) => (
+              <article key={`${idx}-${offer.name}`} className="border border-black p-6">
+                <p className="text-sm uppercase tracking-wide text-[var(--forest-green)]">{offer.duration}</p>
+                <h3 className="mt-2 text-xl font-light">{offer.name}</h3>
+                <p className="mt-3 leading-7">{offer.body}</p>
+                <Link href={`/${params.locale}/${offer.href}`} className="mt-4 inline-block underline">{offer.cta}</Link>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="border border-black bg-white p-8">
           <h2 className="text-2xl font-light">{t('deliverables.title')}</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6">
             {deliverables.map((item, idx) => (
               <li key={`${idx}-${item}`}>{item}</li>
             ))}
           </ul>
-          <Link href={`/${params.locale}/${t('cta.href')}`} className="btn btn-primary mt-6 inline-block">{t('cta.label')}</Link>
+          <div className="mt-6 flex flex-wrap gap-4">
+            <Link href={`/${params.locale}/${t('cta.href')}`} className="btn btn-primary inline-block">{t('cta.label')}</Link>
+            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80 inline-block">{t('cta.secondaryLabel')}</Link>
+          </div>
         </div>
 
         <div className="border border-black bg-white p-8">

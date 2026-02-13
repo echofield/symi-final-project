@@ -1,16 +1,24 @@
 {
   "seo": {
     "title": "SYMI | Reduce decision risk in regulated industrial environments",
-    "description": "Decision-risk reduction system for regulated industrial environments: trajectory audit, compliance evidence chain, and strategic monitoring."
+    "description": "Decision-risk reduction system for regulated industrial environments: trajectory audit, compliance evidence chain, and tactical monitoring."
   },
   "hero": {
-    "kicker": "Decision systems in industrial and regulated contexts",
+    "kicker": "Decision systems for industrial and regulated contexts",
     "title": "Reduce decision risk in regulated industrial environments",
     "subtitle": "Map critical dependencies, failure points, and obligations before a decision commits irreversible costs.",
-    "intro": "We structure critical arbitrations with an operational reading of risks, evidence, and execution trajectories.",
+    "intro": "SYMI structures critical arbitrations through an operational reading of risk exposure, proof quality, and execution trajectories.",
     "trust": "Designed for executive committees, CIO offices, strategy, compliance, procurement, and operations leadership.",
-    "ctaPrimary": "Start an industrial audit",
-    "ctaSecondary": "View the Evidence Pack"
+    "ctaPrimary": "Book a 30-minute scoping call",
+    "ctaSecondary": "Request an Evidence Pack sample"
+  },
+  "risk": {
+    "title": "What the system prevents",
+    "items": [
+      "Decision delays that erode industrial planning and margin.",
+      "Documentation non-compliance that fails first-stage public tender screening.",
+      "Late arbitrations on dependencies that are already locked in."
+    ]
   },
   "pillars": {
     "items": [
@@ -18,41 +26,68 @@
         "title": "Industrial trajectory audit",
         "body": "Identify critical dependencies, fragile scenarios, and no-return points before any strategic commitment.",
         "href": "audit-industriel",
-        "cta": "Access the audit"
+        "cta": "View industrial audit"
       },
       {
         "title": "Evidence Pack",
-        "body": "Build the evidence chain required to pass first-level compliance and public tender screening without friction.",
+        "body": "Build the proof chain required to pass first-stage compliance and public tender screening.",
         "href": "evidence-pack",
-        "cta": "Access the Evidence Pack"
+        "cta": "View Evidence Pack"
       },
       {
-        "title": "Intelligence monitoring",
-        "body": "Continuously detect regulatory shifts and public signals likely to alter execution decisions.",
+        "title": "Monitoring intelligence",
+        "body": "Detect regulatory changes and public signals likely to alter execution decisions.",
         "href": "monitoring",
-        "cta": "Access monitoring"
+        "cta": "View monitoring"
+      }
+    ]
+  },
+  "offers": {
+    "title": "Engagement formats",
+    "items": [
+      {
+        "name": "Industrial diagnostic",
+        "duration": "10 days",
+        "body": "Frame structural decisions, trajectory risks, and governance priorities.",
+        "href": "contact",
+        "cta": "Plan a scoping call"
+      },
+      {
+        "name": "Tender-ready Evidence Pack",
+        "duration": "30 days",
+        "body": "Deliver a compliant, traceable dossier ready for first-stage public tender screening.",
+        "href": "evidence-pack",
+        "cta": "View deliverables"
+      },
+      {
+        "name": "Continuous monitoring",
+        "duration": "Subscription",
+        "body": "Run tactical public-signal monitoring, operational alerts, and recurring arbitration reviews.",
+        "href": "monitoring",
+        "cta": "Activate monitoring"
       }
     ]
   },
   "deliverables": {
     "title": "Deliverables",
     "items": [
-      "Map of structural decisions",
-      "Dependencies/constraints/risk matrix",
-      "Indexed and auditable Evidence Pack",
-      "Monitoring dashboard with operational prioritization"
+      "Structural decision map.",
+      "Dependencies, constraints, and risk matrix.",
+      "Indexed and auditable Evidence Pack.",
+      "Monitoring dashboard with operational prioritization."
     ]
   },
   "cta": {
     "label": "Start an industrial audit",
+    "secondaryLabel": "Request an Evidence Pack sample",
     "href": "audit-industriel"
   },
   "audience": {
     "title": "Relevant teams",
     "items": [
-      "Industrial leadership and executive committees",
-      "CIO, strategy, compliance, and procurement",
-      "SMEs facing regulatory and public tender requirements"
+      "Industrial leadership and executive committees.",
+      "CIO, strategy, compliance, and procurement.",
+      "SMEs facing regulatory and public tender requirements."
     ]
   }
 }

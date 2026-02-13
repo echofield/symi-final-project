@@ -1,14 +1,34 @@
 {
   "process": {
-    "title": "Process",
-    "step1": "Decision framing - Map critical dependencies, regulatory constraints and no-return points.",
-    "step2": "Evidence architecture - Define sources, verification rules and documentary traceability.",
-    "step3": "Tactical rollout - Install analysis routines, alerts and operational deliverables.",
-    "step4": "Continuous steering - Adjust decisions using public signals, risk exposure and execution feedback.",
+    "title": "Method and governance",
+    "step1": "Decision framing: scope, critical assumptions, and regulatory constraints.",
+    "step2": "Mapping: dependencies, no-return points, and fragile scenarios.",
+    "step3": "Production: evidence pack, tactical alerts, and arbitration protocols.",
+    "step4": "Steering: recurring executive review and decision adjustment.",
     "card": {
       "security": "Security and confidentiality",
       "residency": "Data residency and governance",
       "ip": "Intellectual property and reuse"
+    },
+    "governance": {
+      "title": "Who participates and how",
+      "items": [
+        "Steering committee: industrial leadership, CIO, compliance, procurement, operations.",
+        "Cadence: weekly operational check-in plus monthly executive decision review.",
+        "Escalation: 48-hour arbitration target on critical signals."
+      ]
+    },
+    "weekly": {
+      "title": "Deliverables and decision criteria",
+      "items": [
+        "Weekly: risk board, new signals, and recommended decisions.",
+        "Monthly: updated evidence pack and documentary compliance status.",
+        "Go/no-go criteria: margin impact, compliance exposure, execution delay."
+      ]
+    },
+    "cta": {
+      "primary": "Book a 30-minute scoping call",
+      "secondary": "Request an Evidence Pack sample"
     }
   }
 }
