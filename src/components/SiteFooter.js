@@ -3,7 +3,7 @@ import {useLocale} from "next-intl";
 
 export default function SiteFooter() {
   const locale = useLocale();
-  const toEmail = process.env.NEXT_PUBLIC_CONTACT_TO || "contact@example.com";
+  const toEmail = "contact@symi.io";
 
   return (
     <footer className="border-t border-black bg-white">

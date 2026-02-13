@@ -1,9 +1,9 @@
 {
-  "contact.title": "Contact",
-  "contact.success": "Thanks, we’ll get back to you shortly.",
-  "contact.consent": "I accept the privacy policy.",
-  "contact.submit": "Send",
-  "contact.sampleNote": "Request your free sample intelligence report."
+  "contact": {
+    "title": "Contact",
+    "success": "Thanks, we'll get back to you shortly.",
+    "consent": "I accept the privacy policy.",
+    "submit": "Send",
+    "sampleNote": "Request your free sample intelligence report."
+  }
 }
-
-

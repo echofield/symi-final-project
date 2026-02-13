@@ -1,9 +1,10 @@
 "use client";
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function ContactPage() {
-  const t = useTranslations();
+  const t = useTranslations('contact');
+  const locale = useLocale();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
@@ -21,30 +22,28 @@ export default function ContactPage() {
   return (
     <section className="bg-white py-20 text-black">
       <div className="mx-auto max-w-xl px-6">
-        <h1 className="text-4xl font-light">Contact</h1>
-        <p className="mt-2 text-base text-black opacity-80">Request your free sample intelligence report.</p>
+        <h1 className="text-4xl font-light">{t('title')}</h1>
+        <p className="mt-2 text-base text-black opacity-80">{t('sampleNote')}</p>
         {ok ? (
-          <p className="mt-6">{t('contact.success')}</p>
+          <p className="mt-6">{t('success')}</p>
         ) : (
           <form onSubmit={onSubmit} className="mt-8 space-y-4">
-            <input className="form-input" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} required />
+            <input className="form-input" placeholder={locale === 'fr' ? 'Nom' : 'Name'} value={name} onChange={(e) => setName(e.target.value)} required />
             <input className="form-input" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            <input className="form-input" placeholder="Société" value={company} onChange={(e) => setCompany(e.target.value)} />
+            <input className="form-input" placeholder={locale === 'fr' ? 'Société' : 'Company'} value={company} onChange={(e) => setCompany(e.target.value)} />
             <select className="form-input" value={vertical} onChange={(e) => setVertical(e.target.value)}>
               <option>Legal</option>
-              <option>Real Estate</option>
+              <option>{locale === 'fr' ? 'Immobilier' : 'Real Estate'}</option>
             </select>
-            <textarea className="form-textarea" placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} required />
+            <textarea className="form-textarea" placeholder={locale === 'fr' ? 'Message' : 'Message'} value={message} onChange={(e) => setMessage(e.target.value)} required />
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} required />
-              <span>{t('contact.consent')}</span>
+              <span>{t('consent')}</span>
             </label>
-            <button className="btn btn-primary" type="submit">{t('contact.submit')}</button>
+            <button className="btn btn-primary" type="submit">{t('submit')}</button>
           </form>
         )}
       </div>
     </section>
   );
 }
-
-

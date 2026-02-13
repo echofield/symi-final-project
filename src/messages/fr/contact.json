@@ -1,9 +1,9 @@
 {
-  "contact.title": "Contact",
-  "contact.success": "Merci, nous revenons vers vous rapidement.",
-  "contact.consent": "J’accepte la politique de confidentialité.",
-  "contact.submit": "Envoyer",
-  "contact.sampleNote": "Demandez votre rapport d’intelligence gratuit."
+  "contact": {
+    "title": "Contact",
+    "success": "Merci, nous revenons vers vous rapidement.",
+    "consent": "J'accepte la politique de confidentialité.",
+    "submit": "Envoyer",
+    "sampleNote": "Demandez votre rapport d'intelligence gratuit."
+  }
 }
-
-
