@@ -1,5 +1,18 @@
 import { NextResponse } from 'next/server';
 
+export const runtime = 'nodejs';
+export const maxDuration = 60;
+
+const withTimeout = async (url, options, timeoutMs = 15000) => {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+};
+
 // Helper function to create the Gemini prompt
 const createGeminiPrompt = (answers) => `
   You are Aria, a Lead Systems Architect for Symi. Your tone is professional, insightful, and strategic.
@@ -61,10 +74,13 @@ const createOpenAIPrompt = (answers) => `
 `;
 
 export async function POST(request) {
-  const { answers } = await request.json();
-  if (!answers) {
-    return NextResponse.json({ error: 'Invalid request: "answers" are required.' }, { status: 400 });
+  let answers;
+  try {
+    ({ answers } = await request.json());
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body.' }, { status: 400 });
   }
+  if (!answers) return NextResponse.json({ error: 'Invalid request: "answers" are required.' }, { status: 400 });
 
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -75,14 +91,14 @@ export async function POST(request) {
       try {
         console.log("Attempting to generate blueprint with Gemini...");
         const geminiPrompt = createGeminiPrompt(answers);
-        const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+        const geminiResponse = await withTimeout(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             contents: [{ parts: [{ text: geminiPrompt }] }],
             generationConfig: { responseMimeType: "application/json", temperature: 0.6 }
           })
-        });
+        }, 15000);
 
         if (!geminiResponse.ok) {
           // This will trigger the catch block and initiate the fallback
@@ -110,7 +126,7 @@ export async function POST(request) {
       try {
         console.log("Attempting to generate blueprint with OpenAI...");
         const openAIPrompt = createOpenAIPrompt(answers);
-        const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+        const openAIResponse = await withTimeout('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -122,7 +138,7 @@ export async function POST(request) {
             response_format: { type: "json_object" },
             temperature: 0.5,
           })
-        });
+        }, 15000);
 
         if (!openAIResponse.ok) {
           throw new Error(`OpenAI API failed with status: ${openAIResponse.status}`);
