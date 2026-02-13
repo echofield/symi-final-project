@@ -41,7 +41,7 @@ function ContactModal({ onClose }) {
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
   const [error, setError] = useState('');
-  const toEmail = process.env.NEXT_PUBLIC_CONTACT_TO || '';
+  const toEmail = process.env.NEXT_PUBLIC_CONTACT_TO || 'contact@symi.io';
 
   const handleSubmit = async (e) => {
     e.preventDefault();

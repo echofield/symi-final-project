@@ -12,11 +12,35 @@ export default function ContactPage() {
   const [message, setMessage] = useState('');
   const [consent, setConsent] = useState(false);
   const [ok, setOk] = useState(false);
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    console.log({ name, email, company, vertical, message, consent });
-    setOk(true);
+    setSubmitting(true);
+    setError('');
+
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        fullName: name,
+        company,
+        email,
+        description: `${message}\n\nVertical: ${vertical}`
+      })
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data?.message || 'Server error');
+        }
+        setOk(true);
+      })
+      .catch((err: any) => {
+        setError(err?.message || 'Server error');
+      })
+      .finally(() => setSubmitting(false));
   };
 
   return (
@@ -40,7 +64,10 @@ export default function ContactPage() {
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} required />
               <span>{t('consent')}</span>
             </label>
-            <button className="btn btn-primary" type="submit">{t('submit')}</button>
+            {error && <p className="text-sm text-red-600">{error}</p>}
+            <button className="btn btn-primary" type="submit" disabled={submitting}>
+              {submitting ? (locale === 'fr' ? 'Envoi...' : 'Sending...') : t('submit')}
+            </button>
           </form>
         )}
       </div>
