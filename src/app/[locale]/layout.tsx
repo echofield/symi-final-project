@@ -8,6 +8,7 @@ import SiteHeader from '../../components/SiteHeader';
 import SiteFooter from '../../components/SiteFooter';
 import ScrollProgress from '../../components/ScrollProgress';
 import BackToTop from '../../components/BackToTop';
+import PageTransition from '../../components/PageTransition';
 
 export const dynamic = 'force-static';
 
@@ -28,7 +29,9 @@ export default async function LocaleLayout({
         <div className="flex min-h-screen flex-col">
           <ScrollProgress />
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main className="content-shell flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <SiteFooter />
           <BackToTop />
         </div>

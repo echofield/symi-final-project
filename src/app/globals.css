@@ -30,6 +30,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -46,6 +47,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- Base Layer --- */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     font-family: 'Inter', sans-serif;
   }
@@ -55,13 +59,25 @@ h1, h2, h3, h4, h5, h6 {
 @layer components {
   /* --- Buttons --- */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-4 text-base font-medium transition-opacity duration-200 ease-in-out;
+    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-4 text-base font-medium transition-all duration-200 ease-out;
+    transform: translateY(0);
   }
   .btn-primary {
-    @apply bg-[var(--forest-green)] text-white border-0 hover:opacity-90;
+    @apply bg-[var(--forest-green)] text-white border-0;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+    filter: saturate(0.98);
+  }
+  .btn:active {
+    transform: translateY(0);
+  }
+  .btn-primary:hover {
+    opacity: 0.94;
   }
   .btn:disabled, .btn-primary:disabled {
     @apply opacity-50 cursor-not-allowed;
+    transform: none;
   }
   .nav-button {
     @apply flex items-center gap-2 transition-transform hover:scale-105;
@@ -141,6 +157,22 @@ h1, h2, h3, h4, h5, h6 {
   .faq-content {
     @apply px-5 pb-5 pt-1 text-gray-600 leading-relaxed;
   }
+
+  .content-shell {
+    min-height: 62vh;
+  }
+
+  .route-shell {
+    min-height: 62vh;
+    will-change: opacity, transform;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #f2f4f7 0%, #e6e9ee 50%, #f2f4f7 100%);
+    background-size: 200% 100%;
+    border: 1px solid #e3e6eb;
+    animation: skeleton-shimmer 1.25s ease-in-out infinite;
+  }
 }
 
 /* --- Utilities Layer --- */
@@ -167,6 +199,11 @@ h1, h2, h3, h4, h5, h6 {
     to { opacity: 1; transform: translateX(0); }
   }
   .question-fade-in { animation: questionFade 0.5s ease-out; }
+
+  @keyframes skeleton-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
 
   /* --- Loading Animation --- */
   .loader { width: 80px; height: 50px; position: relative; }
@@ -199,6 +236,24 @@ h1, h2, h3, h4, h5, h6 {
     }
     .question-text {
       @apply text-lg;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .btn,
+    .btn:hover,
+    .btn:active {
+      transform: none;
+      transition: none;
+    }
+    .route-shell {
+      transition: none;
+    }
+    .skeleton {
+      animation: none;
     }
   }
 }

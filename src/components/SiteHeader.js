@@ -25,7 +25,11 @@ export default function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-light text-black md:flex">
           {navItems.map((item) => (
-            <Link key={item.key} href={`/${locale}/${item.href}`} className="transition hover:opacity-80">
+            <Link
+              key={item.key}
+              href={`/${locale}/${item.href}`}
+              className="transition-all duration-200 ease-out hover:opacity-75 hover:underline underline-offset-4"
+            >
               {t(item.key)}
             </Link>
           ))}
@@ -38,7 +42,11 @@ export default function SiteHeader() {
         <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
           <div className="flex gap-4 overflow-x-auto whitespace-nowrap text-sm font-light text-black">
             {navItems.map((item) => (
-              <Link key={`mobile-${item.key}`} href={`/${locale}/${item.href}`} className="transition hover:opacity-80">
+              <Link
+                key={`mobile-${item.key}`}
+                href={`/${locale}/${item.href}`}
+                className="transition-all duration-200 ease-out hover:opacity-75"
+              >
                 {t(item.key)}
               </Link>
             ))}
