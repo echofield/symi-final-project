@@ -1,6 +1,21 @@
+import type {Metadata} from 'next';
 import Link from 'next/link';
+import {buildLocalizedMetadata} from '../../../../lib/schema';
+import {legalProcessors, legalProfile} from '../../../../lib/legal';
 
 const LAST_UPDATED = '2026-02-13';
+
+export async function generateMetadata({params}: {params: {locale: 'fr' | 'en'}}): Promise<Metadata> {
+  return buildLocalizedMetadata({
+    locale: params.locale,
+    path: '/legal/privacy',
+    title: params.locale === 'fr' ? 'SYMI | Politique de confidentialite' : 'SYMI | Privacy policy',
+    description:
+      params.locale === 'fr'
+        ? 'Traitement des donnees personnelles, bases legales, sous-traitants, transferts et droits des personnes.'
+        : 'Processing of personal data, legal bases, processors, transfers, and data-subject rights.'
+  });
+}
 
 export default function PrivacyPage({params}: {params: {locale: 'fr' | 'en'}}) {
   const isFr = params.locale === 'fr';
@@ -16,64 +31,79 @@ export default function PrivacyPage({params}: {params: {locale: 'fr' | 'en'}}) {
         <div className="space-y-6 leading-7">
           <section>
             <h2 className="text-xl font-light">{isFr ? '1. Responsable du traitement' : '1. Data controller'}</h2>
-            <p className="mt-2">
-              {isFr
-                ? 'Le responsable du traitement est SYMI. Contact: contact@symi.io.'
-                : 'The data controller is SYMI. Contact: contact@symi.io.'}
-            </p>
+            <p className="mt-2">{legalProfile.legalEntity}</p>
+            <p>{legalProfile.registeredOffice}</p>
+            <p>{isFr ? 'Contact' : 'Contact'}: {legalProfile.contactEmail}</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-light">{isFr ? '2. Donnees traitees' : '2. Data processed'}</h2>
+            <h2 className="text-xl font-light">{isFr ? '2. Categories de donnees' : '2. Data categories'}</h2>
             <ul className="mt-2 list-disc space-y-1 pl-5">
-              <li>{isFr ? 'Identite et coordonnees (nom, email, societe).' : 'Identity and contact details (name, email, company).'}</li>
-              <li>{isFr ? 'Contenu des demandes transmises via le formulaire de contact.' : 'Request content submitted via contact form.'}</li>
-              <li>{isFr ? 'Donnees techniques minimales de fonctionnement (logs applicatifs).' : 'Minimal technical operation data (application logs).'}</li>
+              <li>{isFr ? 'Identite et coordonnees professionnelles (nom, email, societe).' : 'Identity and professional contact details (name, email, company).'}</li>
+              <li>{isFr ? 'Contenu des demandes et metadonnees de traitement.' : 'Request content and processing metadata.'}</li>
+              <li>{isFr ? 'Logs techniques strictement necessaires a la securite et au fonctionnement.' : 'Technical logs strictly required for security and operations.'}</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-xl font-light">{isFr ? '3. Finalites et bases legales' : '3. Purposes and legal bases'}</h2>
             <ul className="mt-2 list-disc space-y-1 pl-5">
-              <li>{isFr ? 'Reponse a une demande commerciale: mesures precontractuelles / interet legitime.' : 'Response to commercial inquiry: pre-contractual steps / legitimate interest.'}</li>
-              <li>{isFr ? 'Gestion de la relation client: execution contractuelle.' : 'Client relationship management: contractual necessity.'}</li>
-              <li>{isFr ? 'Securite et prevention des abus: interet legitime.' : 'Security and abuse prevention: legitimate interest.'}</li>
+              <li>{isFr ? 'Gestion des demandes entrantes: mesures precontractuelles / interet legitime.' : 'Incoming inquiry management: pre-contractual measures / legitimate interest.'}</li>
+              <li>{isFr ? 'Execution des prestations: execution contractuelle.' : 'Service execution: contractual necessity.'}</li>
+              <li>{isFr ? 'Securite, prevention de fraude et tracabilite: interet legitime.' : 'Security, fraud prevention, and traceability: legitimate interest.'}</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-light">{isFr ? '4. Duree de conservation' : '4. Retention period'}</h2>
+            <h2 className="text-xl font-light">{isFr ? '4. Duree de conservation' : '4. Retention'}</h2>
             <p className="mt-2">
               {isFr
-                ? 'Les donnees de contact sont conservees le temps necessaire au traitement de la demande, puis archivees selon les obligations legales et contractuelles applicables.'
-                : 'Contact data is retained for the time needed to process the request, then archived according to applicable legal and contractual obligations.'}
+                ? 'Les donnees sont conservees pendant la duree necessaire a la finalite, puis archivees selon les obligations legales, fiscales et contractuelles applicables.'
+                : 'Data is retained for the duration required by purpose, then archived according to applicable legal, tax, and contractual obligations.'}
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-light">{isFr ? '5. Destinataires et sous-traitants' : '5. Recipients and processors'}</h2>
+            <h2 className="text-xl font-light">{isFr ? '5. Sous-traitants' : '5. Processors'}</h2>
+            <ul className="mt-2 list-disc space-y-1 pl-5">
+              {legalProcessors.map((processor, idx) => (
+                <li key={`${idx}-${processor.name}`}>
+                  {processor.name} - {isFr ? processor.roleFr : processor.roleEn}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-light">{isFr ? '6. Transferts hors UE' : '6. Transfers outside the EU'}</h2>
             <p className="mt-2">
               {isFr
-                ? 'Les donnees peuvent etre traitees par des prestataires techniques strictement necessaires au service (hebergement, email transactionnel), agissant comme sous-traitants.'
-                : 'Data may be processed by technical providers strictly required for service operation (hosting, transactional email), acting as processors.'}
+                ? 'Certains traitements peuvent impliquer des transferts hors UE. Le cas echeant, des garanties appropriees sont appliquees (clauses contractuelles types et mesures de securite complementaires).'
+                : 'Some processing may involve transfers outside the EU. Where applicable, appropriate safeguards are used (standard contractual clauses and supplementary security measures).'}
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-light">{isFr ? '6. Vos droits' : '6. Your rights'}</h2>
+            <h2 className="text-xl font-light">{isFr ? '7. Vos droits' : '7. Your rights'}</h2>
             <p className="mt-2">
               {isFr
-                ? 'Vous disposez des droits d acces, rectification, effacement, opposition, limitation et portabilite selon la reglementation applicable. Exercice des droits: contact@symi.io.'
-                : 'You may exercise access, rectification, erasure, objection, restriction, and portability rights under applicable law. Rights requests: contact@symi.io.'}
+                ? 'Vous pouvez exercer vos droits d acces, rectification, effacement, opposition, limitation et portabilite en ecrivant a '
+                : 'You may exercise access, rectification, erasure, objection, restriction, and portability rights by writing to '}
+              {legalProfile.dpoEmail}.
+            </p>
+            <p className="mt-1 text-sm">
+              {isFr
+                ? 'Vous pouvez egalement introduire une reclamation aupres de la CNIL.'
+                : 'You may also lodge a complaint with your competent supervisory authority (e.g., CNIL in France).'}
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-light">{isFr ? '7. IA, decision assistee et AI Act' : '7. AI-assisted decision support and AI Act'}</h2>
+            <h2 className="text-xl font-light">{isFr ? '8. IA et prise de decision' : '8. AI and decision-making'}</h2>
             <p className="mt-2">
               {isFr
-                ? 'SYMI peut utiliser des systemes d IA en support de production documentaire et de monitoring. Les resultats ne remplacent pas une revue humaine et ne constituent pas une decision automatisee au sens strict.'
-                : 'SYMI may use AI systems to support documentary production and monitoring. Outputs do not replace human review and are not fully automated decisions in the strict legal sense.'}
+                ? 'Les outils IA utilises par SYMI assistent l analyse et la production documentaire. Les decisions engageantes ne reposent pas sur un traitement automatise sans controle humain.'
+                : 'AI tools used by SYMI support analysis and documentary production. Binding decisions do not rely on fully automated processing without human oversight.'}
             </p>
           </section>
         </div>

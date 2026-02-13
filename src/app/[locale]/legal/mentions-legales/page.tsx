@@ -1,4 +1,20 @@
+import type {Metadata} from 'next';
+import {buildLocalizedMetadata} from '../../../../lib/schema';
+import {legalProfile} from '../../../../lib/legal';
+
 const LAST_UPDATED = '2026-02-13';
+
+export async function generateMetadata({params}: {params: {locale: 'fr' | 'en'}}): Promise<Metadata> {
+  return buildLocalizedMetadata({
+    locale: params.locale,
+    path: '/legal/mentions-legales',
+    title: params.locale === 'fr' ? 'SYMI | Mentions legales' : 'SYMI | Legal notice',
+    description:
+      params.locale === 'fr'
+        ? 'Informations legales de l editeur, hebergeur, publication et propriete intellectuelle.'
+        : 'Legal information on publisher, hosting provider, publication director, and intellectual property.'
+  });
+}
 
 export default function MentionsPage({params}: {params: {locale: 'fr' | 'en'}}) {
   const isFr = params.locale === 'fr';
@@ -13,31 +29,42 @@ export default function MentionsPage({params}: {params: {locale: 'fr' | 'en'}}) 
 
         <div className="space-y-6 leading-7">
           <section>
-            <h2 className="text-xl font-light">{isFr ? 'Editeur du site' : 'Website publisher'}</h2>
-            <p className="mt-2">SYMI</p>
-            <p>Contact: contact@symi.io</p>
+            <h2 className="text-xl font-light">{isFr ? 'Editeur' : 'Publisher'}</h2>
+            <p className="mt-2">{legalProfile.legalEntity}</p>
+            <p>{legalProfile.legalForm}</p>
+            <p>{isFr ? 'Capital social' : 'Share capital'}: {legalProfile.shareCapital}</p>
+            <p>{isFr ? 'RCS / SIREN' : 'Registration number'}: {legalProfile.registrationNumber}</p>
+            <p>TVA: {legalProfile.vatNumber}</p>
+            <p>{isFr ? 'Siege social' : 'Registered office'}: {legalProfile.registeredOffice}</p>
+            <p>{isFr ? 'Contact' : 'Contact'}: {legalProfile.contactEmail}</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-light">{isFr ? 'Hebergement' : 'Hosting provider'}</h2>
-            <p className="mt-2">Vercel Inc. - 340 S Lemon Ave #4133, Walnut, CA 91789, USA</p>
+            <h2 className="text-xl font-light">{isFr ? 'Directeur de la publication' : 'Publication director'}</h2>
+            <p className="mt-2">{legalProfile.publicationDirector}</p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-light">{isFr ? 'Hebergement' : 'Hosting'}</h2>
+            <p className="mt-2">{legalProfile.hostingProvider}</p>
+            <p>{legalProfile.hostingAddress}</p>
           </section>
 
           <section>
             <h2 className="text-xl font-light">{isFr ? 'Propriete intellectuelle' : 'Intellectual property'}</h2>
             <p className="mt-2">
               {isFr
-                ? 'Les contenus et elements graphiques du site sont proteges par le droit applicable. Toute reproduction non autorisee est interdite.'
-                : 'Website content and visual assets are protected under applicable law. Unauthorized reproduction is prohibited.'}
+                ? 'Le site, ses contenus, marques, elements graphiques et documentaires sont proteges. Toute reproduction ou extraction non autorisee est interdite.'
+                : 'Website content, brands, visual assets, and documentation are protected. Unauthorized reproduction or extraction is prohibited.'}
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-light">{isFr ? 'Responsabilite' : 'Liability'}</h2>
+            <h2 className="text-xl font-light">{isFr ? 'Limitation de responsabilite' : 'Limitation of liability'}</h2>
             <p className="mt-2">
               {isFr
-                ? 'SYMI met en oeuvre des moyens raisonnables pour assurer l exactitude et la disponibilite des informations sans garantie d absence totale d erreur.'
-                : 'SYMI uses reasonable efforts to ensure information accuracy and availability, without guaranteeing total absence of errors.'}
+                ? 'SYMI met en oeuvre des moyens raisonnables pour assurer fiabilite et disponibilite du site, sans garantie d interruption continue.'
+                : 'SYMI applies reasonable efforts to ensure reliability and availability, without uninterrupted-service guarantee.'}
             </p>
           </section>
         </div>
