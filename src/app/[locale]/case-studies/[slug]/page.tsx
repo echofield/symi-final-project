@@ -174,9 +174,9 @@ export default function CaseStudyPage({params}: Params) {
   if (!entry) return null;
 
   return (
-    <section className="bg-white py-20 text-black">
-      <div className="mx-auto max-w-4xl space-y-6 px-6">
-        <h1 className="text-4xl font-light">{entry.title}</h1>
+    <section className="bg-white py-14 sm:py-20 text-black">
+      <div className="mx-auto max-w-4xl space-y-6 px-4 sm:px-6">
+        <h1 className="text-3xl font-light sm:text-4xl">{entry.title}</h1>
         {entry.client && <p className="text-lg">{entry.client}</p>}
 
         <div className="border border-black p-6">
@@ -211,11 +211,11 @@ export default function CaseStudyPage({params}: Params) {
           </ul>
         </div>
 
-        <div className="flex flex-wrap gap-4 pt-2">
-          <Link href={`/${locale}/contact`} className="btn btn-primary">
+        <div className="flex flex-wrap gap-3 sm:gap-4 pt-2">
+          <Link href={`/${locale}/contact`} className="btn btn-primary w-full text-center sm:w-auto">
             {locale === 'fr' ? 'Demander un cadrage 30 min' : 'Book a 30-minute scoping call'}
           </Link>
-          <Link href={`/${locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80">
+          <Link href={`/${locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80 w-full text-center sm:w-auto">
             {locale === 'fr' ? 'Recevoir un exemple d Evidence Pack' : 'Request an Evidence Pack sample'}
           </Link>
         </div>

@@ -25,10 +25,10 @@ export default function CaseStudiesList({params}: {params: {locale: 'fr' | 'en'}
   const isFr = params.locale === 'fr';
 
   return (
-    <section className="bg-white py-20 text-black">
-      <div className="mx-auto max-w-6xl space-y-10 px-6">
+    <section className="bg-white py-14 sm:py-20 text-black">
+      <div className="mx-auto max-w-6xl space-y-10 px-4 sm:px-6">
         <div className="max-w-4xl">
-          <h1 className="text-4xl font-light">{isFr ? 'Etudes de cas' : 'Case studies'}</h1>
+          <h1 className="text-3xl font-light sm:text-4xl">{isFr ? 'Etudes de cas' : 'Case studies'}</h1>
           <p className="mt-4 text-lg leading-8">
             {isFr
               ? 'Cas concrets de reduction du risque decisionnel: decision prise, risque evite, preuve livree.'

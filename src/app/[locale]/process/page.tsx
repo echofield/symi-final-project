@@ -7,9 +7,9 @@ export default function ProcessPage({params}: {params: {locale: 'fr' | 'en'}}) {
   const governance = t.raw('governance.items') as string[];
   const weekly = t.raw('weekly.items') as string[];
   return (
-    <section className="bg-white py-20 text-black">
-      <div className="mx-auto max-w-6xl space-y-12 px-6">
-        <h1 className="text-4xl font-light">{t('title')}</h1>
+    <section className="bg-white py-14 sm:py-20 text-black">
+      <div className="mx-auto max-w-6xl space-y-10 sm:space-y-12 px-4 sm:px-6">
+        <h1 className="text-3xl font-light sm:text-4xl">{t('title')}</h1>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, idx) => (
             <div key={`${idx}-${s}`} className="border border-black p-6">{s}</div>
@@ -35,9 +35,9 @@ export default function ProcessPage({params}: {params: {locale: 'fr' | 'en'}}) {
               <li key={`${idx}-${item}`}>{item}</li>
             ))}
           </ul>
-          <div className="mt-6 flex flex-wrap gap-4">
-            <Link href={`/${params.locale}/contact`} className="btn btn-primary">{t('cta.primary')}</Link>
-            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80">{t('cta.secondary')}</Link>
+          <div className="mt-6 flex flex-wrap gap-3 sm:gap-4">
+            <Link href={`/${params.locale}/contact`} className="btn btn-primary w-full text-center sm:w-auto">{t('cta.primary')}</Link>
+            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80 w-full text-center sm:w-auto">{t('cta.secondary')}</Link>
           </div>
         </div>
       </div>

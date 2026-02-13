@@ -22,17 +22,17 @@ export default async function HomeLocalePage({params}: {params: {locale: 'fr' | 
   const offers = t.raw('offers.items') as Array<{name: string; duration: string; body: string; href: string; cta: string}>;
 
   return (
-    <section className="bg-white py-20 text-black">
-      <div className="mx-auto max-w-6xl space-y-12 px-6">
+    <section className="bg-white py-14 sm:py-20 text-black">
+      <div className="mx-auto max-w-6xl space-y-10 sm:space-y-12 px-4 sm:px-6">
         <div className="max-w-4xl">
           <p className="text-sm uppercase tracking-[0.35em] text-[var(--forest-green)]">{t('hero.kicker')}</p>
-          <h1 className="mt-4 text-4xl font-light sm:text-5xl">{t('hero.title')}</h1>
-          <p className="mt-4 text-xl font-light leading-8">{t('hero.subtitle')}</p>
-          <p className="mt-4 text-lg leading-8">{t('hero.intro')}</p>
+          <h1 className="mt-4 text-3xl font-light leading-tight sm:text-5xl">{t('hero.title')}</h1>
+          <p className="mt-4 text-lg font-light leading-8 sm:text-xl">{t('hero.subtitle')}</p>
+          <p className="mt-4 text-base leading-8 sm:text-lg">{t('hero.intro')}</p>
           <p className="mt-4 text-sm uppercase tracking-widest">{t('hero.trust')}</p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href={`/${params.locale}/contact`} className="btn btn-primary">{t('hero.ctaPrimary')}</Link>
-            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80">{t('hero.ctaSecondary')}</Link>
+          <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
+            <Link href={`/${params.locale}/contact`} className="btn btn-primary w-full text-center sm:w-auto">{t('hero.ctaPrimary')}</Link>
+            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80 w-full text-center sm:w-auto">{t('hero.ctaSecondary')}</Link>
           </div>
         </div>
 
@@ -76,9 +76,9 @@ export default async function HomeLocalePage({params}: {params: {locale: 'fr' | 
               <li key={`${idx}-${item}`}>{item}</li>
             ))}
           </ul>
-          <div className="mt-6 flex flex-wrap gap-4">
-            <Link href={`/${params.locale}/${t('cta.href')}`} className="btn btn-primary inline-block">{t('cta.label')}</Link>
-            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80 inline-block">{t('cta.secondaryLabel')}</Link>
+          <div className="mt-6 flex flex-wrap gap-3 sm:gap-4">
+            <Link href={`/${params.locale}/${t('cta.href')}`} className="btn btn-primary inline-block w-full text-center sm:w-auto">{t('cta.label')}</Link>
+            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80 inline-block w-full text-center sm:w-auto">{t('cta.secondaryLabel')}</Link>
           </div>
         </div>
 

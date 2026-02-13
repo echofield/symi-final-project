@@ -18,7 +18,7 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-black bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 sm:py-6">
         <Link href={`/${locale}`} className="text-lg font-medium tracking-tight text-black flex items-center gap-2">
           <span className="text-[var(--forest-green)]">*</span>
           <span>{t("brand.name")}</span>
@@ -34,6 +34,17 @@ export default function SiteHeader() {
           <LanguageSwitcher locale={locale} />
         </div>
       </div>
+      <nav className="md:hidden border-t border-black">
+        <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
+          <div className="flex gap-4 overflow-x-auto whitespace-nowrap text-sm font-light text-black">
+            {navItems.map((item) => (
+              <Link key={`mobile-${item.key}`} href={`/${locale}/${item.href}`} className="transition hover:opacity-80">
+                {t(item.key)}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
     </header>
   );
 }

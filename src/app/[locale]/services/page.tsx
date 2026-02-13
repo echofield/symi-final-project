@@ -98,16 +98,16 @@ export default function ServicesPage({params}: {params: {locale: 'fr' | 'en'}}) 
       ];
 
   return (
-    <section className="bg-white py-20 text-black">
-      <div className="mx-auto max-w-6xl space-y-12 px-6">
+    <section className="bg-white py-14 sm:py-20 text-black">
+      <div className="mx-auto max-w-6xl space-y-10 sm:space-y-12 px-4 sm:px-6">
         <div className="max-w-4xl">
-          <h1 className="text-4xl font-light">{isFr ? 'Services' : 'Services'}</h1>
+          <h1 className="text-3xl font-light sm:text-4xl">{isFr ? 'Services' : 'Services'}</h1>
           <p className="mt-4 text-lg leading-8">{intro}</p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href={`/${params.locale}/contact`} className="btn btn-primary">
+          <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
+            <Link href={`/${params.locale}/contact`} className="btn btn-primary w-full text-center sm:w-auto">
               {isFr ? 'Demander un cadrage 30 min' : 'Book a 30-minute scoping call'}
             </Link>
-            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80">
+            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80 w-full text-center sm:w-auto">
               {isFr ? 'Recevoir un exemple d Evidence Pack' : 'Request an Evidence Pack sample'}
             </Link>
           </div>
