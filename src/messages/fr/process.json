@@ -1,12 +1,14 @@
 {
-  "process.title": "Méthode",
-  "process.step1": "Discover — Cartographiez votre paysage d’opportunités : quels signaux comptent pour votre activité, quelles sources officielles les contiennent, et quelles actions votre équipe entreprend lorsqu’ils apparaissent.",
-  "process.step2": "Design — Concevez l’architecture d’intelligence : sources de données, logique de validation, seuils d’alerte et points d’intégration avec vos systèmes existants.",
-  "process.step3": "Develop — Construisez des systèmes en production avec démos hebdomadaires. Démarrez par des rapports d’intelligence manuels pour valider la valeur, puis automatisez progressivement à mesure que les intégrations de données sont complétées.",
-  "process.step4": "Deliver — Déployez l’infrastructure de veille, formez les équipes à l’interprétation des signaux, et assurez un support continu à mesure que le système devient central aux opérations.",
-  "process.card.security": "Sécurité & Confidentialité",
-  "process.card.residency": "Résidence des données",
-  "process.card.ip": "Propriété intellectuelle"
+  "process": {
+    "title": "Processus",
+    "step1": "Cadre decisionnel - Cartographier les dependances critiques, les contraintes reglementaires et les points de non-retour.",
+    "step2": "Architecture de preuve - Definir les sources, les regles de verification et la tracabilite documentaire.",
+    "step3": "Mise en oeuvre tactique - Mettre en place des rituels d'analyse, des alertes et des livrables actionnables.",
+    "step4": "Pilotage continu - Ajuster les arbitrages selon les signaux publics, les risques et l'execution terrain.",
+    "card": {
+      "security": "Securite et confidentialite",
+      "residency": "Residence et gouvernance des donnees",
+      "ip": "Propriete intellectuelle et reutilisation"
+    }
+  }
 }
-
-

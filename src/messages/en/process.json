@@ -1,12 +1,14 @@
 {
-  "process.title": "Process",
-  "process.step1": "Discover — Map your opportunity landscape: which signals matter to your business, which official sources contain them, and what actions your team takes when opportunities appear.",
-  "process.step2": "Design — Blueprint the intelligence architecture: data sources, validation logic, alert thresholds, and integration points with your existing systems.",
-  "process.step3": "Develop — Build production systems with weekly demos. Start with manual intelligence reports to validate value, then automate progressively as data integrations are completed.",
-  "process.step4": "Deliver — Deploy monitoring infrastructure, train teams on interpreting intelligence signals, and provide ongoing support as your system becomes core to operations.",
-  "process.card.security": "Security & Privacy",
-  "process.card.residency": "Data Residency",
-  "process.card.ip": "Ownership of IP"
+  "process": {
+    "title": "Process",
+    "step1": "Decision framing - Map critical dependencies, regulatory constraints and no-return points.",
+    "step2": "Evidence architecture - Define sources, verification rules and documentary traceability.",
+    "step3": "Tactical rollout - Install analysis routines, alerts and operational deliverables.",
+    "step4": "Continuous steering - Adjust decisions using public signals, risk exposure and execution feedback.",
+    "card": {
+      "security": "Security and confidentiality",
+      "residency": "Data residency and governance",
+      "ip": "Intellectual property and reuse"
+    }
+  }
 }
-
-
