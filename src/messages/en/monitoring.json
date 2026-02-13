@@ -1,0 +1,24 @@
+{
+  "seo": {
+    "title": "Intelligence monitoring | SYMI",
+    "description": "Tactical monitoring system for public signals to support industrial and regulatory arbitrations."
+  },
+  "hero": {
+    "kicker": "Pillar 3",
+    "title": "Intelligence monitoring",
+    "intro": "Monitor critical public signals to shorten reaction time and secure decision-making."
+  },
+  "deliverables": {
+    "title": "Deliverables",
+    "items": [
+      "Signal taxonomy and alert thresholds",
+      "Weekly review routines",
+      "Decision and impact log",
+      "Structured escalation of critical alerts"
+    ]
+  },
+  "cta": {
+    "label": "Contact the team",
+    "href": "contact"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "seo": {
+    "title": "Audit de trajectoire industrielle | SYMI",
+    "description": "Audit décisionnel pour mesurer robustesse, dépendances et points de non-retour en environnement industriel réglementé."
+  },
+  "hero": {
+    "kicker": "Pilier 1",
+    "title": "Audit de trajectoire industrielle",
+    "intro": "Cadre d’audit pour qualifier les décisions structurantes, leurs dépendances et leurs contraintes d’exécution."
+  },
+  "deliverables": {
+    "title": "Ce que vous recevez",
+    "items": [
+      "Diagnostic de robustesse décisionnelle",
+      "Cartographie des dépendances critiques",
+      "Scénarios de trajectoire avec points de non-retour",
+      "Plan d’arbitrages priorisés sur 90 jours"
+    ]
+  },
+  "cta": {
+    "label": "Passer à l’Evidence Pack",
+    "href": "evidence-pack"
+  }
+}

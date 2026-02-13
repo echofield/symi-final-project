@@ -1,0 +1,24 @@
+{
+  "seo": {
+    "title": "Evidence Pack for compliance and tenders | SYMI",
+    "description": "Documentation structuring for compliance, public tenders, and tender-ready dossiers with a verifiable evidence chain."
+  },
+  "hero": {
+    "kicker": "Pillar 2",
+    "title": "Evidence Pack",
+    "intro": "Build auditable, traceable, and readable dossiers for compliance, procurement, and legal teams."
+  },
+  "deliverables": {
+    "title": "Deliverables",
+    "items": [
+      "Standardized document structure",
+      "Evidence and supporting-document index",
+      "Compliance and tender requirement matrix",
+      "Tender-ready dossier for first-level screening"
+    ]
+  },
+  "cta": {
+    "label": "Enable monitoring",
+    "href": "monitoring"
+  }
+}

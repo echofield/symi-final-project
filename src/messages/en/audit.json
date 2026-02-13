@@ -1,0 +1,24 @@
+{
+  "seo": {
+    "title": "Industrial trajectory audit | SYMI",
+    "description": "Decision audit to assess robustness, dependencies, and no-return points in regulated industrial environments."
+  },
+  "hero": {
+    "kicker": "Pillar 1",
+    "title": "Industrial trajectory audit",
+    "intro": "Audit framework to qualify structural decisions, dependencies, and execution constraints."
+  },
+  "deliverables": {
+    "title": "Deliverables",
+    "items": [
+      "Decision robustness diagnostic",
+      "Critical dependency mapping",
+      "Trajectory scenarios with no-return points",
+      "Prioritized arbitration plan over 90 days"
+    ]
+  },
+  "cta": {
+    "label": "Move to Evidence Pack",
+    "href": "evidence-pack"
+  }
+}

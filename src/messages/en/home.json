@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "title": "SYMI | Reduce decision risk in regulated industrial environments",
+    "description": "Decision-risk reduction system for regulated industrial environments: trajectory audit, compliance evidence chain, and strategic monitoring."
+  },
+  "hero": {
+    "kicker": "Decision systems in industrial and regulated contexts",
+    "title": "Reduce decision risk in regulated industrial environments",
+    "subtitle": "Map critical dependencies, failure points, and obligations before a decision commits irreversible costs.",
+    "intro": "We structure critical arbitrations with an operational reading of risks, evidence, and execution trajectories.",
+    "trust": "Designed for executive committees, CIO offices, strategy, compliance, procurement, and operations leadership.",
+    "ctaPrimary": "Start an industrial audit",
+    "ctaSecondary": "View the Evidence Pack"
+  },
+  "pillars": {
+    "items": [
+      {
+        "title": "Industrial trajectory audit",
+        "body": "Identify critical dependencies, fragile scenarios, and no-return points before any strategic commitment.",
+        "href": "audit-industriel",
+        "cta": "Access the audit"
+      },
+      {
+        "title": "Evidence Pack",
+        "body": "Build the evidence chain required to pass first-level compliance and public tender screening without friction.",
+        "href": "evidence-pack",
+        "cta": "Access the Evidence Pack"
+      },
+      {
+        "title": "Intelligence monitoring",
+        "body": "Continuously detect regulatory shifts and public signals likely to alter execution decisions.",
+        "href": "monitoring",
+        "cta": "Access monitoring"
+      }
+    ]
+  },
+  "deliverables": {
+    "title": "Deliverables",
+    "items": [
+      "Map of structural decisions",
+      "Dependencies/constraints/risk matrix",
+      "Indexed and auditable Evidence Pack",
+      "Monitoring dashboard with operational prioritization"
+    ]
+  },
+  "cta": {
+    "label": "Start an industrial audit",
+    "href": "audit-industriel"
+  },
+  "audience": {
+    "title": "Relevant teams",
+    "items": [
+      "Industrial leadership and executive committees",
+      "CIO, strategy, compliance, and procurement",
+      "SMEs facing regulatory and public tender requirements"
+    ]
+  }
+}

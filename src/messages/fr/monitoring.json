@@ -1,0 +1,24 @@
+{
+  "seo": {
+    "title": "Monitoring intelligence | SYMI",
+    "description": "Système de monitoring tactique des signaux publics pour soutenir les arbitrages industriels et réglementaires."
+  },
+  "hero": {
+    "kicker": "Pilier 3",
+    "title": "Monitoring intelligence",
+    "intro": "Surveiller les signaux publics critiques pour réduire le délai de réaction et sécuriser les décisions."
+  },
+  "deliverables": {
+    "title": "Ce que vous recevez",
+    "items": [
+      "Taxonomie de signaux et seuils d’alerte",
+      "Routines de revue hebdomadaire",
+      "Journal de décisions et impacts",
+      "Escalade structurée des alertes critiques"
+    ]
+  },
+  "cta": {
+    "label": "Contacter l’équipe",
+    "href": "contact"
+  }
+}

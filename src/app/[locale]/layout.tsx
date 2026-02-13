@@ -6,6 +6,8 @@ import {notFound} from 'next/navigation';
 import {ContactModalProvider} from '../../components/ContactModal';
 import SiteHeader from '../../components/SiteHeader';
 import SiteFooter from '../../components/SiteFooter';
+import ScrollProgress from '../../components/ScrollProgress';
+import BackToTop from '../../components/BackToTop';
 
 export const dynamic = 'force-static';
 
@@ -19,19 +21,18 @@ export default async function LocaleLayout({
   const {locale} = params;
   if (!['fr', 'en'].includes(locale)) return notFound();
   const messages = await getMessages();
+
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <ContactModalProvider>
-            <SiteHeader />
-            {children}
-            <SiteFooter />
-          </ContactModalProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <ContactModalProvider>
+        <div className="flex min-h-screen flex-col">
+          <ScrollProgress />
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+          <BackToTop />
+        </div>
+      </ContactModalProvider>
+    </NextIntlClientProvider>
   );
 }
-
-

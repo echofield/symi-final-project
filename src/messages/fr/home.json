@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "title": "SYMI | Réduire le risque décisionnel en environnement industriel réglementé",
+    "description": "Système de réduction du risque décisionnel pour environnements industriels réglementés : audit de trajectoire, chaîne de preuve conformité et monitoring stratégique."
+  },
+  "hero": {
+    "kicker": "Systèmes décisionnels en contexte industriel & régulé",
+    "title": "Réduire le risque décisionnel en environnement industriel réglementé",
+    "subtitle": "Cartographier dépendances critiques, points de rupture et obligations avant qu’une décision n’engage des coûts irréversibles.",
+    "intro": "Nous structurons les arbitrages critiques avec une lecture opérationnelle des risques, preuves et trajectoires.",
+    "trust": "Conçu pour COMEX, DSI, stratégie, conformité, achats et directions opérationnelles.",
+    "ctaPrimary": "Démarrer un audit industriel",
+    "ctaSecondary": "Voir l’Evidence Pack"
+  },
+  "pillars": {
+    "items": [
+      {
+        "title": "Audit de trajectoire industrielle",
+        "body": "Identifier dépendances critiques, scénarios fragiles et points de non-retour avant tout engagement stratégique.",
+        "href": "audit-industriel",
+        "cta": "Accéder à l’audit"
+      },
+      {
+        "title": "Evidence Pack",
+        "body": "Structurer la chaîne de preuve nécessaire pour passer le premier filtre conformité et marchés publics sans friction.",
+        "href": "evidence-pack",
+        "cta": "Accéder à l’Evidence Pack"
+      },
+      {
+        "title": "Monitoring intelligence",
+        "body": "Détecter en continu les évolutions réglementaires et signaux publics susceptibles d’altérer vos décisions d’exécution.",
+        "href": "monitoring",
+        "cta": "Accéder au monitoring"
+      }
+    ]
+  },
+  "deliverables": {
+    "title": "Ce que vous recevez",
+    "items": [
+      "Cartographie des décisions structurantes",
+      "Matrice dépendances/contraintes/risques",
+      "Evidence Pack indexé et opposable",
+      "Tableau de monitoring avec priorisation opérationnelle"
+    ]
+  },
+  "cta": {
+    "label": "Démarrer un audit industriel",
+    "href": "audit-industriel"
+  },
+  "audience": {
+    "title": "Équipes concernées",
+    "items": [
+      "Directions industrielles et comités exécutifs",
+      "DSI, stratégie, conformité et achats",
+      "PME soumises à des exigences réglementaires et appels d’offres"
+    ]
+  }
+}

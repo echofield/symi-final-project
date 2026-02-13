@@ -1,50 +1,68 @@
 import Link from 'next/link';
+import type {Metadata} from 'next';
+import {getTranslations} from 'next-intl/server';
+import {buildLocalizedMetadata} from '../../lib/schema';
 
-export default function HomeLocalePage() {
-  return (
-    <>
-      <section className="relative isolate overflow-hidden py-24 sm:py-32">
-        <div className="absolute inset-0 -z-10 bg-white" aria-hidden="true" />
-        <div className="mx-auto max-w-6xl px-6">
-          <p className="mb-6 text-sm font-medium uppercase tracking-[0.4em] text-[var(--forest-green)]">Cross-Industry Intelligence</p>
-          <h1 className="text-4xl font-light tracking-tight text-black sm:text-5xl lg:text-6xl">Cross-Industry Intelligence</h1>
-          <p className="mt-6 text-lg leading-8 text-black sm:text-xl">Opportunity detection for professional services</p>
-          <p className="mt-4 text-sm font-light uppercase tracking-widest text-black">Law Firms • Construction • Finance • Real Estate • Consulting</p>
-          <div className="mt-6 text-sm leading-relaxed text-black">Monitoring official government databases and public registries • 100% legal & verified data • Weekly intelligence delivery</div>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link href="/contact" className="btn btn-primary">View Sample Report</Link>
-            <Link href="/contact" className="border border-black bg-white text-black hover:opacity-80 btn" >Request Intelligence Analysis</Link>
-          </div>
-        </div>
-      </section>
-      <section className="py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl font-light tracking-tight text-black sm:text-4xl">Intelligence Systems Built For Your Industry</h2>
-            <p className="mt-4 text-lg text-black">Every engagement starts with understanding what signals matter in your market. We build monitoring systems that correlate data across legal, regulatory, financial, and operational sources—then route opportunities directly to your team.</p>
-          </div>
-          <div className="mt-12 grid gap-12 sm:grid-cols-2">
-            <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Opportunity Detection Engines</h3>
-              <p className="mt-3 text-base leading-7 text-black">Automated monitoring of bankruptcies, regulatory changes, public tenders, and market movements that create new business opportunities.</p>
-            </div>
-            <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Cross-Source Intelligence</h3>
-              <p className="mt-3 text-base leading-7 text-black">Connect signals from legal databases, government registries, research publications, and financial filings into actionable insights.</p>
-            </div>
-            <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Custom Alert Systems</h3>
-              <p className="mt-3 text-base leading-7 text-black">Real-time notifications calibrated to your expertise, geography, and client base—delivered to your existing workflow.</p>
-            </div>
-            <div className="rounded-none border border-black bg-white p-8">
-              <h3 className="text-xl font-light text-black">Validated Intelligence</h3>
-              <p className="mt-3 text-base leading-7 text-black">Research-grade verification of every signal with confidence scoring, source validation, and false positive filtering.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+export async function generateMetadata({params}: {params: {locale: 'fr' | 'en'}}): Promise<Metadata> {
+  const t = await getTranslations({locale: params.locale, namespace: 'home'});
+  return buildLocalizedMetadata({
+    locale: params.locale,
+    path: '',
+    title: t('seo.title'),
+    description: t('seo.description')
+  });
 }
 
+export default async function HomeLocalePage({params}: {params: {locale: 'fr' | 'en'}}) {
+  const t = await getTranslations({locale: params.locale, namespace: 'home'});
+  const pillars = t.raw('pillars.items') as Array<{title: string; body: string; href: string; cta: string}>;
+  const deliverables = t.raw('deliverables.items') as string[];
+  const audience = t.raw('audience.items') as string[];
 
+  return (
+    <section className="bg-white py-20 text-black">
+      <div className="mx-auto max-w-6xl space-y-12 px-6">
+        <div className="max-w-4xl">
+          <p className="text-sm uppercase tracking-[0.35em] text-[var(--forest-green)]">{t('hero.kicker')}</p>
+          <h1 className="mt-4 text-4xl font-light sm:text-5xl">{t('hero.title')}</h1>
+          <p className="mt-4 text-xl font-light leading-8">{t('hero.subtitle')}</p>
+          <p className="mt-4 text-lg leading-8">{t('hero.intro')}</p>
+          <p className="mt-4 text-sm uppercase tracking-widest">{t('hero.trust')}</p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link href={`/${params.locale}/audit-industriel`} className="btn btn-primary">{t('hero.ctaPrimary')}</Link>
+            <Link href={`/${params.locale}/evidence-pack`} className="btn border border-black bg-white text-black hover:opacity-80">{t('hero.ctaSecondary')}</Link>
+          </div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {pillars.map((pillar, idx) => (
+            <article key={`${idx}-${pillar.title}`} className="border border-black bg-white p-6">
+              <h2 className="text-2xl font-light">{pillar.title}</h2>
+              <p className="mt-3 text-base leading-7">{pillar.body}</p>
+              <Link href={`/${params.locale}/${pillar.href}`} className="mt-4 inline-block underline">{pillar.cta}</Link>
+            </article>
+          ))}
+        </div>
+
+        <div className="border border-black bg-white p-8">
+          <h2 className="text-2xl font-light">{t('deliverables.title')}</h2>
+          <ul className="mt-4 list-disc space-y-2 pl-6">
+            {deliverables.map((item, idx) => (
+              <li key={`${idx}-${item}`}>{item}</li>
+            ))}
+          </ul>
+          <Link href={`/${params.locale}/${t('cta.href')}`} className="btn btn-primary mt-6 inline-block">{t('cta.label')}</Link>
+        </div>
+
+        <div className="border border-black bg-white p-8">
+          <h2 className="text-2xl font-light">{t('audience.title')}</h2>
+          <ul className="mt-4 list-disc space-y-2 pl-6">
+            {audience.map((item, idx) => (
+              <li key={`${idx}-${item}`}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}

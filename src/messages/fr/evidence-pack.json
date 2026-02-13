@@ -1,0 +1,24 @@
+{
+  "seo": {
+    "title": "Evidence Pack conformité et marchés publics | SYMI",
+    "description": "Structuration documentaire pour conformité, marchés publics et dossiers tender-ready avec chaîne de preuve vérifiable."
+  },
+  "hero": {
+    "kicker": "Pilier 2",
+    "title": "Evidence Pack",
+    "intro": "Constituer des dossiers opposables, traçables et lisibles pour conformité, achats et juridiques."
+  },
+  "deliverables": {
+    "title": "Ce que vous recevez",
+    "items": [
+      "Arborescence documentaire normalisée",
+      "Index de preuves et pièces justificatives",
+      "Matrice d’exigences conformité et AO",
+      "Dossier tender-ready prêt au premier filtre"
+    ]
+  },
+  "cta": {
+    "label": "Activer le monitoring",
+    "href": "monitoring"
+  }
+}
